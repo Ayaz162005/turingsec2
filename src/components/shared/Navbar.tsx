@@ -51,14 +51,25 @@ export default function Navbar() {
   };
   return (
     <div
-      className="bg-[#D9D9D9] text-[
-        #000000] dark:bg-black dark:text-white flex justify-between items-center px-16 py-2 fixed top-0 w-full z-10"
+      className="bg-white text-[
+        #000000] dark:bg-black dark:text-white flex justify-between items-center px-8 sm:px-16 py-2 fixed top-0 w-full z-50 "
     >
-      <img src="/assets/images/logo.png" alt="logo" width={150} />
-      <div className="lg:flex space-x-8 hidden mr-6">
+      <img
+        src="/assets/images/logo.png"
+        alt="logo"
+        width={150}
+        className="hidden sm:block"
+      />
+      <img
+        src="/assets/smalllogo.png"
+        alt="logo"
+        width={29}
+        className="block sm:hidden"
+      />
+      <div className="xl:flex space-x-8 hidden mr-16 items-center py-8">
         <Link
           to="/aboutus"
-          className={`hover:text-blue-700 transition-all duration-300 ${
+          className={`hover:text-blue-700 transition-all duration-300 font-medium ${
             hoveredLink && hoveredLink !== "/aboutus" && "opacity-40"
           }`}
           onMouseEnter={() => handleHover("/aboutus")}
@@ -68,7 +79,7 @@ export default function Navbar() {
         </Link>
         <Link
           to="/leaderboard"
-          className={`hover:text-blue-700 transition-all duration-300 ${
+          className={`hover:text-blue-700 transition-all duration-300 font-medium ${
             hoveredLink && hoveredLink !== "/leaderboard" && "opacity-40"
           }`}
           onMouseEnter={() => handleHover("/leaderboard")}
@@ -78,7 +89,7 @@ export default function Navbar() {
         </Link>
         <Link
           to="/bugbountyprograms"
-          className={`hover:text-blue-700 transition-all duration-300 ${
+          className={`hover:text-blue-700 transition-all duration-300 font-medium ${
             hoveredLink && hoveredLink !== "/bugbountyprograms" && "opacity-40"
           }`}
           onMouseEnter={() => handleHover("/bugbountyprograms")}
@@ -88,7 +99,7 @@ export default function Navbar() {
         </Link>
         <Link
           to="/opportunities"
-          className={`hover:text-blue-700 transition-all duration-300 ${
+          className={`hover:text-blue-700 transition-all duration-300 font-medium ${
             hoveredLink && hoveredLink !== "opportunities" && "opacity-40"
           }`}
           onMouseEnter={() => handleHover("opportunities")}
@@ -98,13 +109,13 @@ export default function Navbar() {
         </Link>
         <Link
           to="/joinus"
-          className={`hover:text-blue-700 transition-all duration-300 ${
+          className={`hover:scale-105 transition-all duration-300 font-medium bg-[#303085] text-white rounded-3xl py-[7px] px-6 ${
             hoveredLink && hoveredLink !== "joinus" && "opacity-40"
           }`}
           onMouseEnter={() => handleHover("joinus")}
           onMouseLeave={resetHover}
         >
-          Join us
+          Contact Us
         </Link>
       </div>
 
@@ -119,7 +130,7 @@ export default function Navbar() {
           setIsOpen(true);
         }}
       >
-        <SheetTrigger className="mr-1 lg:hidden">
+        <SheetTrigger className="sm:mr-16 xl:hidden py-6 mr-24">
           <TiThMenu size={20} />
         </SheetTrigger>
         <AnimatePresence mode="wait">
@@ -143,7 +154,7 @@ export default function Navbar() {
               <motion.div variants={variantsElement}>
                 <Link
                   to="/aboutus"
-                  className={`hover:text-blue-700 transition-all duration-300 ${
+                  className={`hover:text-blue-700 transition-all duration-300 font-medium ${
                     hoveredLink && hoveredLink !== "/aboutus" && "opacity-40"
                   }`}
                   onMouseEnter={() => handleHover("/aboutus")}
@@ -155,7 +166,7 @@ export default function Navbar() {
               <motion.div variants={variantsElement}>
                 <Link
                   to="/leaderboard"
-                  className={`hover:text-blue-700 transition-all duration-300 ${
+                  className={`hover:text-blue-700 transition-all duration-300 font-medium ${
                     hoveredLink &&
                     hoveredLink !== "/leaderboard" &&
                     "opacity-40"
@@ -169,7 +180,7 @@ export default function Navbar() {
               <motion.div variants={variantsElement}>
                 <Link
                   to="/bugbountyprograms"
-                  className={`hover:text-blue-700 transition-all duration-300 ${
+                  className={`hover:text-blue-700 transition-all duration-300 font-medium ${
                     hoveredLink &&
                     hoveredLink !== "/bugbountyprograms" &&
                     "opacity-40"
@@ -183,7 +194,7 @@ export default function Navbar() {
               <motion.div variants={variantsElement}>
                 <Link
                   to="/opportunities"
-                  className={`hover:text-blue-700 transition-all duration-300 ${
+                  className={`hover:text-blue-700 transition-all duration-300 font-medium ${
                     hoveredLink &&
                     hoveredLink !== "opportunities" &&
                     "opacity-40"
@@ -194,25 +205,30 @@ export default function Navbar() {
                   Opportunities
                 </Link>
               </motion.div>
-              <motion.div variants={variantsElement}>
-                <Link
-                  to="/joinus"
-                  className={`hover:text-blue-700 transition-all duration-300 ${
-                    hoveredLink && hoveredLink !== "joinus" && "opacity-40"
-                  }`}
-                  onMouseEnter={() => handleHover("joinus")}
-                  onMouseLeave={resetHover}
-                >
-                  Join us
-                </Link>
-              </motion.div>
             </motion.div>
           </SheetContent>
         </AnimatePresence>
       </Sheet>
-      <button className="absolute right-10" onClick={toggleDarkMode}>
-        {darkMode ? <CgSun /> : <BsFillMoonStarsFill />}
-      </button>
+      <div className="absolute right-8 flex items-center gap-2">
+        <Link
+          to="/joinus"
+          className={`hover:scale-105 transition-all duration-300 font-medium bg-[#303085] text-white rounded-3xl py-[7px] sm:px-6 px-4 absolute right-36 sm:w-[130px] w-[105px] block xl:hidden text-[14px] sm:text-[16px] ${
+            hoveredLink && hoveredLink !== "joinus" && "opacity-40"
+          }`}
+          onMouseEnter={() => handleHover("joinus")}
+          onMouseLeave={resetHover}
+        >
+          Contact Us
+        </Link>
+        <img
+          src="/assets/images/usericon.svg"
+          alt="usericon"
+          className="w-[54px] cursor-pointer"
+        />
+        <button className=" " onClick={toggleDarkMode}>
+          {darkMode ? <CgSun /> : <BsFillMoonStarsFill />}
+        </button>
+      </div>
     </div>
   );
 }

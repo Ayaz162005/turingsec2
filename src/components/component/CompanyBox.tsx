@@ -1,8 +1,12 @@
 export default function CompanyBox() {
   return (
-    <div className="rounded-xl overflow-hidden hover:cursor-pointer hover:scale-105 transition-all duration-300">
-      <div className="bg-[#D4C5C5] dark:bg-zinc-700 h-[200px] flex justify-center">
-        <img src="/assets/images/Vector.svg" alt="" width={100} />
+    <div className="rounded-xl overflow-hidden hover:cursor-pointer hover:scale-105 transition-all duration-300 md:min-w-[295px] min-w-[225px]">
+      <div className=" flex justify-center">
+        <img
+          src="/assets/images/company.avif "
+          alt=""
+          className="object-cover"
+        />
       </div>
       <div className=" bg-[#D9D9D9] dark:bg-slate-900 py-4 px-4 rounded-b-xl">
         <h3 className="font-bold text-[18px] ">Hackers nickname</h3>
