@@ -182,7 +182,7 @@
   /* font-size: 34px;
   font-weight: 600;
   */
-  min-width: 650px;
+  /* min-width: 650px; */
 }
 
 .animated-text span {
@@ -207,6 +207,7 @@
   background-color: white;
   border-left: 2px solid #ff7f50;
   right: -2px;
+
   animation: cursor 0.8s infinite, typing 20s steps(14) infinite;
 }
 

@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div className=" flex  justify-between xl:pb-12 pb-4  flex-col-reverse lg:flex-row items-center bg-white dark:bg-inherit px-16 mt-[52px]">
       <div>
-        <div className="md:text-[50px] font-bold md:leading-[60px] text-center lg:text-left text-[28px] leading-[40px] md:mt-8 mt-2 animated-text">
+        <div className="md:text-[50px] font-bold md:leading-[60px] text-center lg:text-left text-[28px] leading-[40px] md:mt-8 mt-2 animated-text ">
           Uncover Report,
           <br />
           <span></span>{" "}
