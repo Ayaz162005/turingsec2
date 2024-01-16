@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Company from "../components/shared/Company";
+// import Company from "../components/shared/Company";
 import Header from "../components/shared/Header";
 import InfoPart from "../components/shared/InfoPart";
 import LeaderBoard from "../components/shared/LeaderBoard";
@@ -41,13 +41,13 @@ export default function MainPage() {
   return (
     <div className="">
       <Header />
-      <Company />
-      <div className="fill">
+      <Oppotunuties />
+      {/* <Company /> */}
+      <div className="fill bg-[#061723]">
         <InfoPart />
 
         <ShortInfo ref={elementRef} />
         <LeaderBoard />
-        <Oppotunuties />
       </div>
       {showArrow && (
         <div

@@ -19,7 +19,7 @@ const initialThemeContext: ThemeContextProps = {
 const ThemeContext = createContext<ThemeContextProps>(initialThemeContext);
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(true);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
