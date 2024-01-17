@@ -2,7 +2,7 @@ export default function HowItWorks() {
   return (
     <section className="sm:px-16 pb-12 sm-8 text-white px-8 ">
       <h2 className="font-bold text-[32px] my-6">How it works ?</h2>{" "}
-      <p className="sm:text-[18px] font-[400] lg:w-[45%] opacity-80 w-[100%] text-[16px]">
+      <p className="sm:text-[20px] font-[400] lg:w-[45%]  w-[100%] text-[16px] ">
         These stages may vary slightly depending on the specific bug bounty
         platform or organization. Effective communication and collaboration
         between researchers and the organization are key throughout the entire
@@ -11,10 +11,10 @@ export default function HowItWorks() {
       <div className="flex">
         <div className="mt-8 lg:w-[40%] w-[100%] ml-3">
           <div className="pl-10 border-l border-dashed border-white relative  pb-4">
-            <h3 className="font-[800] mb-2 text-[14px] sm:text-[16px]">
+            <h3 className="font-[800] mb-2 text-[18px] sm:text-[20px]">
               1.Program Launch:
             </h3>
-            <p className="sm:text-[16px] text-[14px]">
+            <p className="sm:text-[20px] text-[16px] font-[400]">
               The organization announces and launches the bug bounty program,
               specifying the scope, rules, and rewards.
             </p>
@@ -25,10 +25,10 @@ export default function HowItWorks() {
             />
           </div>
           <div className="pl-10 border-l border-dashed border-white relative  pb-4">
-            <h3 className="font-[800] mb-2 text-[14px] sm:text-[16px]">
+            <h3 className="font-[800] mb-2 text-[18px] sm:text-[20px]">
               2.Researcher Registration:
             </h3>
-            <p className="sm:text-[16px] text-[14px]">
+            <p className="sm:text-[20px] text-[16px] font-[400]">
               Security researchers register on the bug bounty platform, agreeing
               to the program's terms and conditions.
             </p>
@@ -39,10 +39,10 @@ export default function HowItWorks() {
             />
           </div>
           <div className="pl-10 border-l border-dashed border-white relative  pb-4">
-            <h3 className="font-[800] mb-2 text-[14px] sm:text-[16px]">
+            <h3 className="font-[800] mb-2 text-[18px] sm:text-[20px]">
               3.Bug Hunting:
             </h3>
-            <p className="sm:text-[16px] text-[14px]">
+            <p className="sm:text-[20px] text-[16px] font-[400]">
               Researchers actively search for vulnerabilities within the defined
               scope, using various testing methodologies.
             </p>
@@ -53,10 +53,10 @@ export default function HowItWorks() {
             />
           </div>
           <div className="pl-10 border-l border-dashed border-white relative  pb-4">
-            <h3 className="font-[800] mb-2 text-[14px] sm:text-[16px]">
+            <h3 className="font-[800] mb-2 text-[18px] sm:text-[20px]">
               4.Vulnerability Submission:
             </h3>
-            <p className="sm:text-[16px] text-[14px]">
+            <p className="sm:text-[20px] text-[16px] font-[400]">
               Researchers submit their findings, detailing the identified
               vulnerabilities and providing clear steps to reproduce them.
             </p>
@@ -67,10 +67,10 @@ export default function HowItWorks() {
             />
           </div>
           <div className="pl-10 border-l border-dashed border-white relative  pb-4">
-            <h3 className="font-[800] mb-2 text-[14px] sm:text-[16px]">
+            <h3 className="font-[800] mb-2 text-[18px] sm:text-[20px]">
               5.Triage and Validation:
             </h3>
-            <p className="sm:text-[16px] text-[14px]">
+            <p className="sm:text-[20px] text-[16px] font-[400]">
               The organization's security team reviews and validates the
               submitted vulnerabilities, assessing their severity and impact.
             </p>
@@ -81,10 +81,10 @@ export default function HowItWorks() {
             />
           </div>
           <div className="pl-10 border-l border-dashed border-white relative  ">
-            <h3 className="font-[800] mb-2 text-[14px] sm:text-[16px]">
+            <h3 className="font-[800] mb-2 text-[18px] sm:text-[20px]">
               6.Rewards and Recognition:
             </h3>
-            <p className="sm:text-[16px] text-[14px]">
+            <p className="sm:text-[20px] text-[16px] font-[400]">
               Researchers receive rewards or recognition based on the severity
               and impact of their reported vulnerabilities. This could include
               monetary compensation, public acknowledgment, or other incentives

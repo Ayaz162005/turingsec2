@@ -16,10 +16,9 @@ module.exports = {
         "2xl": "1400px",
       },
     },
-    // fontFamily: {
-    //   sans: ["Poppins"],
-    // },
-
+    fontFamily: {
+      sans: ["Urbanist", "sans-serif"],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

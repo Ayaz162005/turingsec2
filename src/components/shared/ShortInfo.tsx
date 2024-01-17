@@ -8,8 +8,8 @@ const ShortInfo = forwardRef<HTMLDivElement>((_, ref) => {
     >
       <div className="flex flex-col  items-center leading-[60px]">
         <img src="/assets/world-white.svg" alt="world" className=" w-[55px]" />
-        <p className=" font-bold text-[35px]">100</p>
-        <p className="md:leading-6  text-center text-[14px] leading-5">
+        <p className=" font-[700] text-[35px]">100</p>
+        <p className="md:leading-6  text-center text-[16px] leading-5 font-[700]">
           GLOBAL BRANDS
           <br /> USE TURINGSEC
         </p>
@@ -17,7 +17,7 @@ const ShortInfo = forwardRef<HTMLDivElement>((_, ref) => {
       <div className="flex flex-col  items-center leading-[60px]">
         <img src="/assets/bag-white.svg" alt="world" className=" w-[55px]" />
         <p className=" font-bold text-[35px]">254</p>
-        <p className="md:leading-6  text-center text-[14px] leading-5">
+        <p className="md:leading-6  text-center text-[14px] leading-5 font-[700]">
           ETHICAL HACKERS
           <br /> AT THE READY
         </p>
@@ -25,7 +25,7 @@ const ShortInfo = forwardRef<HTMLDivElement>((_, ref) => {
       <div className="flex flex-col  items-center leading-[60px]">
         <img src="/assets/click-white.svg" alt="world" className="w-[55px]" />
         <p className=" font-bold text-[35px]">550</p>
-        <p className="md:leading-6  text-center text-[14px] leading-5">
+        <p className="md:leading-6  text-center text-[14px] leading-5 font-[700]">
           VALID VULNERABILITIES
           <br /> RESOLVED TO DATE
         </p>

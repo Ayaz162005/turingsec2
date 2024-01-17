@@ -8,30 +8,54 @@ export default function Footer() {
       </h2>
       <div className="flex justify-between md:items-center xl:w-[85%] w-full md:flex-row flex-col items-start">
         <div className="flex flex-col mt-6 space-y-2">
-          <Link to="/aboutus" className={`  text-white text-[18px]`}>
+          <Link
+            to="/aboutus"
+            className={`  text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             About us
           </Link>
-          <Link to="/leaderboard" className={`   text-white text-[18px]`}>
+          <Link
+            to="/leaderboard"
+            className={`    text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             Leaderboard
           </Link>
-          <Link to="/bugbountyprograms" className={`  text-white text-[18px]`}>
+          <Link
+            to="/bugbountyprograms"
+            className={`   text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             Bug Bounty programs
           </Link>
-          <Link to="/opportunities" className={` text-white text-[18px]`}>
+          <Link
+            to="/opportunities"
+            className={`  text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             Opportunities
           </Link>
         </div>
         <div className="flex flex-col mt-6 space-y-2">
-          <Link to="/blog" className={`  text-white text-[18px]`}>
+          <Link
+            to="/blog"
+            className={`   text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             Blog
           </Link>
-          <Link to="/news" className={`   text-white text-[18px]`}>
+          <Link
+            to="/news"
+            className={`    text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             News
           </Link>
-          <Link to="/contactus" className={`  text-white text-[18px]`}>
+          <Link
+            to="/contactus"
+            className={`   text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             Contact us
           </Link>
-          <Link to="/securityteam" className={` text-white text-[18px]`}>
+          <Link
+            to="/securityteam"
+            className={`  text-white sm:text-[20px] text-[18px] font-[600px]`}
+          >
             Security Team
           </Link>
         </div>
@@ -53,15 +77,21 @@ export default function Footer() {
               </a>
             </button>
           </div>
-          <p className="text-white mt-2 text-[18px] ">Get in touch with us</p>
-          <div className="sm:space-x-4 space-x-0 items-center">
+          <p className="text-white mt-2 text-[18px] font-[700]">
+            Get in touch with us
+          </p>
+          <div className="space-x-4 items-center">
             <input
               type="email"
               placeholder="E-mail"
-              className="text-black px-6 rounded-3xl py-2  mt-4 outline-none bg-[#FFEC86]  placeholder:text-black mr-[2px"
+              className="text-black px-6 rounded-3xl py-2  mt-4 outline-none bg-[#FFEC86]  placeholder:text-black "
             />
-            <button className="text-white border-2 border-[#FFEC86]   rounded-[15px]  hover:scale-110 transition-all duration-300  mt-4 sm:mt-0 py-2 px-3 sm:w-auto">
-              <img src="/assets/images/newnext.svg" alt="" className="w-4" />
+            <button className="text-white border-2 border-[#FFEC86]   rounded-[15px]  hover:scale-110 transition-all duration-300   py-2 px-3 sm:w-auto">
+              <img
+                src="/assets/images/submitemail.svg"
+                alt=""
+                className="w-4"
+              />
             </button>
           </div>
         </div>
@@ -83,7 +113,9 @@ export default function Footer() {
           </button>
         </div>
       </div>
-      <p className="text-white mt-8">© Copyright turingsec 2024</p>
+      <p className="text-white mt-8 sm:text-[20px] font-[600] text-[18px]">
+        © Copyright turingsec 2024
+      </p>
     </footer>
   );
 }
