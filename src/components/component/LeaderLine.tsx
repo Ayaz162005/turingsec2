@@ -1,6 +1,6 @@
 export default function LeaderLine() {
   return (
-    <div className="border-2 rounded-full border-[#023059] bg-[#023059] lg:px-8 px-4 flex items-center justify-between hover:scale-105 cursor-pointer transition-all duration-300">
+    <div className="border-2 rounded-3xl border-[#023059] bg-[#023059] lg:px-8 px-4 flex items-center justify-between hover:scale-105 cursor-pointer transition-all duration-300">
       <div className="flex items-center justify-between  ">
         <p className="lg:min-w-12 sm:min-w-8 sm:text-[30px] text-[24px] min-w-[20px]">
           1
