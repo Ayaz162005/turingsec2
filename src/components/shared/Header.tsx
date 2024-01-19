@@ -2,12 +2,12 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   return (
-    <div className=" flex  justify-between xl:pb-12 pb-4 sm:py-8 flex-col-reverse text-[white] lg:flex-row items-center bg-[#31688F] dark:bg-inherit sm:px-16 mt-[52px] py-14 px-8">
+    <div className=" flex  justify-between xl:pb-12 pb-4 sm:py-8 flex-col-reverse text-[white] lg:flex-row items-center bg-[#31688F] dark:bg-inherit sm:px-16 mt-[52px] py-20 px-8">
       <div>
-        <div className="md:text-[50px] font-bold md:leading-[60px] text-center lg:text-left text-[28px] leading-[40px] md:mt-8 mt-2 animated-text font-[700] ">
+        <div className="md:text-[50px]  md:leading-[60px] text-center lg:text-left text-[28px] leading-[40px] md:mt-8 mt-2 animated-text font-[700] ">
           Discover Report,
           <br />
-          <span></span>
+          <span className="md:text-[35px] text-[25px] "></span>
         </div>
         <p className="md:text-[20px] text-[14px] mt-4 text-center lg:text-left   leading-7 opacity-90 font-urbanist font-[500] ">
           Our Bug Bounty Platform Encourages

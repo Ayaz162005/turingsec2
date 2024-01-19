@@ -129,13 +129,29 @@
   display: block;
 }
 
+.hexagon2 {
+  width: 400px; /* Adjust size as needed */
+  height: 450px; /* Adjust size as needed */
+  position: relative;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  /* This clip-path creates a hexagon shape */
+  overflow: hidden;
+}
+
+.hexagon2 img {
+  width: 100%;
+  position: absolute;
+
+  height: auto;
+  display: block;
+}
 @media (max-width: 640px) {
   .curve::before {
     transform: translate(-50%) scale(1);
   }
   .hexagon {
-    width: 20px; /* Adjust size as needed */
-    height: 25px; /* Adjust size as needed */
+    width: 30px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
   }
 }
 
@@ -187,13 +203,13 @@
 
 .animated-text span {
   position: relative;
-  height: 65px;
+  /* height: 605px; */
 }
 
 .animated-text span::before {
-  content: "Youtuber";
+  content: "Increase Your Reputation";
   color: #ff7f50;
-  animation: words 20s infinite;
+  animation: words 30s infinite;
 }
 
 .animated-text span::after {
@@ -203,12 +219,13 @@
   /* width: calc(100% + 8px); */
 
   width: 8px;
-  height: 100%;
+  height: calc(100% + 8px);
+  /* height: 20px; */
   background-color: #31688f;
   border-left: 2px solid #ff7f50;
   right: -2px;
-
-  animation: cursor 0.8s infinite, typing 20s steps(14) infinite;
+  top: 0px;
+  animation: cursor 0.8s infinite, typing 30s steps(14) infinite;
 }
 
 @keyframes cursor {
@@ -219,26 +236,26 @@
 
 @keyframes words {
   0% {
-    content: "Gamer";
+    content: "Increase Your Reputation";
   }
   20% {
-    content: "Youtuber";
+    content: "Become More Experienced";
   }
   21%,
   40% {
-    content: "Blogger";
+    content: "Reduce Cyber Threats";
   }
   41%,
   60% {
-    content: "Developer";
+    content: "Turn Threats Into Art";
   }
   61%,
   80% {
-    content: "Designer";
+    content: "Reward";
   }
   81%,
   100% {
-    content: "Gamer";
+    content: "Increase Your Reputation";
   }
 }
 

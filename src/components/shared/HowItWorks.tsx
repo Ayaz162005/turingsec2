@@ -96,7 +96,7 @@ export default function HowItWorks() {
             />
           </div>
         </div>
-        <div className="w-[70%] hidden lg:block ">
+        <div className="w-[70%] hidden lg:block hexagon2 m-auto -top-[100px]">
           <img src="/assets/images/poliimg.jpeg" alt="" className="m-auto " />
         </div>
       </div>
