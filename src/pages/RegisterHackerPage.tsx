@@ -42,7 +42,7 @@ export default function RegisterHackerPage() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 sm:w-[450px] m-auto w-[347px]
+              className="space-y-4 sm:w-[450px] m-auto lg:m-0 w-[317px]
               "
             >
               <FormField
@@ -52,6 +52,7 @@ export default function RegisterHackerPage() {
                   <FormItem>
                     <FormControl>
                       <Input
+                        type="email"
                         placeholder="Email"
                         {...field}
                         className="bg-[#023059] rounded-xl h-[60px] 

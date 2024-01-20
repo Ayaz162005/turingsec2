@@ -20,9 +20,11 @@ export default function Header() {
               Register as a hacker
             </Button>
           </Link>
-          <Button className="hover:scale-110 transition-all duration-300 rounded-3xl  py-[7px] w-[220px] bg-transparent text-white  border-2 border-[#FFDE31] font-[600] hover:bg-transparent">
-            Register as a Company
-          </Button>
+          <Link to={"/registercompany"}>
+            <Button className="hover:scale-110 transition-all duration-300 rounded-3xl  py-[7px] w-[220px] bg-transparent text-white  border-2 border-[#FFDE31] font-[600] hover:bg-transparent">
+              Register as a Company
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="min-w-[50%]">

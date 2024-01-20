@@ -52,21 +52,11 @@ export default function Navbar() {
       className="bg-[#0C2F47] text-[
         white] dark:bg-black dark:text-white flex justify-between items-center px-8 sm:px-16 py-2 fixed top-0 w-full z-50 h-[80px]"
     >
-      <Link className="" to={"/"}>
-        <img
-          src="/assets/images/newlogo.png"
-          alt="logo"
-          width={150}
-          className="hidden sm:block"
-        />
+      <Link className="hidden sm:block" to={"/"}>
+        <img src="/assets/images/newlogo.png" alt="logo" width={150} />
       </Link>
-      <Link to={"/"}>
-        <img
-          src="/assets/newsmalllogo.png"
-          alt="logo"
-          width={29}
-          className="block sm:hidden"
-        />
+      <Link to={"/"} className="block sm:hidden">
+        <img src="/assets/newsmalllogo.png" alt="logo" width={29} />
       </Link>
       <div className="xl:flex space-x-8 hidden mr-16 items-center h-[80px] text-[white]">
         <Link
