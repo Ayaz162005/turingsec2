@@ -52,18 +52,22 @@ export default function Navbar() {
       className="bg-[#0C2F47] text-[
         white] dark:bg-black dark:text-white flex justify-between items-center px-8 sm:px-16 py-2 fixed top-0 w-full z-50 h-[80px]"
     >
-      <img
-        src="/assets/images/newlogo.png"
-        alt="logo"
-        width={150}
-        className="hidden sm:block"
-      />
-      <img
-        src="/assets/newsmalllogo.png"
-        alt="logo"
-        width={29}
-        className="block sm:hidden"
-      />
+      <Link className="" to={"/"}>
+        <img
+          src="/assets/images/newlogo.png"
+          alt="logo"
+          width={150}
+          className="hidden sm:block"
+        />
+      </Link>
+      <Link to={"/"}>
+        <img
+          src="/assets/newsmalllogo.png"
+          alt="logo"
+          width={29}
+          className="block sm:hidden"
+        />
+      </Link>
       <div className="xl:flex space-x-8 hidden mr-16 items-center h-[80px] text-[white]">
         <Link
           to="/aboutus"
@@ -134,12 +138,14 @@ export default function Navbar() {
         <AnimatePresence mode="wait">
           <SheetContent className="w-[300px] dark-theme dark">
             <SheetHeader>
-              <img
-                src="/assets/images/newlogo.png"
-                alt="logo"
-                width={200}
-                className="m-auto"
-              />
+              <Link to={"/"}>
+                <img
+                  src="/assets/images/newlogo.png"
+                  alt="logo"
+                  width={200}
+                  className="m-auto"
+                />
+              </Link>
             </SheetHeader>
 
             <motion.div

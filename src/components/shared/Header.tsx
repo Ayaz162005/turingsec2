@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 
 export default function Header() {
@@ -14,9 +15,11 @@ export default function Header() {
           <span className="lg:block inline"> Cybersecurity Collaboration</span>
         </p>
         <div className="flex justify-between my-6 md:w-[80%] m-auto flex-col md:flex-row space-y-4 md:space-y-0   lg:w-[100%] w-[100%] md:space-x-4 space-x-0 items-center">
-          <Button className="hover:scale-110 transition-all duration-300 rounded-3xlpy-[7px] w-[220px] bg-[#FFDE31] hover:bg-[#FFDE31] text-black font-bold rounded-3xl">
-            Register as a hacker
-          </Button>
+          <Link to={"/registerhacker"}>
+            <Button className="hover:scale-110 transition-all duration-300 rounded-3xlpy-[7px] w-[220px] bg-[#FFDE31] hover:bg-[#FFDE31] text-black font-bold rounded-3xl">
+              Register as a hacker
+            </Button>
+          </Link>
           <Button className="hover:scale-110 transition-all duration-300 rounded-3xl  py-[7px] w-[220px] bg-transparent text-white  border-2 border-[#FFDE31] font-[600] hover:bg-transparent">
             Register as a Company
           </Button>
