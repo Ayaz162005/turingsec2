@@ -29,9 +29,9 @@ export default function Header() {
       </div>
       <div className="min-w-[50%]">
         <img
-          src="/assets/images/headerpic.png"
+          src="/assets/images/mix-image3.png"
           alt="assets"
-          className="m-auto lg:w-[600px] md:w-[400px] w-[300px]"
+          className="m-auto lg:w-[600px] md:w-[400px] w-[300px] "
           // width={600}
         />
       </div>

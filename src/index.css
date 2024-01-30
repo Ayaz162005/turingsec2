@@ -284,3 +284,11 @@
     width: calc(100% + 8px);
   }
 }
+button {
+  color: white;
+}
+html,
+body {
+  width: 100%;
+  box-sizing: border-box;
+}

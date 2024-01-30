@@ -50,7 +50,7 @@ export default function Navbar() {
   return (
     <div
       className="bg-[#0C2F47] text-[
-        white] dark:bg-black dark:text-white flex justify-between items-center px-8 sm:px-16 py-2 fixed top-0 w-full z-50 h-[80px]"
+        white]   flex justify-between items-center px-8 sm:px-16 py-2 fixed top-0 w-full z-50 h-[80px]"
     >
       <Link className="hidden sm:block" to={"/"}>
         <img src="/assets/images/newlogo.png" alt="logo" width={150} />
@@ -122,11 +122,11 @@ export default function Navbar() {
           setIsOpen(true);
         }}
       >
-        <SheetTrigger className=" xl:hidden sm:mr-[55px] mr-[63px]">
+        <SheetTrigger className=" xl:hidden sm:mr-[55px] mr-[63px] ">
           <TiThMenu size={20} style={{ color: "white" }} />
         </SheetTrigger>
         <AnimatePresence mode="wait">
-          <SheetContent className="w-[300px] dark-theme dark">
+          <SheetContent className="w-[300px]  dark">
             <SheetHeader>
               <Link to={"/"}>
                 <img

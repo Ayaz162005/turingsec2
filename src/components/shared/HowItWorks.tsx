@@ -96,8 +96,8 @@ export default function HowItWorks() {
             />
           </div>
         </div>
-        <div className="w-[70%] hidden lg:block hexagon2 m-auto -top-[100px]">
-          <img src="/assets/images/poliimg.jpeg" alt="" className="m-auto " />
+        <div className="w-[60%] hidden lg:block mx-auto relative left-10 -top-20">
+          <img src="/assets/images/mix-image1.png" alt="" className="m-auto " />
         </div>
       </div>
     </section>
