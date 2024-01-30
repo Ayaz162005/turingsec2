@@ -5,7 +5,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import { Button } from "./components/ui/button";
+
 import AppLayout from "./pages/AppLayout";
 import MainPage from "./pages/MainPage";
 import RegisterHackerPage from "./pages/RegisterHackerPage";
