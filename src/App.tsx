@@ -12,6 +12,8 @@ import RegisterHackerPage from "./pages/RegisterHackerPage";
 import { useEffect } from "react";
 import RegisterCompanyPage from "./pages/RegisterCompany";
 import AboutUs from "./pages/AboutUs";
+import OpportunitiesHacker from "./pages/OpportunitiesHacker";
+import OpportunitiesCompany from "./pages/OpportunitiesCompany";
 
 function App() {
   function ScrollToTop() {
@@ -33,6 +35,11 @@ function App() {
           <Route path="registerhacker" element={<RegisterHackerPage />} />
           <Route path="registercompany" element={<RegisterCompanyPage />} />
           <Route path="aboutus" element={<AboutUs />} />
+          <Route path="opportunitieshacker" element={<OpportunitiesHacker />} />
+          <Route
+            path="opportunitiescompany"
+            element={<OpportunitiesCompany />}
+          />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
