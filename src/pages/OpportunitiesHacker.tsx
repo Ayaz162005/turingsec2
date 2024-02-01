@@ -37,58 +37,108 @@ export default function OpportunitiesHacker() {
           <OpportunitiesHackerBox
             title="Recognition and Reputation "
             text="Successful bug hunters often gain recognition within the cybersecurity community and may even establish a reputation for their skills. Some bug bounty platforms have leaderboards and rankings, showcasing top performers."
-            icon={<img src="/assets/icon5.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon5.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Networking Opportunities: "
             text="Bug bounty platforms provide a space for hackers to interact with security professionals, companies, and like-minded individuals. This networking can lead to potential job offers, collaborations, or mentorship opportunities."
-            icon={<img src="/assets/icon6.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon6.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Contributing to Cybersecurity  "
             text="By reporting vulnerabilities, hackers contribute to making the digital world safer. They help companies identify and fix security weaknesses before malicious actors exploit them, thus strengthening overall cybersecurity."
-            icon={<img src="/assets/icon7.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon7.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Diverse Targets for Comprehensive Testing
           "
             text="Explore a wide array of testing opportunities, including Web, API, Mobile Apps, Cloud, IOT Devices, and more, ensuring comprehensive security coverage."
-            icon={<img src="/assets/icon8.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon8.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Vulnerability Rating Taxonomy: Efficient Risk Assessment
           "
             text="Adhering to community-driven standards for risk severity, facilitating more efficient and effective work in identifying and addressing vulnerabilities."
-            icon={<img src="/assets/icon9.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon9.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Additional Benefits "
             text="Expand your professional network, acquire cutting-edge gear, develop advanced skills, and more, ensuring a well-rounded and enriching experience."
-            icon={<img src="/assets/icon10.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon10.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Expert Community Collaboration
           "
             text="Engage with and learn from top hackers and technologists, fostering a collaborative environment for skill enhancement and knowledge sharing."
-            icon={<img src="/assets/icon11.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon11.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="Security Knowledge Platform: Your Project's Complete Foundation"
             text="An all-in-one foundation managing your projects from start to finish, providing a comprehensive solution for streamlined security operations."
-            icon={<img src="/assets/icon12.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon12.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
           <OpportunitiesHackerBox
             title="24/7 Triage Excellence
           "
             text="Global specialists equipped with advanced tools swiftly validate and prioritize vulnerabilities, expediting the resolution process."
-            icon={<img src="/assets/icon13.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon13.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
           />
 
           <OpportunitiesHackerBox
             title="TuringMatch: Skillfull Pairing for Success
           "
             text="Cleverly matches hackers of diverse skills and backgrounds with suitable programs, ensuring success for everyone involved."
-            icon={<img src="/assets/icon14.png" className="w-[90px] m-auto" />}
+            icon={
+              <img
+                src="/assets/icon14.png"
+                className="sm:w-[90px] w-[60px] m-auto"
+              />
+            }
             add={"xl:col-start-2 col-start-auto"}
           />
         </div>

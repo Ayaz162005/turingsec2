@@ -113,7 +113,7 @@ export default function RegisterHackerPage() {
       </div>
       <div className="lg:w-[100%] mt-8 w-auto pb-12 pt-2">
         <img
-          src="/assets/newsmalllogo.png"
+          src="/assets/images/seclog.png"
           alt=""
           className="m-auto w-[300px]"
         />

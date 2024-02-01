@@ -119,7 +119,7 @@ export default function AboutUs() {
                 text={
                   "Effective collaboration requires orchestrating data, technology, and human intelligence to accelerate the resolution of vulnerabilities."
                 }
-                icon={<img src="/assets/icon1.svg" className="min-w-[30px]" />}
+                icon={<img src="/assets/icon15.svg" className="min-w-[30px]" />}
               />
             </div>
           </div>

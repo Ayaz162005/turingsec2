@@ -14,6 +14,9 @@ import RegisterCompanyPage from "./pages/RegisterCompany";
 import AboutUs from "./pages/AboutUs";
 import OpportunitiesHacker from "./pages/OpportunitiesHacker";
 import OpportunitiesCompany from "./pages/OpportunitiesCompany";
+import Dashboard from "./pages/WorkPages/Dashboard";
+import WorkLayout from "./pages/WorkPages/WorkLayout";
+import Programs from "./pages/WorkPages/Programs";
 
 function App() {
   function ScrollToTop() {
@@ -40,6 +43,10 @@ function App() {
             path="opportunitiescompany"
             element={<OpportunitiesCompany />}
           />
+        </Route>
+        <Route path="/work" element={<WorkLayout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="programs" element={<Programs />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
