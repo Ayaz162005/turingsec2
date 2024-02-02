@@ -12,7 +12,11 @@ import {
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { formSchemaHackerRegister } from "../lib/schemas";
+import { Link, useNavigate } from "react-router-dom";
+import { useCurrentUser } from "../context/CurrentUser";
+import { useEffect } from "react";
 export default function RegisterHackerPage() {
+  const { currentUser } = useCurrentUser();
   const form = useForm<z.infer<typeof formSchemaHackerRegister>>({
     resolver: zodResolver(formSchemaHackerRegister),
     defaultValues: {
@@ -20,7 +24,12 @@ export default function RegisterHackerPage() {
       password: "",
     },
   });
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (currentUser?.activated) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchemaHackerRegister>) {
     // Do something with the form values.
@@ -104,9 +113,11 @@ export default function RegisterHackerPage() {
               >
                 Sign In
               </Button>
-              <p className="text-[#92CCFF] text-[16px] font-[500] text-center cursor-pointer">
-                Create a Turingsec Account
-              </p>
+              <Link to={"/signupashacker"}>
+                <p className="text-[#92CCFF] text-[16px] font-[500] text-center cursor-pointer mt-3">
+                  Create a Turingsec Account
+                </p>
+              </Link>
             </form>
           </Form>
         </div>

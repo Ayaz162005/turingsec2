@@ -5,7 +5,11 @@ import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCurrentUser } from "../../context/CurrentUser";
+import { Button } from "../ui/button";
 export default function Navbar() {
+  const { currentUser } = useCurrentUser();
+
   const [hoveredLink, setHoveredLink] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [ani, setAni] = useState(false);
@@ -215,11 +219,19 @@ export default function Navbar() {
         >
           Contact Us
         </Link>
-        <img
-          src="/assets/images/newuserlogo.svg"
-          alt="usericon"
-          className="w-[54px] cursor-pointer"
-        />
+        {currentUser?.activated ? (
+          <img
+            src="/assets/images/newuserlogo.svg"
+            alt="usericon"
+            className="w-[54px] cursor-pointer"
+          />
+        ) : (
+          <Link to={"/registerhacker"} className="absolute -right-6">
+            <Button className="hover:scale-110 transition-all duration-300  rounded-3xl  py-[8px]  bg-[#2451F5] text-white  border-2 border-[#2451F5] font-[600] hover:bg-[#2451F5] ">
+              Register
+            </Button>
+          </Link>
+        )}
         {/* <button className=" " onClick={toggleDarkMode}>
           {darkMode ? <CgSun /> : <BsFillMoonStarsFill />}
         </button> */}

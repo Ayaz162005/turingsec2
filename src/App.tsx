@@ -17,6 +17,9 @@ import OpportunitiesCompany from "./pages/OpportunitiesCompany";
 import Dashboard from "./pages/WorkPages/Dashboard";
 import WorkLayout from "./pages/WorkPages/WorkLayout";
 import Programs from "./pages/WorkPages/Programs";
+import SignupAsHacker from "./pages/SignupAsHacker";
+
+import { Toaster } from "react-hot-toast";
 
 function App() {
   function ScrollToTop() {
@@ -30,12 +33,14 @@ function App() {
   }
   return (
     <BrowserRouter>
+      <Toaster position="top-center" />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<MainPage />} />
 
           <Route path="registerhacker" element={<RegisterHackerPage />} />
+          <Route path="signupashacker" element={<SignupAsHacker />} />
           <Route path="registercompany" element={<RegisterCompanyPage />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="opportunitieshacker" element={<OpportunitiesHacker />} />

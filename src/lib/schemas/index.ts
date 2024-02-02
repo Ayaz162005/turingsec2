@@ -9,8 +9,25 @@ export const formSchemaCompanyRegister = z.object({
   message: z.string().min(2, { message: "Message is too short" }),
 });
 
-export const formSchemaHackerRegister = z.object({
-  email: z.string().email({ message: "Please enter a valid email" }),
-  password: z.string().min(8, { message: "Password is too short" }),
-});
+export const formSchemaHackerRegister = z
+  .object({
+    firstname: z.string().min(2, { message: "First name is too short" }),
+    lastname: z.string().min(2, { message: "Last name is too short" }),
+    username: z.string().min(2, { message: "Username is too short" }),
+    email: z.string().email({ message: "Please enter a valid email" }),
+    password: z.string().min(8, { message: "Password is too short" }),
+    passwordConfirmation: z
+      .string()
+      .min(8, { message: "Password is too short" }),
+
+    // country: z.string().min(2, { message: "Country is too short" }),
+    country: z.object({
+      value: z.string().min(2, { message: "Country code is too short" }),
+      label: z.string().min(2, { message: "Country is not defibed" }),
+    }),
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: "Passwords do not match",
+    path: ["passwordConfirmation"],
+  });
 export const formSchemaHackerLogin = z.object({});
