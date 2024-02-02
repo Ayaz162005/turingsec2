@@ -4,17 +4,17 @@ import { useCurrentUser } from "../../context/CurrentUser";
 import { useEffect } from "react";
 
 export default function WorkLayout() {
-  const navigate = useNavigate();
-  const { currentUser } = useCurrentUser();
+  // const navigate = useNavigate();
+  // const { currentUser } = useCurrentUser();
 
-  useEffect(() => {
-    console.log("log", currentUser);
-    if (currentUser && !currentUser.activated) {
-      navigate("/");
-    } else if (!currentUser) {
-      navigate("/");
-    }
-  }, [currentUser, navigate]);
+  // useEffect(() => {
+  //   console.log("log", currentUser);
+  //   if (currentUser && !currentUser.activated) {
+  //     navigate("/");
+  //   } else if (!currentUser) {
+  //     navigate("/");
+  //   }
+  // }, [currentUser, navigate]);
 
   // Render the component only if currentUser is defined
 
