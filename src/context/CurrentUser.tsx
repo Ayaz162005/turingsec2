@@ -40,7 +40,7 @@ const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
 
           if (!user.activated) {
             const res = await fetch(
-              `http://3.95.116.98/api/auth/users/${user.id}`,
+              `https://3.95.116.98/api/auth/users/${user.id}`,
               {
                 method: "GET",
               }
