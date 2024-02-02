@@ -51,7 +51,7 @@ export default function SignupAsHacker() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchemaHackerRegister>) {
     try {
-      const response = await fetch("3.95.116.98/api/auth/register/hacker", {
+      const response = await fetch("/api/auth/register/hacker", {
         method: "POST", // Fixed syntax: method should be a string
         headers: {
           "Content-Type": "application/json",
