@@ -39,10 +39,13 @@ const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
           const user = JSON.parse(userString) as CurrentUser;
 
           if (!user.activated) {
-            const res = await fetch(`/api/auth/users/${user.id}`, {
-              method: "GET",
-              mode: "no-cors",
-            });
+            const res = await fetch(
+              `http://3.95.116.98/api/auth/users/${user.id}`,
+              {
+                method: "GET",
+                mode: "no-cors",
+              }
+            );
 
             if (res.ok) {
               const updatedUser = await res.json();
