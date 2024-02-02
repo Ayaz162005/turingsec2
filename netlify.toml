@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/*"
-  to = "https://3.95.116.98/:splat"
+  to = "/"
   status = 200
   
