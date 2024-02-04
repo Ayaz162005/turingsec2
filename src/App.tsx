@@ -20,6 +20,9 @@ import Programs from "./pages/WorkPages/Programs";
 import SignupAsHacker from "./pages/SignupAsHacker";
 
 import { Toaster } from "react-hot-toast";
+import Ranking from "./pages/WorkPages/Ranking";
+import Hactivity from "./pages/WorkPages/Hactivity";
+import Profile from "./pages/WorkPages/Profile";
 
 function App() {
   function ScrollToTop() {
@@ -52,6 +55,9 @@ function App() {
         <Route path="/work" element={<WorkLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="programs" element={<Programs />} />
+          <Route path="ranking" element={<Ranking />} />
+          <Route path="hactivity" element={<Hactivity />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

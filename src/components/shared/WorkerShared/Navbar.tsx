@@ -4,7 +4,7 @@ export default function Navbar() {
   const url = `/${useLocation().pathname.split("/")[2]}`;
 
   return (
-    <div className="bg-[#023059] py-14  rounded-tr-[30px]  z-30 md:w-auto w-[100px]">
+    <div className="bg-[#023059] py-14  rounded-tr-[30px]  z-30 md:w-auto w-[74px]">
       <ul>
         <Link className="hidden md:block px-10 " to={"/"}>
           <img src="/assets/images/newlogo.png" alt="logo" width={200} />

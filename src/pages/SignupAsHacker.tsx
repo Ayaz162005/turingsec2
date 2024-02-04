@@ -58,7 +58,7 @@ export default function SignupAsHacker() {
           headers: {
             "Content-Type": "application/json",
           },
-          mode: "no-cors",
+          // mode: "no-cors",
           body: JSON.stringify({
             first_name: values.firstname,
             last_name: values.lastname,

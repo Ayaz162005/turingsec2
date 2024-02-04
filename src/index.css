@@ -121,6 +121,28 @@
   overflow: hidden;
 }
 
+.hexagon4 {
+  width: 116px; /* Adjust size as needed */
+  height: 130px; /* Adjust size as needed */
+  /* position: relative; */
+  background-color: #ff7f50;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  /* This clip-path creates a hexagon shape */
+  overflow: hidden;
+}
+.hexagon4 img {
+  /* width: 100%; */
+
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* position: absolute; */
+
+  height: auto;
+  display: block;
+}
+
 .hexagon3 {
   width: 54px; /* Adjust size as needed */
   height: 51px; /* Adjust size as needed */
