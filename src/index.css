@@ -75,6 +75,21 @@
     @apply bg-background text-foreground;
   }
 }
+.tag {
+  position: relative;
+  display: block;
+}
+.tag::after {
+  content: "";
+  display: block;
+  margin: auto;
+  margin-top: 5px;
+  transition: all 0.5s;
+  width: 0;
+  height: 2px;
+  background-color: #ffde31;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -332,4 +347,31 @@ html,
 body {
   width: 100%;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .react-selector-container {
+    width: 30px; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 640px) {
+  .react-selector-container {
+    width: 25px; /* Adjust as needed */
+  }
+}
+.point {
+  display: block;
+}
+
+.point::before {
+  content: "•";
+  display: inline-block;
+  margin: auto;
+  width: 20px;
+  height: 100%;
+  position: relative;
+  top: 5px;
+  right: -4px;
+  font-size: 30px;
 }

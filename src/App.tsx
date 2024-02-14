@@ -23,6 +23,12 @@ import { Toaster } from "react-hot-toast";
 import Ranking from "./pages/WorkPages/Ranking";
 import Hactivity from "./pages/WorkPages/Hactivity";
 import Profile from "./pages/WorkPages/Profile";
+import MainLayout from "./pages/CompanyPages/MainLayout";
+import DashboardCompany from "./pages/CompanyPages/DashboardCompany";
+import ProgramCompany from "./pages/CompanyPages/ProgramCompany";
+import ReportCompany from "./pages/CompanyPages/ReportsCompany";
+import CompanyProfile from "./pages/CompanyPages/CompanyProfile";
+import Setting from "./pages/WorkPages/Setting";
 
 function App() {
   function ScrollToTop() {
@@ -58,6 +64,13 @@ function App() {
           <Route path="ranking" element={<Ranking />} />
           <Route path="hactivity" element={<Hactivity />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Setting />} />
+        </Route>
+        <Route path="/company" element={<MainLayout />}>
+          <Route path="dashboard" element={<DashboardCompany />} />
+          <Route path="programs" element={<ProgramCompany />} />
+          <Route path="report" element={<ReportCompany />} />
+          <Route path="profile" element={<CompanyProfile />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

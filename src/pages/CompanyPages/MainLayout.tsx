@@ -4,7 +4,7 @@ import { useCurrentUser } from "../../context/CurrentUser";
 import { useEffect } from "react";
 import CompanyNavbar from "../../components/shared/Company/CompanyNavbar";
 
-export default function WorkLayout() {
+export default function MainLayout() {
   // const navigate = useNavigate();
   // const { currentUser } = useCurrentUser();
 
@@ -21,7 +21,7 @@ export default function WorkLayout() {
 
   return (
     <div className="font-sans flex overflow-hidden relative">
-      <Navbar />
+      <CompanyNavbar />
       <Outlet />
     </div>
   );

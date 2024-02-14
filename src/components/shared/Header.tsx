@@ -3,9 +3,9 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   return (
-    <div className=" flex  justify-between xl:pb-12 pb-4 sm:py-8 flex-col-reverse text-[white] lg:flex-row items-center bg-[#31688F] dark:bg-inherit sm:px-16 mt-[52px] py-20 px-8">
+    <div className=" flex  justify-between xl:pb-12 pb-4 sm:py-28 flex-col-reverse text-[white] lg:flex-row items-center bg-[#31688F] dark:bg-inherit sm:px-16 mt-[52px] py-20 px-8">
       <div>
-        <div className="md:text-[50px]  md:leading-[60px] text-center lg:text-left text-[28px] leading-[40px] md:mt-8 mt-2 animated-text font-[700] ">
+        <div className="md:text-[50px]  md:leading-[60px] text-center lg:text-left text-[30px] leading-[40px] md:mt-8 mt-2 animated-text font-[700] ">
           Discover Report,
           <br />
           <span className="md:text-[35px] text-[25px] "></span>

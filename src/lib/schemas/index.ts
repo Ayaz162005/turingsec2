@@ -31,3 +31,32 @@ export const formSchemaHackerRegister = z
     path: ["passwordConfirmation"],
   });
 export const formSchemaHackerLogin = z.object({});
+
+export const formSchemaProfileUpdate = z.object({
+  firstname: z.string().min(2, { message: "First name is too short" }),
+  lastname: z.string().min(2, { message: "Last name is too short" }),
+  username: z.string().min(2, { message: "Username is too short" }),
+  website: z
+    .string()
+    .min(2, { message: "Website is too short" })
+    .url({ message: "Please enter a valid URL" }),
+  bio: z.string().min(2, { message: "Bio is too short" }),
+  bigfile: z.string().min(2, { message: "Enter file" }),
+  file: z.string().min(2, { message: "Enter file" }),
+
+  // country: z.string().min(2, { message: "Country is too short" }),
+  country: z.object({
+    value: z.string().min(2, { message: "Country code is too short" }),
+    label: z.string().min(2, { message: "Country is not defibed" }),
+  }),
+  city: z.string().min(2, { message: "City is too short" }),
+  linkedin: z.string().min(2, { message: "Linkedin is too short" }).url({
+    message: "Please enter a valid URL",
+  }),
+  twitter: z.string().min(2, { message: "Twitter is too short" }).url({
+    message: "Please enter a valid URL",
+  }),
+  github: z.string().min(2, { message: "Github is too short" }).url({
+    message: "Please enter a valid URL",
+  }),
+});
