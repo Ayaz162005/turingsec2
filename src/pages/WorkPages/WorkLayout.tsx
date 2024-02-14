@@ -20,8 +20,9 @@ export default function WorkLayout() {
   // Render the component only if currentUser is defined
 
   return (
-    <div className="font-sans flex overflow-hidden relative">
+    <div className="font-sans relative md:ml-[270px] ml-[74px] flex">
       <Navbar />
+
       <Outlet />
     </div>
   );

@@ -1,4 +1,3 @@
-import Box from "../../components/component/Worker/Box";
 import Select from "react-select";
 import RankingLine from "../../components/component/Worker/RankingLine";
 export default function Ranking() {
@@ -108,12 +107,12 @@ export default function Ranking() {
     },
   ];
   return (
-    <div className="text-white flex-1 flex flex-col overflow-hidden min-h-screen">
+    <div className="text-white flex-1 flex flex-col overflow-hidden min-h-screen relative">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
         <img
           src="/assets/iconnav5.svg"
           alt=""
-          className="absolute z-[20] lg:left-[17%] md:left-[13%] sm:-left-[50px] top-0 w-[294px] md:w-[302px] -left-[80px]  "
+          className="absolute z-[20] lg:-left-[10%] md:-left-[20%] sm:-left-[50px] top-0 w-[294px] md:w-[302px] -left-[80px]  "
         />
         <p className="md:text-[30px] text-[20px]">Ranking</p>
         <img
@@ -122,7 +121,6 @@ export default function Ranking() {
           className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
         />
       </section>
-      <div className=" bg-[#1F44CC]  w-full absolute top-0 left-0 h-[30px] text-white"></div>
 
       <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
         <Select
