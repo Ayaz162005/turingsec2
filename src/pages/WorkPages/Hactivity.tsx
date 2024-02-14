@@ -1,5 +1,7 @@
+import { useState } from "react";
 import HactivityLine from "../../components/component/Worker/HactivityLine";
 export default function Hactivity() {
+  const [page, setPage] = useState(1);
   const fakeData = [
     {
       bugtag: "Tag name",
@@ -99,7 +101,12 @@ export default function Hactivity() {
       <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
         <div className="mt-8 rounded-[20px] overflow-hidden">
           {fakeData.map((data, i) => (
-            <HactivityLine data={data} index={i} />
+            <HactivityLine
+              data={data}
+              index={i}
+              page={page}
+              setPage={setPage}
+            />
           ))}
         </div>
       </div>

@@ -29,6 +29,7 @@ import ProgramCompany from "./pages/CompanyPages/ProgramCompany";
 import ReportCompany from "./pages/CompanyPages/ReportsCompany";
 import CompanyProfile from "./pages/CompanyPages/CompanyProfile";
 import Setting from "./pages/WorkPages/Setting";
+import Report from "./pages/WorkPages/Report";
 
 function App() {
   function ScrollToTop() {
@@ -65,6 +66,7 @@ function App() {
           <Route path="hactivity" element={<Hactivity />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Setting />} />
+          <Route path="report" element={<Report />} />
         </Route>
         <Route path="/company" element={<MainLayout />}>
           <Route path="dashboard" element={<DashboardCompany />} />
