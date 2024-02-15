@@ -27,7 +27,7 @@ export default function Navbar() {
             <img
               src="/assets/icon17.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Dashboard</p>
           </Link>
@@ -40,7 +40,7 @@ export default function Navbar() {
             <img
               src="/assets/icon18.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Programs</p>
           </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
             <img
               src="/assets/icon19.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Hactivity</p>
           </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
             <img
               src="/assets/icon20.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Ranking</p>
           </Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
             <img
               src="/assets/icon21.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Report</p>
           </Link>
@@ -92,12 +92,12 @@ export default function Navbar() {
             <img
               src="/assets/icon22.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Profile</p>
           </Link>
         </div>
-        <div className="mt-20">
+        <div className="mt-14">
           <Link
             to={"notifications"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
@@ -107,7 +107,7 @@ export default function Navbar() {
             <img
               src="/assets/icon24.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Notifications</p>
           </Link>
@@ -120,7 +120,7 @@ export default function Navbar() {
             <img
               src="/assets/icon25.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Inbox</p>
           </Link>
@@ -133,7 +133,7 @@ export default function Navbar() {
             <img
               src="/assets/icon23.svg"
               alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
+              className="md:w-[32px] w-[34px] m-auto md:m-0"
             />
             <p className="hidden md:block">Settings</p>
           </Link>
