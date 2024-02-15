@@ -4,8 +4,8 @@ export default function Navbar() {
   const url = `/${useLocation().pathname.split("/")[2]}`;
 
   return (
-    <div className="bg-[#023059] py-14  rounded-tr-[30px]  z-30 md:w-[270px] w-[74px] left-0 fixed ">
-      <ul>
+    <div className="bg-[#023059] py-8   z-30 md:w-[270px] w-[74px] left-0 fixed h-screen">
+      <ul className="">
         <Link className="hidden md:block px-10 " to={"/"}>
           <img src="/assets/images/newlogo.png" alt="logo" width={200} />
         </Link>
@@ -17,12 +17,12 @@ export default function Navbar() {
             className="m-auto"
           />
         </Link>
-        <div className="mt-8 ">
+        <div className="mt-4 ">
           <Link
             to={"dashboard"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600]  ${
               url == "/dashboard" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon17.svg"
@@ -35,7 +35,7 @@ export default function Navbar() {
             to={"programs"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/programs" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon18.svg"
@@ -48,7 +48,7 @@ export default function Navbar() {
             to={"hactivity"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/hactivity" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon19.svg"
@@ -61,7 +61,7 @@ export default function Navbar() {
             to={"ranking"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/ranking" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon20.svg"
@@ -74,7 +74,7 @@ export default function Navbar() {
             to={"report"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/report" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon21.svg"
@@ -87,7 +87,7 @@ export default function Navbar() {
             to={"profile"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/profile" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon22.svg"
@@ -97,12 +97,12 @@ export default function Navbar() {
             <p className="hidden md:block">Profile</p>
           </Link>
         </div>
-        <div className="mt-4">
+        <div className="mt-20">
           <Link
             to={"notifications"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/notifications" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon24.svg"
@@ -115,7 +115,7 @@ export default function Navbar() {
             to={"inbox"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/inbox" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon25.svg"
@@ -128,7 +128,7 @@ export default function Navbar() {
             to={"settings"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600] ${
               url == "/settings" ? "bg-[#2451F5]" : ""
-            } py-4  md:rounded-full rounded-[30px] md:px-10 px-2`}
+            } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <img
               src="/assets/icon23.svg"
