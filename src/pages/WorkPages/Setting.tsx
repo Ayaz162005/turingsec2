@@ -17,15 +17,15 @@ export default function Setting() {
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
         <img
-          src="/assets/iconnav1.svg"
+          src="/assets/iconnav13.svg"
           alt=""
-          className="absolute z-[20] lg:-left-[10%] md:-left-[24%] sm:-left-[50px] top-0 w-[294px] md:w-[392px] -left-[80px]  "
+          className="absolute z-[20] lg:-left-[1%] md:-left-[8%] sm:-left-[30px] top-0 w-[124px] md:w-[142px] -left-[50px]  "
         />
-        <p className="md:text-[30px] text-[20px]"> SETTINGS</p>
+        <p className="md:text-[30px] text-[20px]"> Settings</p>
         <img
-          src="/assets/iconnav2.svg"
+          src="/assets/iconnav14.svg"
           alt=""
-          className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
+          className="absolute z-[20] md:-right-[60px] top-0 lg:right-0 sm:-right-[10%] -right-[10%]   overflow-hidden w-[114px] md:w-[122px]"
         />
       </section>
 

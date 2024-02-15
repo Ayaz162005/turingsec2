@@ -112,13 +112,13 @@ export default function Ranking() {
         <img
           src="/assets/iconnav5.svg"
           alt=""
-          className="absolute z-[20] lg:-left-[10%] md:-left-[20%] sm:-left-[50px] top-0 w-[294px] md:w-[302px] -left-[80px]  "
+          className="absolute z-[20] lg:-left-[10%] md:-left-[27%] sm:-left-[100px] top-0 w-[294px] md:w-[302px] -left-[150px]  "
         />
         <p className="md:text-[30px] text-[20px]">Ranking</p>
         <img
           src="/assets/iconnav6.svg"
           alt=""
-          className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
+          className="absolute z-[20] md:-right-[60px] top-0 lg:right-0 sm:-right-[10%] -right-[20%]    overflow-hidden w-[204px] md:w-[242px]"
         />
       </section>
 

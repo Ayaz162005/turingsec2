@@ -87,7 +87,7 @@ export default function Hactivity() {
         <img
           src="/assets/iconnav7.svg"
           alt=""
-          className="absolute z-[20] lg:-left-[10%] md:-left-[24%] sm:-left-[50px] top-0 w-[294px] md:w-[302px] -left-[80px]  "
+          className="absolute z-[20] lg:-left-[10%] md:-left-[27%] sm:-left-[100px] top-0 w-[294px] md:w-[302px] -left-[150px]  "
         />
         <p className="md:text-[30px] text-[20px]">Hactivity</p>
         <img

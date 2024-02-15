@@ -7,13 +7,13 @@ export default function Programs() {
         <img
           src="/assets/iconnav3.svg"
           alt=""
-          className="absolute z-[20] lg:-left-[10%] md:-left-[24%] sm:-left-[50px] top-0 w-[294px] md:w-[302px] -left-[80px]  "
+          className="absolute z-[20] lg:-left-[10%] md:-left-[34%] sm:-left-[100px] top-0 w-[294px] md:w-[352px] -left-[150px]  "
         />
-        <p className="md:text-[30px] text-[20px]">PROGRAMS</p>
+        <p className="md:text-[30px] text-[20px]">Progrmas</p>
         <img
           src="/assets/iconnav4.svg"
           alt=""
-          className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
+          className="absolute z-[20] md:-right-[60px] top-0 lg:right-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
         />
       </section>
 
