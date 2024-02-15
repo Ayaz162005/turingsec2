@@ -1,3 +1,4 @@
+import { useState } from "react";
 import TabContentClose from "../../components/shared/WorkerShared/TabContentClose";
 import TabContentEmail from "../../components/shared/WorkerShared/TabContentEmail";
 import TabContentPassword from "../../components/shared/WorkerShared/TabContentPassword";
@@ -11,6 +12,7 @@ import {
 } from "../../components/ui/tabs";
 
 export default function Setting() {
+  const [page, setPageq] = useState(1);
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
@@ -29,11 +31,11 @@ export default function Setting() {
 
       <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
         <div className="bg-[#0A273D]  p-8 rounded-xl">
-          <Tabs defaultValue="profile" className="w-full">
-            <TabsList className="w-[80%] bg-transparent relative flex justify-between">
+          <Tabs defaultValue="profile" className="w-full ">
+            <TabsList className="xl:w-[80%] w-full bg-transparent relative flex md:justify-between over justify-evenly">
               <TabsTrigger
                 value="profile"
-                className="data-[state=active]:bg-transparent text-white data-[state=active]:text-white
+                className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                 sm:text-[18px] font-[600] text-[16px]
                mt-2
@@ -46,13 +48,15 @@ export default function Setting() {
                 data-[state=active]:rounded-none
 
                 data-[state=active]:shadow-none
-                "
+                ${page === 1 ? "block" : "!hidden"} md:!block
+                `}
               >
                 Profile
               </TabsTrigger>
+
               <TabsTrigger
                 value="email"
-                className="data-[state=active]:bg-transparent text-white data-[state=active]:text-white
+                className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                mt-2
                sm:text-[18px] font-[600] text-[16px]
@@ -64,14 +68,15 @@ export default function Setting() {
                 
                 data-[state=active]:rounded-none
 
-                data-[state=active]:shadow-none
-                "
+                data-[state=active]:shadow-none 
+                ${page === 1 ? "block" : "!hidden"} md:!block
+  `}
               >
                 Email
               </TabsTrigger>
               <TabsTrigger
                 value="password"
-                className="data-[state=active]:bg-transparent text-white data-[state=active]:text-white
+                className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                mt-2
                sm:text-[18px] font-[600] text-[16px]
@@ -84,13 +89,14 @@ export default function Setting() {
                 data-[state=active]:rounded-none
 
                 data-[state=active]:shadow-none
-                "
+                ${page === 2 ? "block" : "!hidden"} md:!block
+  `}
               >
                 Password
               </TabsTrigger>
               <TabsTrigger
                 value="closeaccount"
-                className="data-[state=active]:bg-transparent text-white data-[state=active]:text-white
+                className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                mt-2
                sm:text-[18px] font-[600] text-[16px]
@@ -103,10 +109,27 @@ export default function Setting() {
                 data-[state=active]:rounded-none
 
                 data-[state=active]:shadow-none
-                "
+                ${page === 2 ? "block" : "!hidden"} md:!block
+                `}
               >
                 Close Account
               </TabsTrigger>
+              <img
+                src="/assets/arrowright.svg"
+                alt=""
+                className={`absolute right-10 ${
+                  page === 1 ? "block" : "!hidden"
+                } md:!hidden cursor-pointer`}
+                onClick={() => setPageq(2)}
+              />
+              <img
+                src="/assets/arrowleft.svg"
+                alt=""
+                className={`absolute left-10 ${
+                  page === 2 ? "block" : "!hidden"
+                } md:!hidden cursor-pointer`}
+                onClick={() => setPageq(1)}
+              />
             </TabsList>
             <Separator className="mt-4 border-[1px]" />
             <TabsContent value="profile">

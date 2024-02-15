@@ -54,7 +54,7 @@ export default function TabContentProfile() {
   }
   return (
     <div className="mt-4">
-      <h2 className="sm:text-[23px] text-[20px] font-[600] mb-8 ">
+      <h2 className="sm:text-[23px] text-[16px] font-[600] mb-8 ">
         Personal information
       </h2>
       <div className="main">
@@ -64,8 +64,8 @@ export default function TabContentProfile() {
             className="space-y-4 sm:space-y-8
               "
           >
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Full Name
               </Label>
               <div className="flex gap-4 flex-col lg:flex-row">
@@ -107,8 +107,8 @@ export default function TabContentProfile() {
                 />
               </div>
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Username
               </Label>
               <FormField
@@ -130,8 +130,8 @@ export default function TabContentProfile() {
                 )}
               />
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Website
               </Label>
               <FormField
@@ -165,7 +165,7 @@ export default function TabContentProfile() {
                         className="bg-[#FFEC86] text-black hover:bg-[#FFEC86] 
                       min-w-[120px]
                       h-[40px]
-                      text-[16px] font-[600]  rounded-xl flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300
+                      text-[14px] font-[600]  rounded-xl flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300
                       "
                       >
                         Choose File
@@ -196,7 +196,7 @@ export default function TabContentProfile() {
                         className="bg-[#FFEC86] text-black hover:bg-[#FFEC86] 
                       min-w-[120px]
                       h-[40px]
-                      text-[16px] font-[600]  rounded-xl flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300
+                      text-[14px] font-[600]  rounded-xl flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300
                       "
                       >
                         Choose File
@@ -213,8 +213,8 @@ export default function TabContentProfile() {
                 )}
               />
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Location
               </Label>
               <div className="flex gap-4 flex-col lg:flex-row">
@@ -233,7 +233,7 @@ export default function TabContentProfile() {
                               ...styles,
                               background: "transparent",
                               borderRadius: "1rem",
-                              width: "200px",
+                              width: "100%",
                               [mq[0]]: {
                                 width: "250px",
                               },
@@ -311,8 +311,8 @@ export default function TabContentProfile() {
                 />
               </div>
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Bio
               </Label>
               <FormField
@@ -323,7 +323,7 @@ export default function TabContentProfile() {
                     <FormControl>
                       <Textarea
                         placeholder="bio"
-                        className="bg-transparent text-white placeholder:text-white border focus-visible:border-none focus-visible:outline-none xl:w-[620px] h-[170px] lg:w-[350px] w-auto"
+                        className="bg-transparent text-white placeholder:text-white border focus-visible:border-none focus-visible:outline-none xl:w-[620px] lg:h-[170px] sm:h-[100px] lg:w-[350px] w-full"
                         {...field}
                       />
                     </FormControl>
@@ -333,8 +333,8 @@ export default function TabContentProfile() {
                 )}
               />
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Linked in
               </Label>
               <FormField
@@ -356,8 +356,8 @@ export default function TabContentProfile() {
                 )}
               />
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Twitter
               </Label>
               <FormField
@@ -379,8 +379,8 @@ export default function TabContentProfile() {
                 )}
               />
             </div>
-            <div className="flex items-center gap-4 flex-col sm:flex-row">
-              <Label className="sm:text-[18px] text-[16px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
+            <div className="flex sm:items-center gap-4 flex-col sm:flex-row">
+              <Label className="sm:text-[18px] text-[14px] font-[600] md:min-w-[130px] sm:min-w-[100px]">
                 Github
               </Label>
               <FormField
@@ -403,8 +403,8 @@ export default function TabContentProfile() {
               />
             </div>
             <div className="sm:space-x-8 flex items-center mt-16 justify-end  flex-col sm:flex-row gap-4 sm:gap-0">
-              <Button className="hover:scale-110 transition-all duration-300 rounded-xl h-[40px]  sm:h-[50px] w-[180px] sm:w-[220px] bg-[#2451F5] text-white  sm:text-[18px] font-[600] text-[16px]   hover:bg-[#2451F5]">
-                Update password
+              <Button className="hover:scale-110 transition-all duration-300 rounded-xl h-[45px]  sm:h-[50px] w-full sm:w-[220px] bg-[#2451F5] text-white  sm:text-[18px] font-[600] text-[16px]   hover:bg-[#2451F5]">
+                Update Profile
               </Button>
             </div>
           </form>

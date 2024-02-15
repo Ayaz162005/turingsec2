@@ -23,7 +23,7 @@ export default function Dashboard() {
           Discover the programs and start hunting to report your first
           vulnerability
         </p>
-        <div className="my-8 grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:w-[60%] w-full ">
+        <div className="my-8 grid gap-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:w-[60%] w-full ">
           <Box text="Max Bounty" />
           <Box text="Total Bounty" />
           <Box text="Average Bounty" />

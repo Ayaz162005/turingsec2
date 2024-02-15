@@ -17,13 +17,13 @@ export default function TabContentEmail() {
 
   return (
     <div className="mt-4">
-      <h2 className="sm:text-[23px] text-[20px] font-[600] mb-2 ">Email</h2>
-      <p className="sm:text-[18px] text-[16px] font-[500]">
+      <h2 className="sm:text-[23px] text-[16px] font-[600] mb-2 ">Email</h2>
+      <p className="sm:text-[18px] text-[12px] font-[500]">
         Want to change your email or password? You've come to the right place.
       </p>
-      <div className="mt-14 space-y-14">
+      <div className="sm:mt-14 mt-8 sm:space-y-14 space-y-8">
         <div className="flex md:items-center gap-2 flex-col md:flex-row">
-          <Label className="sm:text-[18px] text-[16px] font-[600] lg:min-w-[300px] md:min-w-[200px]">
+          <Label className="sm:text-[18px] text-[14px] font-[600] lg:min-w-[300px] md:min-w-[200px]">
             Password
           </Label>
           <Label
@@ -60,7 +60,7 @@ export default function TabContentEmail() {
           </Label>
         </div>
         <div className="flex md:items-center gap-2 flex-col md:flex-row">
-          <Label className="sm:text-[18px] text-[16px] font-[600] lg:min-w-[300px] md:min-w-[200px]">
+          <Label className="sm:text-[18px] text-[14px] font-[600] lg:min-w-[300px] md:min-w-[200px]">
             New email
           </Label>
           <InputCompany
@@ -70,8 +70,8 @@ export default function TabContentEmail() {
           />
         </div>
       </div>
-      <div className="sm:space-x-8 flex items-center mt-16 justify-end  flex-col sm:flex-row gap-4 sm:gap-0">
-        <Button className="hover:scale-110 transition-all duration-300 rounded-xl h-[40px]  sm:h-[50px] w-[160px] sm:w-[200px] bg-[#2451F5] text-white  sm:text-[18px] font-[600] text-[16px]   hover:bg-[#2451F5]">
+      <div className="sm:space-x-8 flex items-center sm:mt-16 mt-8 justify-end  flex-col sm:flex-row gap-4 sm:gap-0">
+        <Button className="hover:scale-110 transition-all duration-300  rounded-xl  w-full h-[50px] sm:h-[50px]  sm:w-[200px] bg-[#2451F5] text-white  sm:text-[18px] font-[600] text-[16px]   hover:bg-[#2451F5]">
           Change Email
         </Button>
       </div>

@@ -19,7 +19,7 @@ export default function RankingLine({ data, index }) {
               alt=""
               className={`${
                 index == 1
-                  ? "sm:block hidden absolute min-w-[30px] right-[27px]"
+                  ? "sm:block hidden absolute min-w-[30px] right-[38px]"
                   : "hidden"
               }  `}
             />

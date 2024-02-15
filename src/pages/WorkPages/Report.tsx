@@ -24,8 +24,8 @@ export default function Report() {
       </section>
 
       <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
-        <Tabs defaultValue="account" className=" xl:w-[80%] w-[100%]">
-          <TabsList className="flex bg-[#2451F5] h-[50px] px-0 rounded-2xl lg:pr-[20%] pr-0">
+        <Tabs defaultValue="All" className=" ">
+          <TabsList className="flex bg-[#2451F5] h-[50px] px-0 rounded-2xl lg:pr-[20%] pr-0 xl:w-[80%] w-full">
             <TabsTrigger
               value="All"
               className="bg-transparent sm:text-[18px] text-[16px] font-[600]

@@ -28,14 +28,14 @@ export default function HactivityLine({ data, index, page, setPage }) {
         } lg:block`}
       >
         {index == 0 ? (
-          <div className="relative">
-            <button
+          <div className="relative flex justify-center items-center ">
+            <p> Bug tag</p>
+            <img
+              src="/assets/arrowright.svg"
+              alt=""
+              className="relative  sm:h-[16px] sm:left-4 left-2 h-[14px ] cursor-pointer block lg:hidden"
               onClick={() => setPage(2)}
-              className="absolute right-0 lg:hidden block"
-            >
-              <IoIosArrowForward />
-            </button>
-            Bug tag
+            />
           </div>
         ) : (
           data.bugtag
@@ -48,14 +48,14 @@ export default function HactivityLine({ data, index, page, setPage }) {
       >
         {" "}
         {index == 0 ? (
-          <div className="relative">
-            <button
-              className="absolute left-0 block lg:hidden"
+          <div className="relative flex justify-center items-center ">
+            <img
+              src="/assets/arrowleft.svg"
+              alt=""
+              className="relative  sm:h-[16px] sm:right-4 right-2 h-[14px ] cursor-pointer block lg:hidden"
               onClick={() => setPage(1)}
-            >
-              <IoIosArrowBack />
-            </button>
-            Status
+            />{" "}
+            <p> Status</p>
           </div>
         ) : (
           <div className="text-[#FFEC86]">{data.status}</div>

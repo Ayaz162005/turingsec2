@@ -2,7 +2,6 @@ import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import * as React from "react";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "../../../lib/utils";
 import { Button } from "../../../components/ui/button";
@@ -12,13 +11,96 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../../components/ui/popover";
-
+import ReportLine from "../../component/Company/ReportLine";
+const fakeData = [
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+  {
+    lastActivity: "Name",
+    ID: "0000",
+    ReportTitle: "title name",
+    Program: "name",
+    Reward: "name",
+    Status: "name",
+  },
+];
 export default function TabContentAll() {
   const [fromdate, setFromDate] = React.useState<Date>();
   const [todate, setToDate] = React.useState<Date>();
+  const [page, setPage] = React.useState(1);
   return (
     <div className="w-full mt-8">
-      <div className="flex gap-3 lg:items-center  w-full flex-col lg:flex-row ">
+      <div className="flex gap-3 lg:items-center  w-full flex-col lg:flex-row xl:w-[80%]">
         <Label className="flex  bg-[#2451F5] rounded-2xl px-4 flex-1">
           <img src="/assets/search.svg" alt="" />
           <Input
@@ -92,7 +174,13 @@ export default function TabContentAll() {
           </Popover>
         </div>
       </div>
-      <div></div>
+      <div className="mt-10 rounded-2xl overflow-hidden">
+        <div>
+          {fakeData.map((data, i) => (
+            <ReportLine data={data} index={i} page={page} setPage={setPage} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
