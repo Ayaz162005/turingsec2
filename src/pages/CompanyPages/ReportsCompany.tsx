@@ -17,11 +17,9 @@ export default function ReportCompany() {
           className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
         />
       </section>
-      <div className=" bg-[#1F44CC]  w-full absolute top-0 left-0 h-[30px] ">
-        ssdd
-      </div>
+      <div className=" bg-[#1F44CC]  w-full absolute top-0 left-0 h-[30px] "></div>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <h2 className="sm:text-[25px] font-[700] text-[20px] mb-6">
           Incoming Reports
         </h2>

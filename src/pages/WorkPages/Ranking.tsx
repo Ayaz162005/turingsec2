@@ -122,7 +122,7 @@ export default function Ranking() {
         />
       </section>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <Select
           styles={{
             control: (provided, state) => ({

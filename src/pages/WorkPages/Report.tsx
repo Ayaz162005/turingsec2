@@ -23,7 +23,7 @@ export default function Report() {
         />
       </section>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <Tabs defaultValue="All" className=" ">
           <TabsList className="flex bg-[#2451F5] h-[50px] px-0 rounded-2xl lg:pr-[20%] pr-0 xl:w-[80%] w-full">
             <TabsTrigger

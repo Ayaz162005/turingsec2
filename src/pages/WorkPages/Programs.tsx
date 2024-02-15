@@ -13,11 +13,11 @@ export default function Programs() {
         <img
           src="/assets/iconnav4.svg"
           alt=""
-          className="absolute z-[20] md:-right-[60px] top-0 lg:right-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
+          className="absolute z-[20] md:-right-[60px] top-0 lg:right-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[224px] md:w-[242px]"
         />
       </section>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16 space-y-6">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16 space-y-6">
         <ProgramBox />
         <ProgramBox />
         <ProgramBox />

@@ -22,7 +22,7 @@ export default function ProgramCompany() {
       <div className=" bg-[#1F44CC]  w-full absolute top-0 left-0 h-[30px] ">
         ssdd
       </div>
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <div className="flex items-center gap-8 flex-col xl:flex-row">
           <div className="bg-[url('/assets/images/companyprogramimage.png')] md:h-[250px] h-[250px] bg-cover bg-center relative rounded-3xl overflow-hidden xl:min-w-[45%]  sm:min-w-[450px] w-[90%] md:w-[auto] ">
             <div className="absolute inset-0 bg-black opacity-30"></div>

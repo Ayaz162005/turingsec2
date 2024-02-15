@@ -29,15 +29,15 @@ export default function Setting() {
         />
       </section>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <div className="bg-[#0A273D]  p-8 rounded-xl">
           <Tabs defaultValue="profile" className="w-full ">
-            <TabsList className="xl:w-[80%] w-full bg-transparent relative flex md:justify-between over justify-evenly">
+            <TabsList className="xl:w-[80%] w-full bg-transparent relative flex md:justify-between over justify-evenly ">
               <TabsTrigger
                 value="profile"
                 className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
-                sm:text-[18px] font-[600] text-[16px]
+                sm:text-[18px] font-[600] text-[14px]
                mt-2
                 tag
                 data-[state=active]:after:w-full
@@ -59,7 +59,7 @@ export default function Setting() {
                 className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                mt-2
-               sm:text-[18px] font-[600] text-[16px]
+               sm:text-[18px] font-[600] text-[14px]
                 tag
                 data-[state=active]:after:w-full
                 rounded-none 
@@ -79,7 +79,7 @@ export default function Setting() {
                 className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                mt-2
-               sm:text-[18px] font-[600] text-[16px]
+               sm:text-[18px] font-[600] text-[14px]
                 tag
                 data-[state=active]:after:w-full
                 rounded-none 
@@ -99,7 +99,7 @@ export default function Setting() {
                 className={`data-[state=active]:bg-transparent text-white data-[state=active]:text-white
                 transition-all
                mt-2
-               sm:text-[18px] font-[600] text-[16px]
+               sm:text-[18px] font-[600] text-[14px]
                 tag
                 data-[state=active]:after:w-full
                 rounded-none 
@@ -117,7 +117,7 @@ export default function Setting() {
               <img
                 src="/assets/arrowright.svg"
                 alt=""
-                className={`absolute right-10 ${
+                className={`absolute right-[0] ${
                   page === 1 ? "block" : "!hidden"
                 } md:!hidden cursor-pointer`}
                 onClick={() => setPageq(2)}
@@ -125,7 +125,7 @@ export default function Setting() {
               <img
                 src="/assets/arrowleft.svg"
                 alt=""
-                className={`absolute left-10 ${
+                className={`absolute left-[0] ${
                   page === 2 ? "block" : "!hidden"
                 } md:!hidden cursor-pointer`}
                 onClick={() => setPageq(1)}

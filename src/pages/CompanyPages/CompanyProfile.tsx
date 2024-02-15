@@ -20,7 +20,7 @@ export default function CompanyProfile() {
         ssdd
       </div>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <div className="bg-[url('/assets/images/companyprofileimage.png')] md:h-[200px] h-auto bg-cover bg-center relative rounded-3xl overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-40"></div>
           <div className="relative flex md:items-center items-stretch flex-col md:flex-row h-full lg:pl-16 py-10 md:py-0 md:pl-8 md:pr-0 sm:px-[15%] px-4 gap-6 ">

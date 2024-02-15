@@ -93,12 +93,12 @@ export default function Hactivity() {
         <img
           src="/assets/iconnav8.svg"
           alt=""
-          className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[204px] md:w-[242px]"
+          className="absolute z-[20] md:-right-[0] top-0 sm:-right-[10%] -right-[20%]   overflow-hidden w-[244px] md:w-[232px]"
         />
       </section>
       <div className=" bg-[#1F44CC]  w-full absolute top-0 left-0 h-[30px] text-white"></div>
 
-      <div className="bg-[#1E1E1E] flex-1 lg:px-20 px-8 py-16">
+      <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
         <div className="mt-8 rounded-[20px] overflow-hidden">
           {fakeData.map((data, i) => (
             <HactivityLine
