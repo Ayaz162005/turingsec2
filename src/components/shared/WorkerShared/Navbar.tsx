@@ -4,7 +4,7 @@ export default function Navbar() {
   const url = `/${useLocation().pathname.split("/")[2]}`;
 
   return (
-    <div className="bg-[#023059] py-8   z-30 md:w-[270px] w-[74px] left-0 fixed h-screen">
+    <div className="bg-[#023059] py-14   z-30 md:w-[270px] w-[74px] left-0 fixed h-screen">
       <ul className="">
         <Link className="hidden md:block px-10 " to={"/"}>
           <img src="/assets/images/newlogo.png" alt="logo" width={200} />
@@ -17,7 +17,7 @@ export default function Navbar() {
             className="m-auto"
           />
         </Link>
-        <div className="mt-4 ">
+        <div className="mt-10 ">
           <Link
             to={"dashboard"}
             className={`flex items-center text-white text-[22px] gap-5 font-[600]  ${
