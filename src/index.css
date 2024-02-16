@@ -135,6 +135,29 @@
   /* This clip-path creates a hexagon shape */
   overflow: hidden;
 }
+
+.hexagon6 {
+  width: 35px; /* Adjust size as needed */
+  height: 38px; /* Adjust size as needed */
+  /* position: relative; */
+  background-color: #ff7f50;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  /* This clip-path creates a hexagon shape */
+  overflow: hidden;
+}
+.hexagon6 img {
+  /* width: 100%; */
+
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* position: absolute; */
+
+  height: auto;
+  display: block;
+}
+
 .hexagon5 {
   width: 60px; /* Adjust size as needed */
   height: 70px; /* Adjust size as needed */

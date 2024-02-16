@@ -1,4 +1,6 @@
+import toast from "react-hot-toast";
 import ProfileLine from "../../components/component/Worker/ProfileLine";
+import { Button } from "../../components/ui/button";
 
 export default function Profile() {
   const fakeData = [
@@ -97,7 +99,7 @@ export default function Profile() {
       </section>
 
       <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
-        <div className="bg-[url('/assets/images/profilebackgroundimage.png')] md:h-[200px] h-auto bg-cover bg-center relative rounded-3xl">
+        <div className="bg-[url('/assets/images/profilebackgroundimage.png')] md:h-[200px] h-auto bg-cover bg-center relative rounded-3xl overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-30"></div>
           <div className="relative flex md:items-center items-stretch flex-col md:flex-row h-full lg:pl-16 py-10 md:py-0 md:pl-8 md:pr-0 sm:px-[15%] px-4 gap-6 ">
             <button className="bg-[#1F44CC] rounded-full absolute z-20 right-5 top-5 p-[5px]">
@@ -108,7 +110,9 @@ export default function Profile() {
             </div>
             <div className="">
               <div className="flex justify-between mb-4 md:mb-0 md:block">
-                <h2 className="font-[600] text-[25px]">Username</h2>
+                <h2 className="font-[600] sm:text-[25px] text-[20px]">
+                  Username
+                </h2>
                 <div className="flex items-center gap-2">
                   <img src="/assets/flag.svg" className="w-[18px] " />
                   <p className="text-[16px] font-[400]">City</p>
@@ -146,6 +150,17 @@ export default function Profile() {
             </div>
           </div>
         </div>
+        <div>
+          <h2 className="text-[18px] sm:text-[20px] font-[600] sm:font-[700] mt-8 mb-4">
+            Bio
+          </h2>
+          <p className="sm:text-[20px] text-[14px] font-[400]">
+            Provide detailed information about the company, including its
+            history, founding date, key milestones, and any notable
+            achievements. This helps establish credibility and builds trust with
+            visitors.
+          </p>
+        </div>
         <h2 className="text-[18px] sm:text-[20px] font-[600] sm:font-[700] my-8">
           Hactivity
         </h2>
@@ -177,6 +192,19 @@ export default function Profile() {
             </a>
           </ul>
         </div>
+        <Button
+          className="hover:scale-110 transition-all duration-300  rounded-xl  w-[200px] h-[50px] sm:h-[50px]   sm:w-[200px] bg-[#2451F5] text-white  sm:text-[18px] font-[600] text-[16px]   hover:bg-[#2451F5] mt-8 gap-4"
+          onClick={() => {
+            localStorage.removeItem("user");
+            toast.success("logout");
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 500);
+          }}
+        >
+          <img src="/assets/logout.svg" alt="" />
+          <p>Logout</p>
+        </Button>
       </div>
     </div>
   );

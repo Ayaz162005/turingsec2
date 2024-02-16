@@ -9,7 +9,7 @@ export default function WorkLayout() {
   const [load, setLoad] = useState(false);
   setTimeout(() => {
     setLoad(true);
-  }, 500);
+  }, 1000);
   const navigate = useNavigate();
   const { currentUser } = useCurrentUser();
   // Add loading state
