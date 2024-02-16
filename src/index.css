@@ -135,6 +135,27 @@
   /* This clip-path creates a hexagon shape */
   overflow: hidden;
 }
+.hexagon5 {
+  width: 60px; /* Adjust size as needed */
+  height: 70px; /* Adjust size as needed */
+  /* position: relative; */
+  background-color: #ff7f50;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  /* This clip-path creates a hexagon shape */
+  overflow: hidden;
+}
+.hexagon5 img {
+  /* width: 100%; */
+
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* position: absolute; */
+
+  height: auto;
+  display: block;
+}
 
 .hexagon4 {
   width: 116px; /* Adjust size as needed */
@@ -374,4 +395,8 @@ body {
   top: 5px;
   right: -4px;
   font-size: 30px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px; /* Set the width of the scrollbar */
 }

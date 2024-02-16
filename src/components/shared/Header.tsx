@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-
+import { motion } from "framer-motion";
 export default function Header() {
   return (
     <div className=" flex  justify-between xl:pb-12 pb-4 sm:py-28 flex-col-reverse text-[white] lg:flex-row items-center bg-[#31688F] dark:bg-inherit sm:px-16 mt-[52px] py-20 px-8">
-      <div>
+      <motion.div
+        animate={{
+          x: [-900, 0],
+          opacity: [0, 1], // Fade in animation
+          scale: [0.5, 1], // Scale animation from 0.5 to 1
+          transition: {
+            duration: 1, // Duration of the animation (in seconds)
+            ease: "easeInOut", // Smooth easing function
+          },
+        }}
+      >
         <div className="md:text-[50px]  md:leading-[60px] text-center lg:text-left text-[30px] leading-[40px] md:mt-8 mt-2 animated-text font-[700] ">
           Discover Report,
           <br />
@@ -26,15 +36,35 @@ export default function Header() {
             </Button>
           </Link>
         </div>
-      </div>
-      <div className="min-w-[50%]">
-        <img
+      </motion.div>
+      <motion.div
+        className="min-w-[50%]"
+        animate={{
+          opacity: [0, 1], // Fade in animation
+          scale: [0.5, 1], // Scale animation from 0.5 to 1
+          transition: {
+            duration: 1, // Duration of the animation (in seconds)
+            ease: "easeInOut", // Smooth easing function
+          },
+        }}
+      >
+        <motion.img
           src="/assets/images/mix-image3.png"
           alt="assets"
           className="m-auto lg:w-[600px] md:w-[400px] w-[300px] "
-          // width={600}
+          transition={{
+            y: {
+              repeat: Infinity, // Repeat the animation infinitely
+              duration: 2, // Duration of each animation cycle (in seconds)
+              repeatType: "mirror", // Reverse the animation direction on each repeat
+              ease: "easeInOut", // Smooth easing function
+            },
+          }}
+          animate={{
+            y: [-30, 30], // Range of vertical motion
+          }}
         />
-      </div>
+      </motion.div>
     </div>
   );
 }

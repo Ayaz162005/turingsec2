@@ -7,9 +7,9 @@ import {
 } from "react";
 
 interface CurrentUser {
-  email: string;
-  id: string;
-  activated: boolean;
+  email?: string;
+  id?: string;
+  activated?: boolean;
 }
 
 // Create the context
@@ -37,37 +37,24 @@ const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
         const userString = localStorage.getItem("user");
         if (userString) {
           const user = JSON.parse(userString) as CurrentUser;
-
-          if (!user.activated) {
-            const res = await fetch(
-              `https://turingsec-production.up.railway.app/api/auth/users/${user.id}`,
-              {
-                method: "GET",
-                mode: "no-cors",
-              }
-            );
-
-            if (res.ok) {
-              const updatedUser = await res.json();
-              console.log(updatedUser);
-              const { email, id, activated } = updatedUser;
-              localStorage.setItem(
-                "user",
-                JSON.stringify({
-                  id,
-                  email,
-                  activated,
-                })
-              );
-              setCurrentUser({ email, id, activated });
-            } else {
-              // Handle error if the fetch fails
-              console.error("Error fetching user data:", res.statusText);
+          console.log(user);
+          const res = await fetch(
+            `https://turingsec-production.up.railway.app/api/auth/users/${user.id}`,
+            {
+              method: "GET",
             }
+          );
+
+          if (res.ok) {
+            const updatedUser = await res.json();
+            console.log(updatedUser);
+            const { email, id, activated } = updatedUser;
+
+            setCurrentUser({ email, id, activated });
           } else {
-            setCurrentUser(user);
-            // Handle inactive user
-            console.log("User is not activated");
+            // Handle error if the fetch fails
+            setCurrentUser({});
+            console.error("Error fetching user data:", res.statusText);
           }
         }
       } catch (error) {

@@ -7,6 +7,7 @@ import Oppotunuties from "../components/shared/Oppotunuties";
 import ShortInfo from "../components/shared/ShortInfo";
 import { TiArrowUpThick } from "react-icons/ti";
 import HowItWorks from "../components/shared/HowItWorks";
+import ContactUs from "../components/shared/ContactUs";
 
 export default function MainPage() {
   const [showArrow, setShowArrow] = useState(false);
@@ -50,6 +51,7 @@ export default function MainPage() {
         <ShortInfo ref={elementRef} />
         <LeaderBoard />
         <HowItWorks />
+        <ContactUs />
       </div>
       {showArrow && (
         <div

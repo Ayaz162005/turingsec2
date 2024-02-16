@@ -84,15 +84,12 @@ export default function SignupAsHacker() {
       toast.success("We send activation code to email");
       navigate("/");
       // Assuming result.body is an object, you can destructure the properties
-      const { id, username, email, activated } = result.body;
+      const { id } = result.body;
 
       localStorage.setItem(
         "user",
         JSON.stringify({
           id: id as string,
-          username: username as string,
-          email: email as string,
-          activated,
         })
       );
 

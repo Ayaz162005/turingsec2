@@ -30,7 +30,10 @@ export const formSchemaHackerRegister = z
     message: "Passwords do not match",
     path: ["passwordConfirmation"],
   });
-export const formSchemaHackerLogin = z.object({});
+export const formSchemaHackerLogin = z.object({
+  email: z.string().email({ message: "Please enter a valid email" }),
+  password: z.string().min(8, { message: "Password is too short" }),
+});
 
 export const formSchemaProfileUpdate = z.object({
   firstname: z.string().min(2, { message: "First name is too short" }),
@@ -59,4 +62,21 @@ export const formSchemaProfileUpdate = z.object({
   github: z.string().min(2, { message: "Github is too short" }).url({
     message: "Please enter a valid URL",
   }),
+});
+
+export const contactUsSchema = z.object({
+  firstname: z.string().min(2, { message: "First name is too short" }),
+  lastname: z.string().min(2, { message: "Last name is too short" }),
+  companyname: z.string().min(2, { message: "Username is too short" }),
+
+  businessemail: z.string().email({ message: "Please enter a valid email" }),
+  jobtitle: z.string().min(2, { message: "Job title is too short" }),
+
+  // country: z.string().min(2, { message: "Country is too short" }),
+  country: z.object({
+    value: z.string().min(2, { message: "Country code is too short" }),
+    label: z.string().min(2, { message: "Country is not defibed" }),
+  }),
+
+  write: z.string().min(10, { message: "Message is too short" }),
 });

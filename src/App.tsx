@@ -30,6 +30,9 @@ import ReportCompany from "./pages/CompanyPages/ReportsCompany";
 import CompanyProfile from "./pages/CompanyPages/CompanyProfile";
 import Setting from "./pages/WorkPages/Setting";
 import Report from "./pages/WorkPages/Report";
+import WorkDefend from "./components/component/defend/WorkDefend";
+import Notification from "./pages/WorkPages/Notification";
+import Inbox from "./pages/WorkPages/Inbox";
 
 function App() {
   function ScrollToTop() {
@@ -41,6 +44,9 @@ function App() {
 
     return null;
   }
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
   return (
     <BrowserRouter>
       <Toaster position="top-center" />
@@ -60,6 +66,7 @@ function App() {
           />
         </Route>
         <Route path="/work" element={<WorkLayout />}>
+          {/* Wrapping WorkDefend with Route */}
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="programs" element={<Programs />} />
           <Route path="ranking" element={<Ranking />} />
@@ -67,7 +74,10 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Setting />} />
           <Route path="report" element={<Report />} />
+          <Route path="notifications" element={<Notification />} />
+          <Route path="inbox" element={<Inbox />} />
         </Route>
+
         <Route path="/company" element={<MainLayout />}>
           <Route path="dashboard" element={<DashboardCompany />} />
           <Route path="programs" element={<ProgramCompany />} />

@@ -11,14 +11,15 @@ import {
 } from "../components/ui/form";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { formSchemaHackerRegister } from "../lib/schemas";
+import { formSchemaHackerLogin } from "../lib/schemas";
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../context/CurrentUser";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 export default function RegisterHackerPage() {
   const { currentUser } = useCurrentUser();
-  const form = useForm<z.infer<typeof formSchemaHackerRegister>>({
-    resolver: zodResolver(formSchemaHackerRegister),
+  const form = useForm<z.infer<typeof formSchemaHackerLogin>>({
+    resolver: zodResolver(formSchemaHackerLogin),
     defaultValues: {
       email: "",
       password: "",
@@ -31,7 +32,56 @@ export default function RegisterHackerPage() {
     }
   }, [currentUser, navigate]);
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchemaHackerRegister>) {
+  async function onSubmit(values: z.infer<typeof formSchemaHackerLogin>) {
+    try {
+      const response = await fetch(
+        "https://turingsec-production.up.railway.app/api/auth/login",
+        {
+          method: "POST", // Fixed syntax: method should be a string
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // mode: "no-cors",
+          body: JSON.stringify({
+            usernameOrEmail: values.email,
+            password: values.password,
+          }), // Assuming you want to send the form values as JSON in the request body
+        }
+      );
+
+      if (!response.ok) {
+        // Handle error response, e.g., show an error message to the user
+        toast.error("Something bad");
+        console.error("Error registering hacker:", response.statusText);
+        return;
+      }
+
+      // If the response is successful, you can do something with the result
+      const result = await response.json();
+      console.log("Registration successful:", result);
+
+      toast.success("You succesfully logged in as a hacker!");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
+      // Assuming result.body is an object, you can destructure the properties
+      const { userId } = result;
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          id: userId as string,
+        })
+      );
+
+      // navigate("/work/dashboard");
+    } catch (error) {
+      toast.error("Something bad");
+      // Handle any general error that occurred during the fetch or processing
+      console.error("An error occurred:", error);
+    }
+    // The rest of your code
+    console.log(values);
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);

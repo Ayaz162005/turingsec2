@@ -220,18 +220,21 @@ export default function Navbar() {
           Contact Us
         </Link>
         {currentUser?.activated ? (
+          <Link to={"/work/dashboard"}>
+            <img
+              src="/assets/images/newuserlogo.svg"
+              alt="usericon"
+              className="w-[54px] cursor-pointer"
+            />
+          </Link>
+        ) : (
           <img
             src="/assets/images/newuserlogo.svg"
             alt="usericon"
             className="w-[54px] cursor-pointer"
           />
-        ) : (
-          <Link to={"/registerhacker"} className="absolute -right-6">
-            <Button className="hover:scale-110 transition-all duration-300  rounded-3xl  py-[8px]  bg-[#2451F5] text-white  border-2 border-[#2451F5] font-[600] hover:bg-[#2451F5] ">
-              Register
-            </Button>
-          </Link>
         )}
+
         {/* <button className=" " onClick={toggleDarkMode}>
           {darkMode ? <CgSun /> : <BsFillMoonStarsFill />}
         </button> */}
