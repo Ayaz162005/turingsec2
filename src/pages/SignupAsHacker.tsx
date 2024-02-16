@@ -85,7 +85,7 @@ export default function SignupAsHacker() {
       navigate("/");
       // Assuming result.body is an object, you can destructure the properties
       const { userId } = result.body;
-
+      console.log(userId);
       localStorage.setItem(
         "user",
         JSON.stringify({
