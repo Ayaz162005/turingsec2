@@ -84,7 +84,7 @@ export default function SignupAsHacker() {
       toast.success("We send activation code to email");
       navigate("/");
       // Assuming result.body is an object, you can destructure the properties
-      const { userId } = result.body;
+      const { userId } = result;
       console.log(userId);
       localStorage.setItem(
         "user",
@@ -94,8 +94,8 @@ export default function SignupAsHacker() {
       );
 
       // navigate("/work/dashboard");
-    } catch (error) {
-      toast.error("Something bad");
+    } catch (error: any) {
+      toast.error(error?.message);
       // Handle any general error that occurred during the fetch or processing
       console.error("An error occurred:", error);
     }
