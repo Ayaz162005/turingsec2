@@ -5,38 +5,38 @@ export default function InboxMessage() {
   return (
     <div className="py-8 px-8 flex flex-col overflow-y-auto h-full  ">
       <div className="flex items-center gap-4 ">
-        <div className="hexagon4 m-auto md:m-0">
+        <div className="hexagon4">
           <img src="/assets/images/profileimage.jpeg" alt="" />
         </div>
         <p className="text-[24px] font-[600]">Username</p>
       </div>
       <div className=" mt-6 flex flex-col space-y-4 overflow-y-auto flex-1 custom-scrollbar">
         <div className="flex justify-start">
-          <div className="bg-yellow-500 h-[50px] rounded-full w-[50%]"></div>
+          <div className="bg-yellow-500 h-[50px] rounded-full lg:w-[50%] w-[70%]"></div>
         </div>
         <div className="flex justify-end">
-          <div className="bg-blue-500 h-[50px] rounded-full w-[50%] "></div>
+          <div className="bg-blue-500 h-[50px] rounded-full lg:w-[50%] w-[70%] "></div>
         </div>
         <div className="flex justify-start">
-          <div className="bg-yellow-500 h-[50px] rounded-full w-[50%]"></div>
+          <div className="bg-yellow-500 h-[50px] rounded-full lg:w-[50%] w-[70%]"></div>
         </div>
         <div className="flex justify-end">
-          <div className="bg-blue-500 h-[50px] rounded-full w-[50%] "></div>
+          <div className="bg-blue-500 h-[50px] rounded-full lg:w-[50%] w-[70%] "></div>
         </div>
         <div className="flex justify-start">
-          <div className="bg-yellow-500 h-[50px] rounded-full w-[50%]"></div>
+          <div className="bg-yellow-500 h-[50px] rounded-full lg:w-[50%] w-[70%]"></div>
         </div>
         <div className="flex justify-end">
-          <div className="bg-blue-500 h-[50px] rounded-full w-[50%] "></div>
+          <div className="bg-blue-500 h-[50px] rounded-full lg:w-[50%] w-[70%] "></div>
         </div>
         <div className="flex justify-start">
-          <div className="bg-yellow-500 h-[50px] rounded-full w-[50%]"></div>
+          <div className="bg-yellow-500 h-[50px] rounded-full lg:w-[50%] w-[70%]"></div>
         </div>
         <div className="flex justify-end">
-          <div className="bg-blue-500 h-[50px] rounded-full w-[50%] "></div>
+          <div className="bg-blue-500 h-[50px] rounded-full lg:w-[50%] w-[70%] "></div>
         </div>
         <div className="flex justify-start">
-          <div className="bg-yellow-500 h-[50px] rounded-full w-[50%]"></div>
+          <div className="bg-yellow-500 h-[50px] rounded-full lg:w-[50%] w-[70%]"></div>
         </div>
         <div className="flex justify-end"></div>
       </div>
