@@ -5,8 +5,31 @@ import { Label } from "../../components/ui/label";
 import Line from "../../components/shared/WorkerShared/Line";
 import RadioInput from "../../components/component/RadioInput";
 import { Textarea } from "../../components/ui/textarea";
+import { useGetProgramById } from "../../queryies/useGetProgramById";
+import { useParams } from "react-router";
+import { useGetCompanyById } from "../../queryies/useGetCompanyById";
+import { useState } from "react";
+import { useSendReport } from "../../queryies/useSendReport";
+import toast from "react-hot-toast";
+import { useSearchParams } from "react-router-dom";
 
 export default function ProgramSubmitPage() {
+  const { programId } = useParams();
+  const [methodName, setMethodName] = useState<string>("");
+  const [proofConceptTitle, setProofConceptTitle] = useState<string>("");
+  const [proofConceptDescription, setProofConceptDescription] =
+    useState<string>("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const {
+    data: programData,
+    isPending: programPending,
+    isError: programError,
+  } = useGetProgramById(programId);
+  console.log(programData);
+  const { data, isPending, isError } = useGetCompanyById(
+    programData?.companyId
+  );
   const fakeDATA = [
     {
       label: "Max Bounty",
@@ -33,6 +56,49 @@ export default function ProgramSubmitPage() {
       value: 1000,
     },
   ];
+
+  const allAssets = programData?.assetType?.split(",").map((item: string) => {
+    return item.replace("\n", "");
+  });
+  const mutation = useSendReport();
+  async function submitReport() {
+    try {
+      if (!searchParams.get("line")) {
+        return toast.error("Asset is required");
+      }
+      if (!methodName) {
+        return toast.error("Method name is required");
+      }
+      if (!proofConceptTitle) {
+        return toast.error("Proof of concept title is required");
+      }
+      if (!proofConceptDescription) {
+        return toast.error("Proof of concept description is required");
+      }
+
+      const response = await mutation.mutateAsync({
+        asset: searchParams.get("line")!,
+        weakness: searchParams.get("line")!,
+        severity: "severity",
+        methodName: methodName,
+        proofOfConcept: proofConceptTitle,
+        discoveryDetails: proofConceptDescription,
+      });
+      console.log(response);
+      // Check if mutation was successful
+      if (!response) {
+        throw new Error("Wrong response");
+      }
+
+      toast.success("Report submitted successfully");
+      // setTimeout(() => {
+      //   window.location.href = "/dashboard";
+      // }, 2000);
+    } catch (err) {
+      console.log(err);
+      toast.error("Report submission failed");
+    }
+  }
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <div className="bg-[url('/assets/images/programimage.jpeg')] h-[100px]  bg-center bg-cover  relative w-full">
@@ -44,9 +110,7 @@ export default function ProgramSubmitPage() {
             <img src="/assets/images/programimage2.jpg" alt="" className="" />
           </div>
           <div className="xl:w-[60%] w-full">
-            <h2 className="sm:text-[18px] text-[16px] font-[600]">
-              Bug Bounty Program name
-            </h2>
+            <h2 className="sm:text-[18px] text-[16px] font-[600]">{}</h2>
             <p className="sm:text-[18px] text-[16px] font-[600]">
               Business title
             </p>
@@ -90,7 +154,7 @@ export default function ProgramSubmitPage() {
             </div>
             <div className="xl:w-[60%] w-full">
               <h2 className="sm:text-[18px] text-[16px] font-[600]">
-                Bug Bounty Program name
+                {data?.first_name + " " + data?.last_name}
               </h2>
               <p className="sm:text-[18px] text-[16px] font-[600]">
                 Business title
@@ -202,14 +266,10 @@ export default function ProgramSubmitPage() {
                   />
                 </div>
               </div>
-              <div className="overflow-y-scroll mt-4 bluescroll h-[280px]">
-                <Line />
-                <Line />
-                <Line />
-                <Line />
-                <Line />
-                <Line />
-                <Line />
+              <div className="overflow-y-scroll mt-4 bluescroll max-h-[280px]">
+                {allAssets?.map((item: string) => (
+                  <Line text={item} />
+                ))}
               </div>
             </div>
           </div>
@@ -612,6 +672,8 @@ export default function ProgramSubmitPage() {
                   type="text"
                   placeholder="Method name"
                   className="bg-transparent text-white rounded-2xl focus:outline-none focus-visible:ring-0  focus-visible:ring-offset-0 border-2 border-[#2451F5]  placeholder:text-white py-6 mt-4"
+                  value={methodName}
+                  onChange={(e) => setMethodName(e.target.value)}
                 />
               </div>
             </div>
@@ -632,6 +694,8 @@ export default function ProgramSubmitPage() {
                     type="text"
                     placeholder="Title"
                     className="bg-transparent text-white rounded-2xl focus:outline-none focus-visible:ring-0 border-2 border-[#2451F5]  focus-visible:ring-offset-0 placeholder:text-white py-6"
+                    value={proofConceptTitle}
+                    onChange={(e) => setProofConceptTitle(e.target.value)}
                   />
                 </div>
               </div>
@@ -657,6 +721,8 @@ export default function ProgramSubmitPage() {
                  focus-visible:ring-0
                   placeholder:text-white sm:h-[150px] h-[100px]"
                   placeholder="Write an Overview"
+                  value={proofConceptDescription}
+                  onChange={(e) => setProofConceptDescription(e.target.value)}
                 />
               </div>
             </div>
@@ -687,7 +753,10 @@ export default function ProgramSubmitPage() {
           <Button className="hover:scale-105 transition-all duration-300 rounded-3xl  py-[7px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[160px] ">
             Create Draft
           </Button>
-          <Button className="hover:scale-105 transition-all duration-300 rounded-3xl  py-[7px]  bg-[#2451F5] text-white  border-2 border-[#2451F5] font-[600] hover:bg-[#2451F5] flex gap-4 px-4 w-[160px] ">
+          <Button
+            className="hover:scale-105 transition-all duration-300 rounded-3xl  py-[7px]  bg-[#2451F5] text-white  border-2 border-[#2451F5] font-[600] hover:bg-[#2451F5] flex gap-4 px-4 w-[160px] "
+            onClick={submitReport}
+          >
             <p>Submit Report</p>
             <img src="/assets/sendbutton.svg" alt="" className="  " />
           </Button>

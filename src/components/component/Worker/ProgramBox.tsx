@@ -1,6 +1,17 @@
 import { Button } from "../../ui/button";
+import { findDays } from "../../../helpers/findDays";
+import { useNavigate } from "react-router";
 
-export default function ProgramBox() {
+export default function ProgramBox({
+  fromDate,
+  toDate,
+  id,
+}: {
+  fromDate: Date;
+  toDate: Date;
+  id: string;
+}) {
+  const navigate = useNavigate();
   return (
     <div className=" rounded-xl overflow-hidden">
       <div className="bg-[#023059]  p-0 pb-10 rounded-2xl  relative flex-col">
@@ -31,7 +42,7 @@ export default function ProgramBox() {
             </div>
           </div>
           <p className="sm:text-[18px] text-[16px] font-[600] mt-4">
-            Ends in 25 days
+            Ends in {findDays(new Date(fromDate), new Date(toDate))} days
           </p>
           <p className="sm:text-[20px] text-[18px] font-[700] text-[#FFDE31] my-4">
             Up to $10k
@@ -46,7 +57,10 @@ export default function ProgramBox() {
               <p className="sm:text-[18px] text-[16px] font-[600]">130</p>
             </div>
           </div>
-          <Button className="hover:scale-105 transition-all duration-300 rounded-3xl  py-[7px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-full mt-6">
+          <Button
+            className="hover:scale-105 transition-all duration-300 rounded-3xl  py-[7px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-full mt-6"
+            onClick={() => navigate(`${id}`)}
+          >
             See Details
           </Button>
         </div>

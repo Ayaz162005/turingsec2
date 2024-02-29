@@ -13,7 +13,7 @@ export default function LevelBar({
     <div className={`flex items-center gap-4 ${className}`}>
       <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
         <div
-          className={`bg-[${color}] h-[8px] w-[${level}px] rounded-full`}
+          className={`bg-${color} h-[8px] w-[${level}px] rounded-full`}
         ></div>
       </div>
 

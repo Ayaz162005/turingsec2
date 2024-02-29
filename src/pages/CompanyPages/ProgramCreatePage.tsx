@@ -17,6 +17,13 @@ export default function ProgramCreatePage() {
   const [fromdate, setFromDate] = React.useState<Date>();
   const [todate, setToDate] = React.useState<Date>();
   const [page, setPage] = React.useState(1);
+
+  function createProgram() {
+    try {
+    } catch (e) {
+      console.log(e);
+    }
+  }
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <div className="bg-[url('/assets/images/programimage.jpeg')] h-[100px]  bg-center bg-cover  relative w-full">
