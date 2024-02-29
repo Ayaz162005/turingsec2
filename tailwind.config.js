@@ -21,10 +21,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        "yellow-500": "#FFDE31",
-        "blue-500": "#2342E3",
-        "red-500": "#E32323",
-        "green-500": "#5AFF31",
+        // "yellow-500": "#FFDE31",
+        // "blue-500": "#2342E3",
+        // "red-500": "#E32323",
+        // "green-500": "#5AFF31",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

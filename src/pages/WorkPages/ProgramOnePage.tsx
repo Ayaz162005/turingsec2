@@ -135,7 +135,7 @@ export default function ProgramOnePage() {
               <div className="my-8 flex justify-between flex-col xl:flex-row">
                 <LevelBar color="yellow-500" level={60} label="Low" />
                 <LevelBar color="blue-500" level={60} label="Medium" />
-                <LevelBar color="green-500" level={60} label="High" />
+                <LevelBar color="orange-400" level={60} label="High" />
                 <LevelBar color="red-500" level={60} label="Critical" />
               </div>
 
