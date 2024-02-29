@@ -1,8 +1,11 @@
 import toast from "react-hot-toast";
 import ProfileLine from "../../components/component/Worker/ProfileLine";
 import { Button } from "../../components/ui/button";
+import { useCurrentUser } from "../../context/CurrentUser";
 
 export default function Profile() {
+  const { currentUser } = useCurrentUser();
+  console.log(currentUser);
   const fakeData = [
     {
       bugtag: "Tag name",
@@ -111,11 +114,13 @@ export default function Profile() {
             <div className="">
               <div className="flex justify-between mb-4 md:mb-0 md:block">
                 <h2 className="font-[600] sm:text-[25px] text-[20px]">
-                  Username
+                  {currentUser?.username || "Username"}
                 </h2>
                 <div className="flex items-center gap-2">
                   <img src="/assets/flag.svg" className="w-[18px] " />
-                  <p className="text-[16px] font-[400]">City</p>
+                  <p className="text-[16px] font-[400]">
+                    {currentUser.city || "city"}
+                  </p>
                 </div>
               </div>
               <div className="flex justify-between mt-2 gap-8">
@@ -155,10 +160,8 @@ export default function Profile() {
             Bio
           </h2>
           <p className="sm:text-[20px] text-[14px] font-[400]">
-            Provide detailed information about the company, including its
-            history, founding date, key milestones, and any notable
-            achievements. This helps establish credibility and builds trust with
-            visitors.
+            {currentUser?.bio ||
+              "Provide detailed information about the company, including its  history, founding date, key milestones, and any notable achievements. This helps establish credibility and builds trust with visitors."}
           </p>
         </div>
         <h2 className="text-[18px] sm:text-[20px] font-[600] sm:font-[700] my-8">

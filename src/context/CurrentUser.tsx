@@ -10,6 +10,9 @@ interface CurrentUser {
   email?: string;
   id?: string;
   activated?: boolean;
+  username?: string;
+  city?: string;
+  bio?: string;
 }
 
 // Create the context
@@ -36,28 +39,41 @@ const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
       try {
         const userString = localStorage.getItem("user");
         if (userString) {
-          const user = JSON.parse(userString) as CurrentUser;
-          console.log(user);
+          const userr = JSON.parse(userString);
+          console.log(userr);
+
           const res = await fetch(
-            `https://turingsec-production.up.railway.app/api/auth/users/${user.id}`,
+            `https://turingsec-production.up.railway.app/api/auth/current-user`,
             {
               method: "GET",
+              headers: {
+                Authorization: `Bearer ${userr.accessToken}`,
+              },
             }
           );
 
           if (res.ok) {
             const updatedUser = await res.json();
             console.log(updatedUser);
-            const { email, id, activated } = updatedUser;
 
-            setCurrentUser({ email, id, activated });
+            const { email, id, activated, username } = updatedUser;
+            const { city, bio } = updatedUser.hacker;
+            setCurrentUser({
+              email,
+              id,
+              activated,
+              username: username,
+              city,
+              bio,
+            });
           } else {
             // Handle error if the fetch fails
-            setCurrentUser({});
+            setCurrentUser(undefined);
             console.error("Error fetching user data:", res.statusText);
           }
         }
       } catch (error) {
+        setCurrentUser(undefined);
         console.error("Error parsing user data from localStorage:", error);
       }
     }

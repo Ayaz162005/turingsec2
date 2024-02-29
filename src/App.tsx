@@ -33,6 +33,9 @@ import Report from "./pages/WorkPages/Report";
 import WorkDefend from "./components/component/defend/WorkDefend";
 import Notification from "./pages/WorkPages/Notification";
 import Inbox from "./pages/WorkPages/Inbox";
+import ProgramOnePage from "./pages/WorkPages/ProgramOnePage";
+import ProgramSubmitPage from "./pages/WorkPages/ProgramSubmitPage";
+import ProgramCreatePage from "./pages/CompanyPages/ProgramCreatePage";
 
 function App() {
   function ScrollToTop() {
@@ -74,6 +77,11 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Setting />} />
           <Route path="report" element={<Report />} />
+          <Route path="programs/:programId" element={<ProgramOnePage />} />
+          <Route
+            path="programs/:programId/submit"
+            element={<ProgramSubmitPage />}
+          />
           <Route path="notifications" element={<Notification />} />
           <Route path="inbox" element={<Inbox />} />
         </Route>
@@ -81,6 +89,7 @@ function App() {
         <Route path="/company" element={<MainLayout />}>
           <Route path="dashboard" element={<DashboardCompany />} />
           <Route path="programs" element={<ProgramCompany />} />
+          <Route path="programs/create" element={<ProgramCreatePage />} />
           <Route path="report" element={<ReportCompany />} />
           <Route path="profile" element={<CompanyProfile />} />
         </Route>

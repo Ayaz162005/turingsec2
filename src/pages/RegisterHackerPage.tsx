@@ -65,12 +65,13 @@ export default function RegisterHackerPage() {
         window.location.href = "/";
       }, 1000);
       // Assuming result.body is an object, you can destructure the properties
-      const { userId } = result;
+      const { userId, access_token } = result;
 
       localStorage.setItem(
         "user",
         JSON.stringify({
           id: userId as string,
+          accessToken: access_token as string,
         })
       );
 

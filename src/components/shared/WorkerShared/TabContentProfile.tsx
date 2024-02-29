@@ -17,16 +17,23 @@ import {
 import { Input } from "../../../components/ui/input";
 
 import { formSchemaProfileUpdate } from "../../../lib/schemas";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { Button } from "../../ui/button";
 import InputCompany from "../../component/Company/InputCompany";
 import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
+import { useCurrentUser } from "../../../context/CurrentUser";
+import { set } from "date-fns";
 const breakpoints = [1040, 1224];
 
 const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
 export default function TabContentProfile() {
+  const { currentUser } = useCurrentUser();
+  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrcUser, setImageSrcUser] = useState("");
+  const [imageRealSrc, setImageRealSrc] = useState("");
+  const [imageRealSrcUser, setImageRealSrcUser] = useState("");
   const form = useForm<z.infer<typeof formSchemaProfileUpdate>>({
     resolver: zodResolver(formSchemaProfileUpdate),
     defaultValues: {
@@ -35,8 +42,7 @@ export default function TabContentProfile() {
       website: "",
       bio: "",
       username: "",
-      bigfile: "",
-      file: "",
+
       city: "",
       linkedin: "",
       twitter: "",
@@ -48,9 +54,73 @@ export default function TabContentProfile() {
       },
     },
   });
+
+  const handleFileChange = (e) => {
+    console.log(e);
+    const file = e.target.files[0];
+    setImageRealSrc(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImageSrc(reader.result);
+      console.log(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+  const handleFileChangeUser = (e) => {
+    const file = e.target.files[0];
+    setImageRealSrcUser(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImageSrcUser(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
   const options = useMemo(() => countryList().getData(), []);
-  function onSubmit(data: z.infer<typeof formSchemaProfileUpdate>) {
-    console.log(data);
+  async function onSubmit(data: z.infer<typeof formSchemaProfileUpdate>) {
+    if (!imageSrc || !imageSrcUser) {
+      return;
+    }
+
+    console.log(data, imageSrc, imageSrcUser);
+    try {
+      const ele = JSON.parse(localStorage.getItem("user") || "");
+      console.log(ele.accessToken);
+      const res = await fetch(
+        "https://turingsec-production.up.railway.app/api/auth/update-profile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${ele.accessToken}`,
+          },
+          body: JSON.stringify({
+            first_name: data.firstname,
+            last_name: data.lastname,
+            username: data.username,
+            website: data.website,
+            bio: data.bio,
+            country: data.country.value,
+            city: data.city,
+            linkedin: data.linkedin,
+            twitter: data.twitter,
+            github: data.github,
+            profile_pic: "sdjks",
+            background_pic: "sdjskd",
+          }),
+        }
+      );
+      console.log(res);
+      const json = await res.json();
+      console.log(json);
+      toast.success("Profile Updated");
+    } catch (err: any) {
+      toast.error("Error", err?.message);
+      console.log(err);
+    }
   }
   return (
     <div className="mt-4">
@@ -154,7 +224,16 @@ export default function TabContentProfile() {
               />
             </div>
             <div className="flex items-center gap-8 flex-col sm:flex-row">
-              <Label className="bg-[#061724] rounded-2xl  sm:w-[559px] h-[160px] w-full"></Label>
+              <Label className="bg-[#061724] rounded-2xl sm:w-[559px] h-[160px] w-full flex justify-center items-center">
+                {imageSrc && (
+                  <img
+                    src={imageSrc}
+                    alt="Uploaded"
+                    className="max-w-full max-h-full"
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                )}
+              </Label>
               <FormField
                 control={form.control}
                 name="bigfile"
@@ -172,19 +251,26 @@ export default function TabContentProfile() {
                         <Input
                           type="file"
                           {...field}
+                          onChange={handleFileChange}
                           className="bg-[#FFEC86] text-black hidden w-full"
                         />
                       </Label>
                     </FormControl>
 
-                    <FormMessage />
+                    {!imageSrc && (
+                      <div className="absolute text-red-500">File upload</div>
+                    )}
                   </FormItem>
                 )}
               />
             </div>
             <div className="flex items-center gap-8 flex-col sm:flex-row">
-              <Label className="bg-[#061724] hexagon3 py-8  md:m-0">
-                <img src="/assets/images/newuserlogo.svg" alt="" />
+              <Label className="bg-[#061724] hexagon7 py-8  md:m-0">
+                {imageSrcUser ? (
+                  <img src={imageSrcUser} alt="Uploaded" className="p-2 " />
+                ) : (
+                  <img src="/assets/images/newuserlogo.svg" alt="" />
+                )}
               </Label>{" "}
               <FormField
                 control={form.control}
@@ -203,12 +289,15 @@ export default function TabContentProfile() {
                         <Input
                           type="file"
                           {...field}
+                          onChange={handleFileChangeUser}
                           className="bg-[#FFEC86] text-black hidden w-full"
                         />
                       </Label>
                     </FormControl>
 
-                    <FormMessage />
+                    {!imageSrcUser && (
+                      <div className="absolute text-red-500">File upload</div>
+                    )}
                   </FormItem>
                 )}
               />

@@ -44,8 +44,6 @@ export const formSchemaProfileUpdate = z.object({
     .min(2, { message: "Website is too short" })
     .url({ message: "Please enter a valid URL" }),
   bio: z.string().min(2, { message: "Bio is too short" }),
-  bigfile: z.string().min(2, { message: "Enter file" }),
-  file: z.string().min(2, { message: "Enter file" }),
 
   // country: z.string().min(2, { message: "Country is too short" }),
   country: z.object({

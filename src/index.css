@@ -180,6 +180,29 @@
   display: block;
 }
 
+.hexagon7 {
+  width: 60px; /* Adjust size as needed */
+  height: 70px; /* Adjust size as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: relative; */
+  background-color: "black";
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  /* This clip-path creates a hexagon shape */
+  overflow: hidden;
+}
+.hexagon7 img {
+  /* width: 100%; */
+  min-width: 80px;
+  min-height: 90px;
+  object-fit: cover;
+  object-position: center;
+
+  /* position: absolute; */
+
+  display: block;
+}
 .hexagon4 {
   width: 116px; /* Adjust size as needed */
   height: 130px; /* Adjust size as needed */
@@ -422,4 +445,37 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 0px; /* Set the width of the scrollbar */
+}
+
+.bluescroll::-webkit-scrollbar {
+  width: 5px;
+  background-color: #00467c;
+}
+
+.bluescroll::-webkit-scrollbar-thumb {
+  background: #2342e3; /* Color of the scrollbar handle */
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none; /* Remove default outline */
+  border: none;
+  display: none;
+  background-color: transparent;
+}
+input[type="radio"] + label:before {
+  content: "";
+  display: inline-block;
+  min-width: 20px; /* Adjust as needed */
+  min-height: 20px; /* Adjust as needed */
+  border-radius: 50%; /* Make it circular */
+  cursor: pointer;
+  border: 2px solid #ffde31; /* Border color */
+  background-color: transparent; /* Set background color */
+  margin-right: 5px; /* Adjust as needed */
+}
+input[type="radio"]:checked + label:before {
+  background-color: #ffde31; /* Change background color when checked */
 }
