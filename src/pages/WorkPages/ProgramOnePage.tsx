@@ -133,10 +133,48 @@ export default function ProgramOnePage() {
                 Assets eligible:All in-scope assets
               </h2>
               <div className="my-8 flex justify-between flex-col xl:flex-row">
-                <LevelBar color="yellow" level={60} label="Low" />
-                <LevelBar color="blue" level={60} label="Medium" />
-                <LevelBar color="green" level={60} label="High" />
-                <LevelBar color="red" level={60} label="Critical" />
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#FFDE31] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                    Yellow
+                  </p>
+                </div>
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#2342E3] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                    Medium
+                  </p>
+                </div>
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#5AFF31] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">High</p>
+                </div>
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#E32323] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                    Critical
+                  </p>
+                </div>
               </div>
 
               <p className="sm:text-[16px] text-[14px] font-[400]">
@@ -170,10 +208,44 @@ export default function ProgramOnePage() {
         <div className="rounded-2xl overflow-hidden">
           <div className="bg-[#001D34] h-[70px] items-center px-8 flex ">
             <div className="my-8 flex justify-between flex-1">
-              <LevelBar color="#FFDE31" level={60} label="Low" />
-              <LevelBar color="#2342E3" level={60} label="Medium" />
-              <LevelBar color="#5AFF31" level={60} label="High" />
-              <LevelBar color="#E32323" level={60} label="Critical" />
+              <div className={`flex items-center gap-4 `}>
+                <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                  <div
+                    className={`bg-[#FFDE31] h-[8px] w-[60px] rounded-full`}
+                  ></div>
+                </div>
+
+                <p className="sm:text-[18px] text-[16px] font-[600]">Yellow</p>
+              </div>
+              <div className={`flex items-center gap-4 `}>
+                <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                  <div
+                    className={`bg-[#2342E3] h-[8px] w-[60px] rounded-full`}
+                  ></div>
+                </div>
+
+                <p className="sm:text-[18px] text-[16px] font-[600]">Medium</p>
+              </div>
+              <div className={`flex items-center gap-4 `}>
+                <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                  <div
+                    className={`bg-[#5AFF31] h-[8px] w-[60px] rounded-full`}
+                  ></div>
+                </div>
+
+                <p className="sm:text-[18px] text-[16px] font-[600]">High</p>
+              </div>
+              <div className={`flex items-center gap-4 `}>
+                <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                  <div
+                    className={`bg-[#E32323] h-[8px] w-[60px] rounded-full`}
+                  ></div>
+                </div>
+
+                <p className="sm:text-[18px] text-[16px] font-[600]">
+                  Critical
+                </p>
+              </div>
             </div>
           </div>
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
