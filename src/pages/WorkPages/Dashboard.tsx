@@ -1,6 +1,29 @@
+import { useEffect, useState } from "react";
 import Box from "../../components/component/Worker/Box";
 
 export default function Dashboard() {
+  const [lengthres, setLengthres] = useState(0);
+  useEffect(() => {
+    async function fetchData() {
+      console.log("fetching");
+      const res = await fetch(
+        "https://turingsec-production.up.railway.app/api/bug-bounty-reports",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user"))?.accessToken
+            }`,
+          },
+        }
+      );
+      const data = await res.json();
+      setLengthres(data.length);
+    }
+
+    fetchData();
+  }, []);
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
@@ -25,7 +48,7 @@ export default function Dashboard() {
         </p>
         <div className="my-8 grid gap-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-2 xl:w-[60%] w-full ">
           <Box text="Max Bounty" />
-          <Box text="Total Bounty" />
+          <Box text="Total Bounty" data={lengthres} />
           <Box text="Average Bounty" />
           <Box text="Submitted Bounty" />
           <Box text="Collaborated Bounty" />

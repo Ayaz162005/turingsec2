@@ -133,10 +133,10 @@ export default function ProgramOnePage() {
                 Assets eligible:All in-scope assets
               </h2>
               <div className="my-8 flex justify-between flex-col xl:flex-row">
-                <LevelBar color="yellow-500" level={60} label="Low" />
-                <LevelBar color="blue-500" level={60} label="Medium" />
-                <LevelBar color="orange-400" level={60} label="High" />
-                <LevelBar color="red-500" level={60} label="Critical" />
+                <LevelBar color="yellow" level={60} label="Low" />
+                <LevelBar color="blue" level={60} label="Medium" />
+                <LevelBar color="green" level={60} label="High" />
+                <LevelBar color="red" level={60} label="Critical" />
               </div>
 
               <p className="sm:text-[16px] text-[14px] font-[400]">

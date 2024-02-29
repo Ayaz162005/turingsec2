@@ -91,9 +91,9 @@ export default function ProgramSubmitPage() {
       }
 
       toast.success("Report submitted successfully");
-      // setTimeout(() => {
-      //   window.location.href = "/dashboard";
-      // }, 2000);
+      setTimeout(() => {
+        window.location.href = "/work/dashboard";
+      }, 1000);
     } catch (err) {
       console.log(err);
       toast.error("Report submission failed");
