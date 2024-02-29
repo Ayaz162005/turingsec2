@@ -125,7 +125,7 @@ export default function ProgramCreatePage() {
                   <img src="/assets/images/info.png" alt="" />
                 </div>
                 <div className="flex gap-4 flex-col lg:flex-row">
-                  <div className="flex flex-col relative">
+                  <div className="flex flex-col dark">
                     <Label className="mb-2 lg:absolute static -top-5">
                       From
                     </Label>
@@ -151,7 +151,7 @@ export default function ProgramCreatePage() {
                           {/* <CalendarIcon className="mr-2 h-4 w-4" /> */}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 dark">
+                      <PopoverContent className=" z-[1000000] dark">
                         <Calendar
                           mode="single"
                           selected={fromdate}
@@ -186,7 +186,7 @@ export default function ProgramCreatePage() {
                           {/* <CalendarIcon className="mr-2 h-4 w-4" /> */}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 dark">
+                      <PopoverContent className=" z-[1000000] dark">
                         <Calendar
                           mode="single"
                           selected={todate}

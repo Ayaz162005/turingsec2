@@ -114,9 +114,11 @@ export default function TabContentProfile() {
         }
       );
       console.log(res);
-      const json = await res.json();
-      console.log(json);
+
       toast.success("Profile Updated");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (err: any) {
       toast.error("Error", err?.message);
       console.log(err);
