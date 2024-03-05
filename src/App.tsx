@@ -10,7 +10,7 @@ import AppLayout from "./pages/AppLayout";
 import MainPage from "./pages/MainPage";
 import RegisterHackerPage from "./pages/RegisterHackerPage";
 import { useEffect } from "react";
-import RegisterCompanyPage from "./pages/RegisterCompany";
+
 import AboutUs from "./pages/AboutUs";
 import OpportunitiesHacker from "./pages/OpportunitiesHacker";
 import OpportunitiesCompany from "./pages/OpportunitiesCompany";
@@ -30,12 +30,14 @@ import ReportCompany from "./pages/CompanyPages/ReportsCompany";
 import CompanyProfile from "./pages/CompanyPages/CompanyProfile";
 import Setting from "./pages/WorkPages/Setting";
 import Report from "./pages/WorkPages/Report";
-import WorkDefend from "./components/component/defend/WorkDefend";
+
 import Notification from "./pages/WorkPages/Notification";
 import Inbox from "./pages/WorkPages/Inbox";
 import ProgramOnePage from "./pages/WorkPages/ProgramOnePage";
 import ProgramSubmitPage from "./pages/WorkPages/ProgramSubmitPage";
 import ProgramCreatePage from "./pages/CompanyPages/ProgramCreatePage";
+import SignupCompanyPage from "./pages/SignupCompany";
+import RegisterCompanyPage from "./pages/RegisterCompany";
 
 function App() {
   function ScrollToTop() {
@@ -60,6 +62,7 @@ function App() {
 
           <Route path="registerhacker" element={<RegisterHackerPage />} />
           <Route path="signupashacker" element={<SignupAsHacker />} />
+          <Route path="signupascompany" element={<SignupCompanyPage />} />
           <Route path="registercompany" element={<RegisterCompanyPage />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="opportunitieshacker" element={<OpportunitiesHacker />} />

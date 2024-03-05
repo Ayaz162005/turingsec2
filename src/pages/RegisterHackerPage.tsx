@@ -16,8 +16,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../context/CurrentUser";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useCurrentCompany } from "../context/CurrentCompany";
 export default function RegisterHackerPage() {
   const { currentUser } = useCurrentUser();
+  const { currentCompany } = useCurrentCompany();
   const form = useForm<z.infer<typeof formSchemaHackerLogin>>({
     resolver: zodResolver(formSchemaHackerLogin),
     defaultValues: {
@@ -31,6 +33,11 @@ export default function RegisterHackerPage() {
       navigate("/");
     }
   }, [currentUser, navigate]);
+  useEffect(() => {
+    if (currentCompany?.id) {
+      navigate("/");
+    }
+  }, [currentCompany, navigate]);
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchemaHackerLogin>) {
     try {

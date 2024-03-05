@@ -5,17 +5,20 @@ import "./index.css";
 
 import { CurrentUserProvider } from "./context/CurrentUser.tsx";
 import QueryContext from "./context/QueryContext.tsx";
+import { CurrentCompanyProvider } from "./context/CurrentCompany.tsx";
 
 // import { ThemeProvider } from "./context/ThemeContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryContext>
-      <CurrentUserProvider>
-        {/* <ThemeProvider> */}
+      <CurrentCompanyProvider>
+        <CurrentUserProvider>
+          {/* <ThemeProvider> */}
 
-        <App />
-      </CurrentUserProvider>
+          <App />
+        </CurrentUserProvider>
+      </CurrentCompanyProvider>
     </QueryContext>
     {/* </ThemeProvider> */}
   </React.StrictMode>

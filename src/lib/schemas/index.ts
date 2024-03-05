@@ -7,6 +7,10 @@ export const formSchemaCompanyRegister = z.object({
   companyName: z.string().min(2, { message: "Company name is too short" }),
   jobtitle: z.string().min(2, { message: "Job title is too short" }),
   message: z.string().min(2, { message: "Message is too short" }),
+  assets: z.object({
+    value: z.string().min(2, { message: "Country code is too short" }),
+    label: z.string().min(2, { message: "Country is not defibed" }),
+  }),
 });
 
 export const formSchemaHackerRegister = z

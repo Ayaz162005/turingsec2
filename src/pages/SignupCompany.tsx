@@ -2,11 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import Select from "react-select";
-
-// import ReactCountryFlag from "react-country-flag";
-import { Toaster, toast } from "react-hot-toast";
-import countryList from "react-select-country-list";
 import {
   Form,
   FormControl,
@@ -16,36 +11,47 @@ import {
 } from "../components/ui/form";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { formSchemaHackerRegister } from "../lib/schemas";
-import { useEffect, useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { formSchemaCompanyRegister } from "../lib/schemas";
+import { Textarea } from "../components/ui/textarea";
+import Select from "react-select";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 import { useCurrentUser } from "../context/CurrentUser";
 import { useCurrentCompany } from "../context/CurrentCompany";
-// import { toast } from "react-toastify";
-export default function SignupAsHacker() {
+import { useEffect } from "react";
+export default function SignupCompanyPage() {
   const { currentUser } = useCurrentUser();
   const { currentCompany } = useCurrentCompany();
-
-  const options = useMemo(() => countryList().getData(), []);
-
   const navigate = useNavigate();
-  const form = useForm<z.infer<typeof formSchemaHackerRegister>>({
-    resolver: zodResolver(formSchemaHackerRegister),
+  const options = [
+    {
+      value: "Check",
+      label: "Check",
+    },
+    {
+      value: "Hello",
+      label: "Hello",
+    },
+    {
+      value: "One",
+      label: "One",
+    },
+  ];
+  const form = useForm<z.infer<typeof formSchemaCompanyRegister>>({
+    resolver: zodResolver(formSchemaCompanyRegister),
     defaultValues: {
-      firstname: "",
-      lastname: "",
-      username: "",
+      firstName: "",
+      lastName: "",
       email: "",
-      password: "",
-      passwordConfirmation: "",
-      country: {
+      companyName: "",
+      jobtitle: "",
+      message: "",
+      assets: {
         value: "",
-        label: "Select Country...",
+        label: "Select Assets",
       },
     },
   });
-  const countryValue = form.watch("country");
-
   useEffect(() => {
     if (currentUser?.activated) {
       navigate("/");
@@ -56,174 +62,75 @@ export default function SignupAsHacker() {
       navigate("/");
     }
   }, [currentCompany, navigate]);
+
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchemaHackerRegister>) {
+  async function onSubmit(values: z.infer<typeof formSchemaCompanyRegister>) {
     try {
-      const response = await fetch(
-        "https://turingsec-production.up.railway.app/api/auth/register/hacker",
+      const res = await fetch(
+        "https://turingsec-production.up.railway.app/api/companies/register",
         {
-          method: "POST", // Fixed syntax: method should be a string
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          // mode: "no-cors",
           body: JSON.stringify({
-            first_name: values.firstname,
-            last_name: values.lastname,
-            username: values.username,
-            country: values.country.label,
-            password: values.password,
+            first_name: values.firstName,
+            last_name: values.lastName,
             email: values.email,
-          }), // Assuming you want to send the form values as JSON in the request body
+            company_name: values.companyName,
+            job_title: values.jobtitle,
+            assets: values.assets.value,
+            message: values.message,
+          }),
         }
       );
-
-      if (!response.ok) {
+      if (!res.ok) {
         // Handle error response, e.g., show an error message to the user
         toast.error("Something bad");
-        console.error("Error registering hacker:", response.statusText);
+        console.error("Error registering company:", res.statusText);
         return;
       }
 
       // If the response is successful, you can do something with the result
-      const result = await response.json();
-      console.log("Registration successful:", result.body);
 
-      toast.success("We send activation code to email");
+      const result = await res.json();
+      console.log("Registration successful:", result);
+      toast.success("You succesfully create account as a company!");
       navigate("/");
-      // Assuming result.body is an object, you can destructure the properties
-      const { userId, access_token } = result;
-      console.log(userId);
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          id: userId as string,
-          accessToken: access_token as string,
-        })
-      );
-
-      // navigate("/work/dashboard");
     } catch (error: any) {
-      toast.error(error?.message);
-      // Handle any general error that occurred during the fetch or processing
-      console.error("An error occurred:", error);
+      console.log(error);
+      toast.error(error);
     }
-    // The rest of your code
-    console.log(values);
   }
-  console.log(currentUser);
-
   return (
-    <div className=" flex  flex-col justify-between xl:pb-40 pb-4 sm:py-28  text-[white] lg:flex-row items-center bg-[#061723] dark:bg-inherit sm:px-16 mt-[52px] py-20 px-8 ">
+    <div className=" flex  flex-col justify-between xl:pb-40 pb-4 sm:py-18  text-[white] lg:flex-row items-center bg-[#061723] dark:bg-inherit sm:px-16 mt-[52px] py-20 px-8 ">
       <div className="lg:w-[60%] w-auto  ">
         <div className="">
           <h2 className="font-[700] sm:text-[45px] text-[28px] mb-2">
-            Join as Hacker
+            Join as Company
           </h2>
           <p className="font-[400] sm:text-[20px] mb-8  text-[18px]">
-            Check out a demo to see how strategic penetration testing helps you
-            find weak spots, understand your system better, and tighten security
-            for organizations.
+            See a personalized demo to learn how strategic penetration testing
+            helps you take control of your vulnerabilities, spot security gaps,
+            and boost your overall security.
           </p>
-
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 sm:w-[450px] m-auto lg:m-0 w-[317px]
-              "
+              className="space-y-4 w-[100%] m-auto lg:m-0 sm:w-[450px]
+            "
             >
-              {" "}
               <FormField
                 control={form.control}
-                name="firstname"
+                name="firstName"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
-                        type="text"
                         placeholder="First Name"
                         {...field}
-                        className="bg-[#023059] rounded-xl h-[60px] 
-                    autocomplete-none
-                  outline-none border-none  
-                  placeholder:text-white
-                pl-8
-                  focus-visible:ring-0
-                  focus-visible:ring-offset-1
-                
-                 "
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Last Name"
-                        {...field}
-                        className="bg-[#023059] rounded-xl h-[60px] 
-                    autocomplete-none
-                  outline-none border-none  
-                  placeholder:text-white
-                pl-8
-                  focus-visible:ring-0
-                  focus-visible:ring-offset-1
-                
-                 "
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Username"
-                        {...field}
-                        className="bg-[#023059] rounded-xl h-[60px] 
-                    autocomplete-none
-                  outline-none border-none  
-                  placeholder:text-white
-                pl-8
-                  focus-visible:ring-0
-                  focus-visible:ring-offset-1
-                
-                 "
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Email"
-                        {...field}
-                        className="bg-[#023059] rounded-xl h-[60px] 
-                        autocomplete-none
-                      outline-none border-none  
+                        className="bg-[#023059] rounded-xl h-[60px] sm:w-[450px] w-[317px]
+                      outline-none border-none 
                       placeholder:text-white
                     pl-8
                       focus-visible:ring-0
@@ -239,15 +146,14 @@ export default function SignupAsHacker() {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name="lastName"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
-                        type="password"
-                        placeholder="Password"
+                        placeholder="Last Name"
                         {...field}
-                        className="bg-[#023059] rounded-xl  h-[60px] autocomplete-none
+                        className="bg-[#023059] rounded-xl  h-[60px] sm:w-[450px] w-[317px]
                       outline-none 
                       pl-8 border-none 
                       placeholder:text-white
@@ -265,19 +171,18 @@ export default function SignupAsHacker() {
               />
               <FormField
                 control={form.control}
-                name="passwordConfirmation"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
-                        type="password"
-                        placeholder="Password Confirmation"
+                        type="email"
+                        placeholder="Company Email Address"
                         {...field}
-                        className="bg-[#023059] rounded-xl  h-[60px] autocomplete-none
-                      outline-none 
-                      pl-8 border-none 
+                        className="bg-[#023059] rounded-xl  h-[60px] sm:w-[450px] w-[317px]
+                      outline-none border-none 
                       placeholder:text-white
-                    
+                    pl-8
                       focus-visible:ring-0
                       focus-visible:ring-offset-1
                     
@@ -291,7 +196,55 @@ export default function SignupAsHacker() {
               />
               <FormField
                 control={form.control}
-                name="country"
+                name="companyName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Company Name"
+                        {...field}
+                        className="bg-[#023059] rounded-xl h-[60px] sm:w-[450px] w-[317px]
+                      outline-none border-none 
+                      placeholder:text-white
+                    pl-8
+                      focus-visible:ring-0
+                      focus-visible:ring-offset-1
+                    
+                     "
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="jobtitle"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Job Title"
+                        {...field}
+                        className="bg-[#023059] rounded-xl  h-[60px] sm:w-[450px] w-[317px]
+                      outline-none border-none 
+                      placeholder:text-white
+                    pl-8
+                      focus-visible:ring-0
+                      focus-visible:ring-offset-1
+                    
+                     "
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="assets"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -354,18 +307,38 @@ export default function SignupAsHacker() {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Write you message..."
+                        {...field}
+                        className="bg-[#023059] h-[170px] xl:w-[630px] w-[100%]  pt-4  rounded-xl 
+                      outline-none border-none 
+                      placeholder:text-white
+                    pl-8
+                      focus-visible:ring-0
+                      focus-visible:ring-offset-1
+                    
+                     "
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <Button
                 className="bg-[#FFDE31] hover:bg-[#FFDE31]
-            text-black mt-4 rounded-xl hover:scale-105 transition-all duration-300  font-[700] w-full h-[60px]"
+            text-black  rounded-xl hover:scale-105  sm:w-[450px] w-[317px] transition-all duration-300  font-[700]  h-[60px]  "
                 type="submit"
               >
-                Sign up
+                Submit
               </Button>
-              <Link to={"/registerhacker"}>
-                <p className="text-[#92CCFF] text-[16px] font-[500] text-center cursor-pointer mt-3">
-                  Go to signin page
-                </p>
-              </Link>
             </form>
           </Form>
         </div>

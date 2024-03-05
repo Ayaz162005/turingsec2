@@ -7,8 +7,11 @@ import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCurrentUser } from "../../context/CurrentUser";
 import { Button } from "../ui/button";
+import { useCurrentCompany } from "../../context/CurrentCompany";
 export default function Navbar() {
   const { currentUser } = useCurrentUser();
+  const { currentCompany } = useCurrentCompany();
+  console.log(currentCompany);
 
   const [hoveredLink, setHoveredLink] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -219,7 +222,7 @@ export default function Navbar() {
         >
           Contact Us
         </Link>
-        {currentUser?.activated ? (
+        {currentUser?.activated && (
           <Link to={"/work/dashboard"}>
             <img
               src="/assets/images/newuserlogo.svg"
@@ -227,7 +230,17 @@ export default function Navbar() {
               className="w-[54px] cursor-pointer"
             />
           </Link>
-        ) : (
+        )}
+        {currentCompany && (
+          <Link to={"/company/dashboard"}>
+            <img
+              src="/assets/images/newuserlogo.svg"
+              alt="usericon"
+              className="w-[54px] cursor-pointer"
+            />
+          </Link>
+        )}
+        {!currentUser?.activated && !currentCompany && (
           <img
             src="/assets/images/newuserlogo.svg"
             alt="usericon"
