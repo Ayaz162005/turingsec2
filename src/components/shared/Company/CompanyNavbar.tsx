@@ -64,11 +64,9 @@ export default function CompanyNavbar() {
               url == "/profile" ? "bg-[#2451F5]" : ""
             } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
-            <img
-              src="/assets/icon22.svg"
-              alt=""
-              className="md:w-[32px] w-[40px] m-auto md:m-0"
-            />
+            <div className="hexagon6 m-auto md:m-0">
+              <img src="/assets/images/profileimage.jpeg" alt="" />
+            </div>
             <p className="hidden md:block">Profile</p>
           </Link>
         </div>

@@ -1,6 +1,8 @@
-import ProfileLine from "../../components/component/Worker/ProfileLine";
+import { useCurrentCompany } from "../../context/CurrentCompany";
 
 export default function CompanyProfile() {
+  const { currentCompany } = useCurrentCompany();
+
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden ">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
@@ -32,7 +34,7 @@ export default function CompanyProfile() {
             </div>
 
             <div className="flex flex-col items-center   mb-4 md:mb-0 md:block">
-              <h2 className="font-[600] text-[25px]">Company Name</h2>
+              <h2 className="font-[600] text-[25px]">{currentCompany?.name}</h2>
               <p className="sm:text-[20px] text-[18px] font-[400]">
                 Business title
               </p>

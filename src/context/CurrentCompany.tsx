@@ -9,6 +9,7 @@ import {
 interface CurrentCompany {
   email?: string;
   id?: string;
+  name?: string;
 }
 
 // Create the context
@@ -53,11 +54,12 @@ const CurrentCompanyProvider = ({ children }: { children: ReactNode }) => {
           if (res.ok) {
             const updatedUser = await res.json();
 
-            const { email, id } = updatedUser;
+            const { email, id, company_name } = updatedUser;
 
             setCurrentCompany({
               email,
               id,
+              name: company_name,
             });
           } else {
             // Handle error if the fetch fails
