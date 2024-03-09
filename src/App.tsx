@@ -91,8 +91,8 @@ function App() {
 
         <Route path="/company" element={<MainLayout />}>
           <Route path="dashboard" element={<DashboardCompany />} />
-          <Route path="programs" element={<ProgramCompany />} />
-          <Route path="programs/create" element={<ProgramCreatePage />} />
+          {/* <Route path="programs" element={<ProgramCompany />} /> */}
+          <Route path="programs" element={<ProgramCreatePage />} />
           <Route path="report" element={<ReportCompany />} />
           <Route path="profile" element={<CompanyProfile />} />
         </Route>

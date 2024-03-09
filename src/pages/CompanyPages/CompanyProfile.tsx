@@ -1,4 +1,6 @@
+import toast from "react-hot-toast";
 import { useCurrentCompany } from "../../context/CurrentCompany";
+import { Button } from "../../components/ui/button";
 
 export default function CompanyProfile() {
   const { currentCompany } = useCurrentCompany();
@@ -83,7 +85,20 @@ export default function CompanyProfile() {
                 <p className="text-[18px] font-[600]">Linkedin</p>
               </a>
             </ul>
-          </div>
+          </div>{" "}
+          <Button
+            className="hover:scale-110 transition-all duration-300  rounded-xl  w-[200px] h-[50px] sm:h-[50px]   sm:w-[200px] bg-[#2451F5] text-white  sm:text-[18px] font-[600] text-[16px]   hover:bg-[#2451F5] mt-8 gap-4"
+            onClick={() => {
+              localStorage.removeItem("company");
+              toast.success("logout");
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 500);
+            }}
+          >
+            <img src="/assets/logout.svg" alt="" />
+            <p>Logout</p>
+          </Button>
         </div>
       </div>
     </div>

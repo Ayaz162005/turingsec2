@@ -12,20 +12,130 @@ import { cn } from "../../lib/utils";
 import { format } from "date-fns";
 import { Calendar } from "../../components/ui/calendar";
 import { Textarea } from "../../components/ui/textarea";
+import { useCurrentCompany } from "../../context/CurrentCompany";
+import toast from "react-hot-toast";
+import Modal from "../../components/component/Modal";
 
 export default function ProgramCreatePage() {
+  const { currentCompany } = useCurrentCompany();
   const [fromdate, setFromDate] = React.useState<Date>();
   const [todate, setToDate] = React.useState<Date>();
   const [page, setPage] = React.useState(1);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+  const [policy, setPolicy] = React.useState("");
+  const [info, setInfo] = React.useState("");
+  const [lowElement, setLowElement] = React.useState<
+    { assetType: string; price: string }[]
+  >([]);
+  const [mediumElement, setMediumElement] = React.useState<
+    { assetType: string; price: string }[]
+  >([]);
+  const [highElement, setHighElement] = React.useState<
+    { assetType: string; price: string }[]
+  >([]);
+  const [criticalElement, setCriticalElement] = React.useState<
+    { assetType: string; price: string }[]
+  >([]);
 
-  function createProgram() {
+  async function createProgram() {
     try {
+      if (!info) {
+        return toast.error("Please fill in the information");
+      }
+      if (!policy) {
+        return toast.error("Please fill in the policy");
+      }
+      if (!fromdate || !todate) {
+        return toast.error("Please fill in the date");
+      }
+      if (
+        lowElement.length === 0 ||
+        mediumElement.length === 0 ||
+        highElement.length === 0 ||
+        criticalElement.length === 0
+      ) {
+        return toast.error("Please fill in the reward");
+      }
+      const allElement: {}[] = [];
+      lowElement.map((element) => {
+        allElement.push({ level: "easy", ...element });
+      });
+      mediumElement.map((element) => {
+        allElement.push({ level: "medium", ...element });
+      });
+      highElement.map((element) => {
+        allElement.push({ level: "hard", ...element });
+      });
+      criticalElement.map((element) => {
+        allElement.push({ level: "critical", ...element });
+      });
+
+      const res = await fetch(
+        "https://turingsec-production.up.railway.app/api/bug-bounty-programs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer " +
+              JSON.parse(localStorage.getItem("company")).accessToken,
+          },
+
+          body: JSON.stringify({
+            notes: info,
+            policy,
+            fromDate: fromdate,
+            toDate: todate,
+            assetTypes: allElement,
+          }),
+        }
+      );
+      if (res.ok) {
+        return toast.success("Program Updated Successfully");
+      } else {
+        return toast.error("Failed to create program");
+      }
+      console.log(res);
     } catch (e) {
       console.log(e);
     }
   }
+  function onSubmitAddRewarModal(data) {
+    if (data.level === "easy") {
+      setLowElement([
+        ...lowElement,
+        { assetType: data.type, price: data.reward },
+      ]);
+    }
+    if (data.level === "medium") {
+      setMediumElement([
+        ...mediumElement,
+        { assetType: data.type, price: data.reward },
+      ]);
+    }
+    if (data.level === "hard") {
+      setHighElement([
+        ...highElement,
+        { assetType: data.type, price: data.reward },
+      ]);
+    }
+    if (data.level === "critical") {
+      setCriticalElement([
+        ...criticalElement,
+        { assetType: data.type, price: data.reward },
+      ]);
+    }
+  }
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
+      <Modal
+        isOpen={isOpen}
+        onClose={toggleModal}
+        onSubmit={onSubmitAddRewarModal}
+      />
       <div className="bg-[url('/assets/images/programimage.jpeg')] h-[100px]  bg-center bg-cover  relative w-full">
         <div className="h-full w-full bg-black opacity-60"></div>
       </div>
@@ -36,32 +146,32 @@ export default function ProgramCreatePage() {
           </div>
           <div className="xl:w-[60%] w-full">
             <h2 className="sm:text-[18px] text-[16px] font-[600]">
-              Bug Bounty Program name
+              {currentCompany?.name}
             </h2>
             <p className="sm:text-[18px] text-[16px] font-[600]">
               Business title
             </p>
-            <a href="http://www.program.com/" className="text-[#5BA2F8]">
-              http://www.program.com/
+            <a href="http://www.turingsec.com/" className="text-[#5BA2F8]">
+              http://www.turingsec.com/
             </a>
             <div className="flex justify-between gap-2 flex-wrap">
               <div>
                 <p className="sm:text-[18px] text-[16px] font-[600]">
                   Reports Resolved
                 </p>
-                <p className="sm:text-[18px] text-[16px] font-[600]">12</p>
+                <p className="sm:text-[18px] text-[16px] font-[600]">0</p>
               </div>
               <div>
                 <p className="sm:text-[18px] text-[16px] font-[600]">
                   Reports Resolved
                 </p>
-                <p className="sm:text-[18px] text-[16px] font-[600]">12</p>
+                <p className="sm:text-[18px] text-[16px] font-[600]">0</p>
               </div>
               <div>
                 <p className="sm:text-[18px] text-[16px] font-[600]">
                   Reports Resolved
                 </p>
-                <p className="sm:text-[18px] text-[16px] font-[600]">12</p>
+                <p className="sm:text-[18px] text-[16px] font-[600]">0</p>
               </div>
             </div>
           </div>{" "}
@@ -78,7 +188,7 @@ export default function ProgramCreatePage() {
             </div>
             <div className="xl:w-[60%] w-full">
               <h2 className="sm:text-[18px] text-[16px] font-[600]">
-                Bug Bounty Program name
+                {currentCompany?.name}
               </h2>
               <p className="sm:text-[18px] text-[16px] font-[600]">
                 Business title
@@ -94,19 +204,19 @@ export default function ProgramCreatePage() {
               <p className="sm:text-[18px] text-[16px] font-[600]">
                 Reports Resolved
               </p>
-              <p className="sm:text-[18px] text-[16px] font-[600]">12</p>
+              <p className="sm:text-[18px] text-[16px] font-[600]">0</p>
             </div>
             <div>
               <p className="sm:text-[18px] text-[16px] font-[600]">
                 Reports Resolved
               </p>
-              <p className="sm:text-[18px] text-[16px] font-[600]">12</p>
+              <p className="sm:text-[18px] text-[16px] font-[600]">0</p>
             </div>
             <div>
               <p className="sm:text-[18px] text-[16px] font-[600]">
                 Reports Resolved
               </p>
-              <p className="sm:text-[18px] text-[16px] font-[600]">12</p>
+              <p className="sm:text-[18px] text-[16px] font-[600]">0</p>
             </div>
           </div>
           <div className="flex-1 flex justify-end">
@@ -132,7 +242,7 @@ export default function ProgramCreatePage() {
                   <img src="/assets/images/info.png" alt="" />
                 </div>
                 <div className="flex gap-4 flex-col lg:flex-row">
-                  <div className="flex flex-col dark">
+                  <div className="flex flex-col dark relative">
                     <Label className="mb-2 lg:absolute static -top-5">
                       From
                     </Label>
@@ -210,20 +320,71 @@ export default function ProgramCreatePage() {
                 Assets eligible:All in-scope assets
               </h2>
               <div className="my-8 flex justify-between flex-col xl:flex-row">
-                <LevelBar color="#FFDE31" level={60} label="Low" />
+                {/* <LevelBar color="#FFDE31" level={60} label="Low" />
                 <LevelBar color="#2342E3" level={60} label="Medium" />
                 <LevelBar color="#5AFF31" level={60} label="High" />
-                <LevelBar color="#E32323" level={60} label="Critical" />
+                <LevelBar color="#E32323" level={60} label="Critical" /> */}
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#FFDE31] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                    Yellow
+                  </p>
+                </div>
+
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#2342E3] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                    Medium
+                  </p>
+                </div>
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#5AFF31] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">High</p>
+                </div>
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#E32323] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                    Critical
+                  </p>
+                </div>
               </div>
 
-              <Textarea className="bg-transparent hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 border-2 border-[#2451F5] h-[160px] rounded-2xl" />
-              <Button className="hover:scale-105 transition-all mt-4 duration-300 rounded-xl  py-[9px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[120px] ml-auto">
-                Done
-              </Button>
+              <Textarea
+                className="bg-transparent hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 border-2 border-[#2451F5] h-[160px] rounded-2xl"
+                value={info}
+                onChange={(e) => setInfo(e.target.value)}
+              />
             </div>
           </div>
         </div>
-        <h2 className="my-[10px] sm:text-[20px] text-[16px] w-[600]">Reward</h2>
+        <div className=" flex justify-between items-center mt-2">
+          <h2 className="my-[10px] sm:text-[20px] text-[16px] w-[600]">
+            Reward
+          </h2>
+          <Button className="w-[100px]" onClick={() => setIsOpen(true)}>
+            Add
+          </Button>
+        </div>
         <div className="rounded-2xl overflow-hidden">
           <div className="bg-[#001D34] h-[70px] items-center px-8 flex ">
             <div className="my-8 flex justify-between flex-1">
@@ -239,55 +400,36 @@ export default function ProgramCreatePage() {
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 flex justify-between">
-                <LevelBar
-                  color="#FFDE31"
-                  level={60}
-                  label="Low"
-                  className="flex-1 justify-center"
-                />
-                <div className="flex-1 text-center">
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#FFDE31] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
                   <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
+                    Yellow
                   </p>
                 </div>
                 <div className="flex-1 text-center">
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $100-$150
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $200-$350
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#0A273D] px-8 border-b border-black py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex-1 flex justify-between">
-                <LevelBar
-                  color="#2342E3"
-                  level={60}
-                  label="Medium"
-                  className="flex-1 justify-center"
-                />
-                <div className="flex-1 text-center">
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
+                  {/* <p className="sm:text-[18px] text-[16px] font-[600]">
                     admin.rezserver.com
                   </p>
                   <p className="sm:text-[18px] text-[16px] font-[600]">
                     admin.rezserver.com
-                  </p>
+                  </p> */}
+                  {lowElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.assetType}
+                    </p>
+                  ))}
                 </div>
                 <div className="flex-1 text-center">
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $100-$150
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $200-$350
-                  </p>
+                  {lowElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.price}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
@@ -295,27 +437,30 @@ export default function ProgramCreatePage() {
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 flex justify-between">
-                <LevelBar
-                  color="#5AFF31"
-                  level={60}
-                  label="High"
-                  className="flex-1 justify-center"
-                />
-                <div className="flex-1 text-center">
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#2342E3] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
                   <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
+                    Medium
                   </p>
                 </div>
                 <div className="flex-1 text-center">
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $100-$150
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $200-$350
-                  </p>
+                  {mediumElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.assetType}
+                    </p>
+                  ))}
+                </div>
+                <div className="flex-1 text-center">
+                  {mediumElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.price}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
@@ -323,42 +468,79 @@ export default function ProgramCreatePage() {
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 flex justify-between">
-                <LevelBar
-                  color="#E32323"
-                  level={60}
-                  label="Critical"
-                  className="flex-1 justify-center"
-                />
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#5AFF31] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
+                  <p className="sm:text-[18px] text-[16px] font-[600]">High</p>
+                </div>
                 <div className="flex-1 text-center">
+                  {highElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.assetType}
+                    </p>
+                  ))}
+                </div>
+                <div className="flex-1 text-center">
+                  {highElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.price}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#0A273D] px-8 border-b border-black py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex-1 flex justify-between">
+                <div className={`flex items-center gap-4 `}>
+                  <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
+                    <div
+                      className={`bg-[#E32323] h-[8px] w-[60px] rounded-full`}
+                    ></div>
+                  </div>
+
                   <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
+                    Critical
                   </p>
                 </div>
                 <div className="flex-1 text-center">
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $100-$150
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    $200-$350
-                  </p>
+                  {criticalElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.assetType}
+                    </p>
+                  ))}
+                </div>
+                <div className="flex-1 text-center">
+                  {criticalElement.map((element) => (
+                    <p className="sm:text-[18px] text-[16px] font-[600]">
+                      {element.price}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <Button className="hover:scale-105 transition-all mt-4 duration-300 rounded-xl  py-[9px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[120px] ml-auto">
-          Done
-        </Button>
+
         <h2 className="my-[10px] sm:text-[20px] text-[16px] w-[600]">Policy</h2>
         <div className="bg-[#0A273D] p-8 rounded-xl">
-          <Textarea className="bg-transparent hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 border-2 border-[#2451F5] h-[160px] rounded-2xl" />
-          <Button className="hover:scale-105 transition-all mt-4 duration-300 rounded-xl  py-[9px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[120px] ml-auto">
-            Done
-          </Button>
+          <Textarea
+            className="bg-transparent hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 border-2 border-[#2451F5] h-[160px] rounded-2xl"
+            value={policy}
+            onChange={(e) => setPolicy(e.target.value)}
+          />
         </div>
+        <Button
+          className="hover:scale-105 transition-all mt-4 duration-300 rounded-xl  py-[9px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[120px] ml-auto"
+          onClick={createProgram}
+        >
+          Update
+        </Button>
       </div>
     </div>
   );
