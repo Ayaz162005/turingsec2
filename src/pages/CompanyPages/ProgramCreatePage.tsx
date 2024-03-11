@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LevelBar from "../../components/component/LevelBar";
 
 import { Button } from "../../components/ui/button";
@@ -15,6 +15,7 @@ import { Textarea } from "../../components/ui/textarea";
 import { useCurrentCompany } from "../../context/CurrentCompany";
 import toast from "react-hot-toast";
 import Modal from "../../components/component/Modal";
+import { useGetCompanyProgram } from "../../queryies/useGetCompanyProgram";
 
 export default function ProgramCreatePage() {
   const { currentCompany } = useCurrentCompany();
@@ -39,7 +40,32 @@ export default function ProgramCreatePage() {
   const [criticalElement, setCriticalElement] = React.useState<
     { assetType: string; price: string }[]
   >([]);
-
+  const { data } = useGetCompanyProgram();
+  console.log(data);
+  useEffect(() => {
+    if (data) {
+      setInfo(data[0].notes);
+      setPolicy(data[0].policy);
+      setFromDate(new Date(data[0].fromDate));
+      setToDate(new Date(data[0].toDate));
+      const low = data[0].assetTypes.filter(
+        (element) => element.level === "easy"
+      );
+      const medium = data[0].assetTypes.filter(
+        (element) => element.level === "medium"
+      );
+      const high = data[0].assetTypes.filter(
+        (element) => element.level === "hard"
+      );
+      const critical = data[0].assetTypes.filter(
+        (element) => element.level === "critical"
+      );
+      setLowElement(low);
+      setMediumElement(medium);
+      setHighElement(high);
+      setCriticalElement(critical);
+    }
+  }, [data]);
   async function createProgram() {
     try {
       if (!info) {

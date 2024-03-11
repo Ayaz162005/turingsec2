@@ -8,10 +8,11 @@ import { Textarea } from "../../components/ui/textarea";
 import { useGetProgramById } from "../../queryies/useGetProgramById";
 import { useParams } from "react-router";
 import { useGetCompanyById } from "../../queryies/useGetCompanyById";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSendReport } from "../../queryies/useSendReport";
 import toast from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
+import WeaknessLine from "../../components/component/WeaknessLine";
 
 export default function ProgramSubmitPage() {
   const { programId } = useParams();
@@ -56,15 +57,23 @@ export default function ProgramSubmitPage() {
       value: 1000,
     },
   ];
+  const [allAssets, setAllAssets] = useState<string[]>([]);
 
-  const allAssets = programData?.assetType?.split(",").map((item: string) => {
-    return item.replace("\n", "");
-  });
+  useEffect(() => {
+    if (programData) {
+      const assets = programData?.assetTypes?.map((item) => item.assetType);
+      setAllAssets(assets);
+    }
+  }, [programData]);
+
   const mutation = useSendReport();
   async function submitReport() {
     try {
       if (!searchParams.get("line")) {
         return toast.error("Asset is required");
+      }
+      if (!searchParams.get("weaknessLine")) {
+        return toast.error("Weakness is required");
       }
       if (!methodName) {
         return toast.error("Method name is required");
@@ -407,13 +416,12 @@ export default function ProgramSubmitPage() {
                 </div>
               </div>
               <div className="overflow-y-scroll mt-4 bluescroll h-[280px]">
-                <Line />
-                <Line />
-                <Line />
-                <Line />
-                <Line />
-                <Line />
-                <Line />
+                <WeaknessLine text="SQL Injection" />
+                <WeaknessLine text="XSS" />
+                <WeaknessLine text="CSRF" />
+                <WeaknessLine text="XSS" />
+                <WeaknessLine text="XXE" />
+                <WeaknessLine text="RCE" />
               </div>
             </div>
           </div>

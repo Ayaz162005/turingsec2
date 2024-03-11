@@ -1,7 +1,7 @@
-export async function getProgramById(id: string) {
+export async function getUserReports() {
   try {
     const res = await fetch(
-      `https://turingsec-production.up.railway.app/api/auth/programsById/${id}`,
+      `https://turingsec-production.up.railway.app/api/bug-bounty-reports/user`,
       {
         method: "GET",
         headers: {

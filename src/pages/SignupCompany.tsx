@@ -314,7 +314,7 @@ export default function SignupCompanyPage() {
                   <FormItem>
                     <FormControl>
                       <Textarea
-                        placeholder="Write you message..."
+                        placeholder="Write your message..."
                         {...field}
                         className="bg-[#023059] h-[170px] xl:w-[630px] w-[100%]  pt-4  rounded-xl 
                       outline-none border-none 

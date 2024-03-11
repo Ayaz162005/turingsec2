@@ -87,7 +87,7 @@ export default function Navbar() {
           Leaderboard
         </Link>
         <Link
-          to="/bugbountyprograms"
+          to={currentUser?.activated ? "/work/programs" : "/registerhacker"}
           className={`hover:text-blue-700 transition-all duration-300 font-medium ${
             hoveredLink && hoveredLink !== "/bugbountyprograms" && "opacity-40"
           }`}
@@ -180,7 +180,11 @@ export default function Navbar() {
               </motion.div>
               <motion.div variants={variantsElement}>
                 <Link
-                  to="/bugbountyprograms"
+                  to={
+                    currentUser?.activated
+                      ? "/work/programs"
+                      : "/registerhacker"
+                  }
                   className={`hover:text-blue-700 transition-all duration-300 font-medium ${
                     hoveredLink &&
                     hoveredLink !== "/bugbountyprograms" &&

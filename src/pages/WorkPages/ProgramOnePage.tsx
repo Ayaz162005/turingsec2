@@ -4,18 +4,61 @@ import LevelBar from "../../components/component/LevelBar";
 import { Button } from "../../components/ui/button";
 import { useGetCompanyById } from "../../queryies/useGetCompanyById";
 import { useGetProgramById } from "../../queryies/useGetProgramById";
+import { useEffect, useState } from "react";
+import { set } from "date-fns";
 
 export default function ProgramOnePage() {
   const { programId } = useParams();
+
   const {
     data: programData,
     isPending: programPending,
     isError: programError,
   } = useGetProgramById(programId);
+
+  console.log(programData);
   console.log(programData);
   const { data, isPending, isError } = useGetCompanyById(
     programData?.companyId
   );
+  const [easyAssets, setEasyAssets] = useState([]);
+  const [mediumAssets, setMediumAssets] = useState([]);
+  const [highAssets, setHighAssets] = useState([]);
+  const [criticalAssets, setCriticalAssets] = useState([]);
+  const [maxlength, setMaxlength] = useState(0);
+  useEffect(() => {
+    if (programData) {
+      const easyAssets = programData.assetTypes.filter(
+        (asset) => asset.level === "easy"
+      );
+      const mediumAssets = programData.assetTypes.filter(
+        (asset) => asset.level === "medium"
+      );
+      const highAssets = programData.assetTypes.filter(
+        (asset) => asset.level === "hard"
+      );
+      const criticalAssets = programData.assetTypes.filter(
+        (asset) => asset.level === "critical"
+      );
+
+      // Calculate the lengths of all arrays
+      const lengths = [
+        easyAssets.length,
+        mediumAssets.length,
+        highAssets.length,
+        criticalAssets.length,
+      ];
+      setEasyAssets(easyAssets);
+      setMediumAssets(mediumAssets);
+      setHighAssets(highAssets);
+      setCriticalAssets(criticalAssets);
+
+      // Find the maximum length
+      const maxLength = Math.max(...lengths);
+      setMaxlength(maxLength);
+    }
+  }, [programData]);
+  console.log(easyAssets);
   const navigate = useNavigate();
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
@@ -178,28 +221,7 @@ export default function ProgramOnePage() {
               </div>
 
               <p className="sm:text-[16px] text-[14px] font-[400]">
-                "
-                {
-                  <span className="font-[700]">
-                    Hello hackers!
-                    <br />
-                  </span>
-                }
-                We're excited to announce the launch of our campaign starting on
-                February 17th. All the necessary details can be found on our
-                policy page. We eagerly await your reports and appreciate your
-                efforts in making our platform safer for our customers.
-                Additionally, we're offering extra bonuses for vulnerabilities
-                found specifically in our AI instance named Penny, but please
-                note that these bonuses are only available for individuals based
-                in the US.
-                {
-                  <span className="font-[700]">
-                    <br />
-                    Happy hacking!
-                  </span>
-                }
-                "
+                {programData?.notes}
               </p>
             </div>
           </div>
@@ -248,44 +270,51 @@ export default function ProgramOnePage() {
               </div>
             </div>
           </div>
-          <div className="bg-[#0A273D] px-8 border-b border-black py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex-1 text-center">
-                <p>admin.rezserver.com</p>
-                <p>$100-$150</p>
+          {Array.from({ length: maxlength }).map((index, i) => (
+            <div className="bg-[#0A273D] px-8 border-b border-black py-4">
+              <div className="flex items-center justify-between">
+                <div className="flex-1 text-center">
+                  <p>
+                    {easyAssets[i]?.assetType ? easyAssets[i].assetType : "-"}
+                  </p>
+                  <p> {easyAssets[i]?.price ? easyAssets[i].price : "-"}</p>
+                </div>
+                <div className="flex-1 text-center">
+                  <p>
+                    {" "}
+                    {mediumAssets[i]?.assetType
+                      ? mediumAssets[i].assetType
+                      : "-"}
+                  </p>
+                  <p> {mediumAssets[i]?.price ? mediumAssets[i].price : "-"}</p>
+                </div>
+                <div className="flex-1 text-center">
+                  <p>
+                    {" "}
+                    {highAssets[i]?.assetType ? highAssets[i].assetType : "-"}
+                  </p>
+                  <p> {highAssets[i]?.price ? highAssets[i].price : "-"}</p>
+                </div>
+                <div className="flex-1 text-center">
+                  <p>
+                    {" "}
+                    {criticalAssets[i]?.assetType
+                      ? criticalAssets[i].assetType
+                      : "-"}
+                  </p>
+                  <p>
+                    {" "}
+                    {criticalAssets[i]?.price ? criticalAssets[i].price : "-"}
+                  </p>
+                </div>
               </div>
-              <p className="flex-1 text-center">$100-$150</p>
-              <p className="flex-1 text-center">$100-$150</p>
-              <p className="flex-1 text-center">$100-$150</p>
             </div>
-          </div>
-          <div className="bg-[#0A273D] px-8 border-b border-black py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex-1 text-center">
-                <p>admin.rezserver.com</p>
-                <p>$100-$150</p>
-              </div>
-              <p className="flex-1 text-center">$100-$150</p>
-              <p className="flex-1 text-center">$100-$150</p>
-              <p className="flex-1 text-center">$100-$150</p>
-            </div>
-          </div>
-          <div className="bg-[#0A273D] px-8  py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex-1 text-center">
-                <p>admin.rezserver.com</p>
-                <p>$100-$150</p>
-              </div>
-              <p className="flex-1 text-center">$100-$150</p>
-              <p className="flex-1 text-center">$100-$150</p>
-              <p className="flex-1 text-center">$100-$150</p>
-            </div>
-          </div>
+          ))}
         </div>
         <h2 className="my-[10px] sm:text-[20px] text-[16px] w-[600]">Policy</h2>
         <div className="bg-[#0A273D] h-[365px] rounded-xl p-4">
           {" "}
-          Information
+          {programData?.policy}
         </div>
       </div>
     </div>

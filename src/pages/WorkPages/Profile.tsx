@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import ProfileLine from "../../components/component/Worker/ProfileLine";
 import { Button } from "../../components/ui/button";
 import { useCurrentUser } from "../../context/CurrentUser";
+import { useNavigate } from "react-router";
 
 export default function Profile() {
   const { currentUser } = useCurrentUser();
@@ -85,6 +86,7 @@ export default function Profile() {
       status: "Accepted",
     },
   ];
+  const navigate = useNavigate();
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
@@ -105,7 +107,10 @@ export default function Profile() {
         <div className="bg-[url('/assets/images/profilebackgroundimage.png')] md:h-[200px] h-auto bg-cover bg-center relative rounded-3xl overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-30"></div>
           <div className="relative flex md:items-center items-stretch flex-col md:flex-row h-full lg:pl-16 py-10 md:py-0 md:pl-8 md:pr-0 sm:px-[15%] px-4 gap-6 ">
-            <button className="bg-[#1F44CC] rounded-full absolute z-20 right-5 top-5 p-[5px]">
+            <button
+              className="bg-[#1F44CC] rounded-full absolute z-20 right-5 top-5 p-[5px]"
+              onClick={() => navigate("/work/settings")}
+            >
               <img src="/assets/pen.svg" alt="edit" />
             </button>
             <div className="hexagon4 m-auto md:m-0">

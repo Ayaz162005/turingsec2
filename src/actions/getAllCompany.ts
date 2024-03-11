@@ -1,11 +1,14 @@
 export async function getAllCompany() {
   try {
     const res = await fetch(
-      "https://turingsec-production.up.railway.app/api/bug-bounty-programs",
+      "https://turingsec-production.up.railway.app/api/auth/programs",
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem("user")).accessToken
+          }`,
         },
       }
     );
