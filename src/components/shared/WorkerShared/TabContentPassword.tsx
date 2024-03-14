@@ -70,7 +70,7 @@ export default function TabContentPassword() {
         confirmNewPassword: data.confirmPassword,
       };
       const res = await fetch(
-        "https://turingsec-production.up.railway.app/api/auth/change-password",
+        "https://turingsec-production-de02.up.railway.app/api/auth/change-password",
         {
           method: "POST",
           headers: {

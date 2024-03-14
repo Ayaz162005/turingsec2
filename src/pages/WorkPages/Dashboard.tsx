@@ -5,19 +5,22 @@ export default function Dashboard() {
   const [lengthres, setLengthres] = useState(0);
   useEffect(() => {
     async function fetchData() {
-      console.log("fetching");
       const res = await fetch(
-        "https://turingsec-production.up.railway.app/api/bug-bounty-reports",
+        "https://turingsec-production-de02.up.railway.app/api/auth/programs",
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user"))?.accessToken
+              JSON.parse(localStorage.getItem("user")).accessToken
             }`,
           },
         }
       );
+
+      if (!res.ok) {
+        throw new Error("Wrong response");
+      }
       const data = await res.json();
       setLengthres(data.length);
     }

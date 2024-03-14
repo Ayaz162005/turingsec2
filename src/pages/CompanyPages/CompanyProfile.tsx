@@ -6,12 +6,12 @@ export default function CompanyProfile() {
   const { currentCompany } = useCurrentCompany();
 
   return (
-    <div className="text-white flex-1 flex flex-col overflow-hidden ">
+    <div className="text-white flex-1 flex flex-col overflow-hidden relative ">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
         <img
           src="/assets/iconnav9.svg"
           alt=""
-          className="absolute z-[20] lg:left-[17%] md:left-[13%] sm:-left-[50px] top-0 w-[284px] md:w-[332px] -left-[80px]  "
+          className="absolute z-[20] lg:-left-[10%] md:-left-[24%] sm:-left-[100px] top-0 w-[284px] md:w-[332px] -left-[130px]  "
         />
         <p className="md:text-[30px] text-[20px]"> Profile</p>
         <img

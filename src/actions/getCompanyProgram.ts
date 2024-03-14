@@ -2,7 +2,7 @@ export async function GetCompanyProgram() {
   try {
     console.log(JSON.parse(localStorage.getItem("company")));
     const res = await fetch(
-      `https://turingsec-production.up.railway.app/api/bug-bounty-programs`,
+      `https://turingsec-production-de02.up.railway.app/api/bug-bounty-programs`,
       {
         method: "GET",
         headers: {

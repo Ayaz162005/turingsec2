@@ -60,7 +60,7 @@ export default function SignupAsHacker() {
   async function onSubmit(values: z.infer<typeof formSchemaHackerRegister>) {
     try {
       const response = await fetch(
-        "https://turingsec-production.up.railway.app/api/auth/register/hacker",
+        "https://turingsec-production-de02.up.railway.app/api/auth/register/hacker",
         {
           method: "POST", // Fixed syntax: method should be a string
           headers: {

@@ -1,11 +1,15 @@
 import { Report } from "../types";
 
-export async function sendReport(report: Report) {
+export async function sendReport(report: Report, id: string) {
   console.log(report);
+  console.log(id);
   console.log(JSON.parse(localStorage.getItem("user"))?.accessToken);
   try {
+    console.log(
+      "sending reportkdlfkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+    );
     const res = await fetch(
-      "https://turingsec-production.up.railway.app/api/bug-bounty-reports/submit",
+      `https://turingsec-production-de02.up.railway.app/api/bug-bounty-reports/submit?bugBountyProgramId=${id}`,
       {
         method: "POST",
         headers: {

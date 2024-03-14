@@ -1,7 +1,7 @@
 export async function getProgramById(id: string) {
   try {
     const res = await fetch(
-      `https://turingsec-production.up.railway.app/api/auth/programsById/${id}`,
+      `https://turingsec-production-de02.up.railway.app/api/auth/programsById/${id}`,
       {
         method: "GET",
         headers: {

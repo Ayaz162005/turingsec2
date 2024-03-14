@@ -42,7 +42,7 @@ const CurrentCompanyProvider = ({ children }: { children: ReactNode }) => {
           const companyy = JSON.parse(companyString);
 
           const res = await fetch(
-            `https://turingsec-production.up.railway.app/api/companies/current-user`,
+            `https://turingsec-production-de02.up.railway.app/api/companies/current-user`,
             {
               method: "GET",
               headers: {

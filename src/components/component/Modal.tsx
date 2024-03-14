@@ -53,7 +53,7 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
                 <option value="">Select Level</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
+                <option value="high">High</option>
                 <option value="critical">Critical</option>
               </select>
               <button

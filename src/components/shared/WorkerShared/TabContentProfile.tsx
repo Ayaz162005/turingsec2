@@ -82,6 +82,7 @@ export default function TabContentProfile() {
   const options = useMemo(() => countryList().getData(), []);
   async function onSubmit(data: z.infer<typeof formSchemaProfileUpdate>) {
     if (!imageSrc || !imageSrcUser) {
+      toast.error("Please upload images");
       return;
     }
 
@@ -89,8 +90,37 @@ export default function TabContentProfile() {
     try {
       const ele = JSON.parse(localStorage.getItem("user") || "");
       console.log(ele.accessToken);
+
+      const formData = new FormData();
+      console.log(imageRealSrc, ele.accessToken);
+      formData.append("file", imageRealSrc);
+      const res2 = await fetch(
+        "https://turingsec-production-de02.up.railway.app/api/image-for-hacker/upload",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${ele.accessToken}`,
+          },
+          body: formData,
+        }
+      );
+      const formData2 = new FormData();
+      formData2.append("file", imageRealSrcUser);
+      const res3 = await fetch(
+        "https://turingsec-production-de02.up.railway.app/api/image-for-hacker/upload",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${ele.accessToken}`,
+          },
+          body: formData2,
+        }
+      );
+
+      // const data3 = await res2.json();
+      // console.log(data3);
       const res = await fetch(
-        "https://turingsec-production.up.railway.app/api/auth/update-profile",
+        "https://turingsec-production-de02.up.railway.app/api/auth/update-profile",
         {
           method: "POST",
           headers: {
@@ -108,16 +138,20 @@ export default function TabContentProfile() {
             linkedin: data.linkedin,
             twitter: data.twitter,
             github: data.github,
-            profile_pic: "sdjks",
-            background_pic: "sdjskd",
           }),
         }
       );
+      console.log(res3);
+      console.log(res2);
       console.log(res);
-
+      if (!res.ok || !res2.ok || !res3.ok) {
+        throw new Error("Please try again later");
+      }
+      const data3 = await res2.json();
+      console.log(data3);
       toast.success("Profile Updated");
       setTimeout(() => {
-        window.location.reload();
+        window.location.href = "/";
       }, 1000);
     } catch (err: any) {
       toast.error("Error", err?.message);

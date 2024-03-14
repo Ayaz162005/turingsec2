@@ -43,21 +43,23 @@ export default function ProgramCreatePage() {
   const { data } = useGetCompanyProgram();
   console.log(data);
   useEffect(() => {
-    if (data) {
-      setInfo(data[0].notes);
-      setPolicy(data[0].policy);
-      setFromDate(new Date(data[0].fromDate));
-      setToDate(new Date(data[0].toDate));
-      const low = data[0].assetTypes.filter(
+    console.log(data, "sdsdsd");
+    if (data?.length > 0) {
+      console.log("flllllllll,");
+      setInfo(data[0]?.notes);
+      setPolicy(data[0]?.policy);
+      setFromDate(new Date(data[0]?.fromDate));
+      setToDate(new Date(data[0]?.toDate));
+      const low = data[0]?.assetTypes.filter(
         (element) => element.level === "easy"
       );
-      const medium = data[0].assetTypes.filter(
+      const medium = data[0]?.assetTypes.filter(
         (element) => element.level === "medium"
       );
-      const high = data[0].assetTypes.filter(
+      const high = data[0]?.assetTypes.filter(
         (element) => element.level === "hard"
       );
-      const critical = data[0].assetTypes.filter(
+      const critical = data[0]?.assetTypes.filter(
         (element) => element.level === "critical"
       );
       setLowElement(low);
@@ -78,9 +80,9 @@ export default function ProgramCreatePage() {
         return toast.error("Please fill in the date");
       }
       if (
-        lowElement.length === 0 ||
-        mediumElement.length === 0 ||
-        highElement.length === 0 ||
+        lowElement.length === 0 &&
+        mediumElement.length === 0 &&
+        highElement.length === 0 &&
         criticalElement.length === 0
       ) {
         return toast.error("Please fill in the reward");
@@ -100,7 +102,7 @@ export default function ProgramCreatePage() {
       });
 
       const res = await fetch(
-        "https://turingsec-production.up.railway.app/api/bug-bounty-programs",
+        "https://turingsec-production-de02.up.railway.app/api/bug-bounty-programs",
         {
           method: "POST",
           headers: {
@@ -142,7 +144,7 @@ export default function ProgramCreatePage() {
         { assetType: data.type, price: data.reward },
       ]);
     }
-    if (data.level === "hard") {
+    if (data.level === "high") {
       setHighElement([
         ...highElement,
         { assetType: data.type, price: data.reward },
@@ -419,38 +421,43 @@ export default function ProgramCreatePage() {
               <LevelBar color="#5AFF31" level={60} label="High" />
               <LevelBar color="#E32323" level={60} label="Critical" /> */}
               <p className="flex-1 text-center">Level</p>
-              <p className="flex-1 text-center">Asset Type</p>
-              <p className="flex-1 text-center">Price</p>
+              <p className="flex-1 text-center hidden lg:block">Asset Type</p>
+              <p className="flex-1 text-center hidden lg:block">Price</p>
             </div>
           </div>
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
-              <div className="flex-1 flex justify-between">
-                <div className={`flex items-center gap-4 `}>
+              <div className="flex-1 flex justify-between flex-col lg:flex-row items-center lg:items-stretch">
+                <div className={`flex items-center gap-4  flex-1 `}>
                   <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
                     <div
                       className={`bg-[#FFDE31] h-[8px] w-[60px] rounded-full`}
                     ></div>
                   </div>
 
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    Yellow
-                  </p>
+                  <p className="sm:text-[18px] text-[16px] font-[600]">Low</p>
                 </div>
-                <div className="flex-1 text-center">
-                  {/* <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
-                  </p>
-                  <p className="sm:text-[18px] text-[16px] font-[600]">
-                    admin.rezserver.com
-                  </p> */}
+                <div className="flex-1 text-center block lg:hidden ">
+                  {lowElement.map((element) => (
+                    <div>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.assetType}
+                      </p>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.price}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex-1 text-center lg:block hidden  ">
                   {lowElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.assetType}
                     </p>
                   ))}
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center hidden lg:block ">
                   {lowElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.price}
@@ -462,8 +469,8 @@ export default function ProgramCreatePage() {
           </div>
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
-              <div className="flex-1 flex justify-between">
-                <div className={`flex items-center gap-4 `}>
+              <div className="flex-1 flex justify-between flex-col lg:flex-row items-center lg:items-stretch">
+                <div className={`flex items-center gap-4 flex-1 `}>
                   <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
                     <div
                       className={`bg-[#2342E3] h-[8px] w-[60px] rounded-full`}
@@ -474,14 +481,26 @@ export default function ProgramCreatePage() {
                     Medium
                   </p>
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center block lg:hidden ">
+                  {mediumElement.map((element) => (
+                    <div>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.assetType}
+                      </p>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.price}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 text-center hidden lg:block">
                   {mediumElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.assetType}
                     </p>
                   ))}
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center hidden lg:block">
                   {mediumElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.price}
@@ -493,8 +512,8 @@ export default function ProgramCreatePage() {
           </div>
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
-              <div className="flex-1 flex justify-between">
-                <div className={`flex items-center gap-4 `}>
+              <div className="flex-1 flex justify-between items-center lg:items-stretch flex-col lg:flex-row">
+                <div className={`flex items-center gap-4 flex-1 `}>
                   <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
                     <div
                       className={`bg-[#5AFF31] h-[8px] w-[60px] rounded-full`}
@@ -503,14 +522,26 @@ export default function ProgramCreatePage() {
 
                   <p className="sm:text-[18px] text-[16px] font-[600]">High</p>
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center block lg:hidden ">
+                  {highElement.map((element) => (
+                    <div>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.assetType}
+                      </p>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.price}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 text-center hidden lg:block">
                   {highElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.assetType}
                     </p>
                   ))}
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center hidden lg:block">
                   {highElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.price}
@@ -522,8 +553,8 @@ export default function ProgramCreatePage() {
           </div>
           <div className="bg-[#0A273D] px-8 border-b border-black py-4">
             <div className="flex items-center justify-between">
-              <div className="flex-1 flex justify-between">
-                <div className={`flex items-center gap-4 `}>
+              <div className="flex-1 flex justify-between flex-col lg:flex-row items-center lg:items-stretch">
+                <div className={`flex items-center gap-4 flex-1 `}>
                   <div className="bg-[#00467C] h-[8px] w-[100px] rounded-full">
                     <div
                       className={`bg-[#E32323] h-[8px] w-[60px] rounded-full`}
@@ -534,14 +565,26 @@ export default function ProgramCreatePage() {
                     Critical
                   </p>
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center block lg:hidden ">
+                  {criticalElement.map((element) => (
+                    <div>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.assetType}
+                      </p>
+                      <p className="sm:text-[18px] text-[16px] font-[600]">
+                        {element.price}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 text-center hidden lg:block">
                   {criticalElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.assetType}
                     </p>
                   ))}
                 </div>
-                <div className="flex-1 text-center">
+                <div className="flex-1 text-center hidden lg:block">
                   {criticalElement.map((element) => (
                     <p className="sm:text-[18px] text-[16px] font-[600]">
                       {element.price}

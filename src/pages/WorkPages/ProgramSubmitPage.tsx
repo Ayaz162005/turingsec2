@@ -66,7 +66,7 @@ export default function ProgramSubmitPage() {
     }
   }, [programData]);
 
-  const mutation = useSendReport();
+  const mutation = useSendReport(programId);
   async function submitReport() {
     try {
       if (!searchParams.get("line")) {
@@ -94,8 +94,10 @@ export default function ProgramSubmitPage() {
         discoveryDetails: proofConceptDescription,
       });
       console.log(response);
+      console.log("responsedplfffffffffff");
       // Check if mutation was successful
       if (!response) {
+        console.log("ldlgf;lg;lgfpp[");
         throw new Error("Wrong response");
       }
 

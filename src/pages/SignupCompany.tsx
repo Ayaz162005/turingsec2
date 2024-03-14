@@ -65,9 +65,19 @@ export default function SignupCompanyPage() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchemaCompanyRegister>) {
+    console.log({
+      first_name: values.firstName,
+      last_name: values.lastName,
+      email: values.email,
+      company_name: values.companyName,
+      job_title: values.jobtitle,
+      assets: values.assets.value,
+      message: values.message,
+      approved: false,
+    });
     try {
       const res = await fetch(
-        "https://turingsec-production.up.railway.app/api/companies/register",
+        "https://turingsec-production-de02.up.railway.app/api/companies/register",
         {
           method: "POST",
           headers: {
@@ -81,6 +91,7 @@ export default function SignupCompanyPage() {
             job_title: values.jobtitle,
             assets: values.assets.value,
             message: values.message,
+            approved: false,
           }),
         }
       );

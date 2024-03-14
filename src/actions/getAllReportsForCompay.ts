@@ -1,18 +1,18 @@
-export async function getAllCompany() {
+export async function getAllReportsForCompany() {
   try {
     const res = await fetch(
-      "https://turingsec-production-de02.up.railway.app/api/auth/programs",
+      `https://turingsec-production-de02.up.railway.app/api/bug-bounty-reports/reports/company`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${
-            JSON.parse(localStorage.getItem("user")).accessToken
+            JSON.parse(localStorage.getItem("company")).accessToken
           }`,
         },
       }
     );
-
+    console.log(res);
     if (!res.ok) {
       throw new Error("Wrong response");
     }

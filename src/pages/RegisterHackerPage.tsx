@@ -42,7 +42,7 @@ export default function RegisterHackerPage() {
   async function onSubmit(values: z.infer<typeof formSchemaHackerLogin>) {
     try {
       const response = await fetch(
-        "https://turingsec-production.up.railway.app/api/auth/login",
+        "https://turingsec-production-de02.up.railway.app/api/auth/login",
         {
           method: "POST", // Fixed syntax: method should be a string
           headers: {
@@ -69,7 +69,7 @@ export default function RegisterHackerPage() {
 
       toast.success("You succesfully logged in as a hacker!");
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/work/dashboard";
       }, 1000);
       // Assuming result.body is an object, you can destructure the properties
       const { userId, access_token } = result;

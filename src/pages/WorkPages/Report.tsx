@@ -15,7 +15,7 @@ export default function Report() {
           alt=""
           className="absolute z-[20] lg:-left-[10%] md:-left-[20%] sm:-left-[70px] top-0 w-[224px] md:w-[262px] -left-[100px]  "
         />
-        <p className="md:text-[30px] text-[20px]"> DASHBOARD</p>
+        <p className="md:text-[30px] text-[20px]"> Reports</p>
         <img
           src="/assets/iconnav12.svg"
           alt=""
