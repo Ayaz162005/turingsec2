@@ -116,7 +116,10 @@ export default function TabContentProfile() {
           body: formData2,
         }
       );
-
+      console.log(res2, res3);
+      console.log(
+        "jooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooggggfi"
+      );
       // const data3 = await res2.json();
       // console.log(data3);
       const res = await fetch(
@@ -150,9 +153,9 @@ export default function TabContentProfile() {
       const data3 = await res2.json();
       console.log(data3);
       toast.success("Profile Updated");
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1000);
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 1000);
     } catch (err: any) {
       toast.error("Error", err?.message);
       console.log(err);

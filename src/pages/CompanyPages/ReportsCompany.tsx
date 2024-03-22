@@ -26,9 +26,16 @@ export default function ReportCompany() {
           Incoming Reports
         </h2>
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-4 ">
-          <ReportElement />
-          <ReportElement />
-          <ReportElement />
+          {isPending && <p>Loading...</p>}
+          {isError && <p>Error</p>}
+          {data &&
+            data.map((report) => (
+              <ReportElement
+                key={report.id}
+                name={report.user.username}
+                // onClick={() => navigate(`/work/report/${report.id}`)}
+              />
+            ))}
         </div>
       </div>
     </div>

@@ -3,10 +3,14 @@ import ProfileLine from "../../components/component/Worker/ProfileLine";
 import { Button } from "../../components/ui/button";
 import { useCurrentUser } from "../../context/CurrentUser";
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 
 export default function Profile() {
   const { currentUser } = useCurrentUser();
+  const [userImage, setUserImage] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
   console.log(currentUser);
+
   const fakeData = [
     {
       bugtag: "Tag name",
@@ -86,7 +90,30 @@ export default function Profile() {
       status: "Accepted",
     },
   ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Perform asynchronous operations here
+        const res = await fetch(
+          `https://turingsec-production-de02.up.railway.app/api/background-image-for-hacker/download/${currentUser?.id}`
+        );
+        const res2 = await fetch(
+          `https://turingsec-production-de02.up.railway.app/api/image-for-hacker/download/${currentUser?.id}`
+        );
+        console.log(res2);
+        console.log(res);
+        setUserImage(res2.url);
+        setBackgroundImage(res.url);
+        // const data = await res.json();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData(); // Immediately invoke the async function
+  }, [currentUser?.id]);
   const navigate = useNavigate();
+
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
@@ -104,7 +131,18 @@ export default function Profile() {
       </section>
 
       <div className="bg-[#1E1E1E] flex-1 lg:px-20 sm:px-8 px-3  py-16">
-        <div className="bg-[url('/assets/images/profilebackgroundimage.png')] md:h-[200px] h-auto bg-cover bg-center relative rounded-3xl overflow-hidden">
+        <div
+          className={`md:h-[200px] h-auto bg-cover bg-center relative rounded-3xl overflow-hidden`}
+        >
+          <img
+            src={
+              backgroundImage
+                ? backgroundImage
+                : "/assets/images/profilebackgroundimage.png"
+            }
+            alt=""
+            className="w-full h-full object-cover object-center absolute inset-0"
+          />
           <div className="absolute inset-0 bg-black opacity-30"></div>
           <div className="relative flex md:items-center items-stretch flex-col md:flex-row h-full lg:pl-16 py-10 md:py-0 md:pl-8 md:pr-0 sm:px-[15%] px-4 gap-6 ">
             <button
@@ -114,7 +152,10 @@ export default function Profile() {
               <img src="/assets/pen.svg" alt="edit" />
             </button>
             <div className="hexagon4 m-auto md:m-0">
-              <img src="/assets/images/profileimage.jpeg" alt="" />
+              <img
+                src={userImage ? userImage : "assets/images/profileimage.jpeg"}
+                alt=""
+              />
             </div>
             <div className="">
               <div className="flex justify-between mb-4 md:mb-0 md:block">
@@ -124,7 +165,7 @@ export default function Profile() {
                 <div className="flex items-center gap-2">
                   <img src="/assets/flag.svg" className="w-[18px] " />
                   <p className="text-[16px] font-[400]">
-                    {currentUser.city || "city"}
+                    {currentUser?.city || "city"}
                   </p>
                 </div>
               </div>

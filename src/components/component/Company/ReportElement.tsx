@@ -1,13 +1,13 @@
 import { Button } from "../../ui/button";
 
-export default function ReportElement() {
+export default function ReportElement({ name }: { name: string }) {
   return (
     <div className="bg-[#023059] flex flex-col text-center items-center py-8 rounded-3xl   ">
       <div className="hexagon4 m-auto md:m-0">
         <img src="/assets/images/profileimage.jpeg" alt="" className="" />
       </div>
       <h3 className="sm:text-[20px] text-[18px] font-[600] mt-6 mb-2">
-        Username
+        {name}
       </h3>
       <p className="sm:text-[16px] text-[14px] font-[400]">Bug bounty</p>
       <div className="flex justify-between gap-4 mt-6 mb-6 lg:flex-col sm:flex-row flex-col">
