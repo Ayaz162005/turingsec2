@@ -1,7 +1,30 @@
 import { Link, useLocation } from "react-router-dom";
+import { useCurrentUser } from "../../../context/CurrentUser";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const url = `/${useLocation().pathname.split("/")[2]}`;
+  const { currentUser } = useCurrentUser();
+  const [userImage, setUserImage] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Perform asynchronous operations here
+
+        const res = await fetch(
+          `https://turingsec-production-de02.up.railway.app/api/image-for-hacker/download/${currentUser?.id}`
+        );
+
+        setUserImage(res.url);
+
+        // const data = await res.json();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData(); // Immediately invoke the async function
+  }, [currentUser?.id]);
 
   return (
     <div className="bg-[#023059] py-14   z-30 md:w-[270px] w-[74px] left-0 fixed h-screen">
@@ -90,7 +113,10 @@ export default function Navbar() {
             } py-3  md:rounded-full rounded-[30px] md:px-10 px-2`}
           >
             <div className="hexagon6 m-auto md:m-0">
-              <img src="/assets/images/profileimage.jpeg" alt="" />
+              <img
+                src={userImage ? userImage : "/assets/images/profileimage.jpeg"}
+                alt=""
+              />
             </div>
             <p className="hidden md:block">Profile</p>
           </Link>

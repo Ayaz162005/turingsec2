@@ -12,6 +12,7 @@ import {
   PopoverTrigger,
 } from "../../../components/ui/popover";
 import ReportLine from "../../component/Company/ReportLine";
+import { useGetUserReports } from "../../../queryies/useGetUserReports";
 const fakeData = [
   {
     lastActivity: "Name",
@@ -98,6 +99,8 @@ export default function TabContentAll() {
   const [fromdate, setFromDate] = React.useState<Date>();
   const [todate, setToDate] = React.useState<Date>();
   const [page, setPage] = React.useState(1);
+  const { data, isLoading } = useGetUserReports();
+  console.log(data);
   return (
     <div className="w-full mt-8">
       <div className="flex gap-3 lg:items-center  w-full flex-col lg:flex-row xl:w-[80%]">
