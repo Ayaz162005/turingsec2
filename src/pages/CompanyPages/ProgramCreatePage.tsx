@@ -647,6 +647,15 @@ export default function ProgramCreatePage() {
                   </div>
                 </div>
                 <p>{element}</p>
+                <div
+                  className="text-red-500 cursor-pointer"
+                  onClick={() => {
+                    const newStricty = stricty.filter((el, i) => i !== index);
+                    setStricty(newStricty);
+                  }}
+                >
+                  X
+                </div>
               </div>
             ))}
             <div className="m-auto lg:col-span-2 flex flex-col items-center ">
@@ -680,18 +689,40 @@ export default function ProgramCreatePage() {
               <div>
                 <h3 className="mb-6">Out of Scope</h3>
                 {outScope.map((element, index) => (
-                  <div className="flex gap-4 mt-2">
+                  <div className="flex gap-4 mt-4">
                     <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
                     <p>{element}</p>
+                    <div
+                      className="text-red-500 cursor-pointer"
+                      onClick={() => {
+                        const newOutScope = outScope.filter(
+                          (el, i) => i !== index
+                        );
+                        setOutScope(newOutScope);
+                      }}
+                    >
+                      X
+                    </div>
                   </div>
                 ))}
               </div>
               <div>
                 <h3 className="mb-6">In of Scope</h3>
                 {inScope.map((element, index) => (
-                  <div className="flex gap-4 mt-2">
+                  <div className="flex gap-4 mt-4">
                     <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
                     <p>{element}</p>
+                    <div
+                      className="text-red-500 cursor-pointer"
+                      onClick={() => {
+                        const newInScope = inScope.filter(
+                          (el, i) => i !== index
+                        );
+                        setInScope(newInScope);
+                      }}
+                    >
+                      X
+                    </div>
                   </div>
                 ))}
               </div>
