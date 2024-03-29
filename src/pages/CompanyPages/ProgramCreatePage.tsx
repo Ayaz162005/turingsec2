@@ -40,6 +40,25 @@ export default function ProgramCreatePage() {
   const [criticalElement, setCriticalElement] = React.useState<
     { assetType: string; price: string }[]
   >([]);
+
+  const [stricty, setStricty] = React.useState([
+    "Failure to invalidate Session issues",
+    "No Rate Limiting on Form issues unless the researcher can demonstrate a strong security impact ",
+    "Vulnerabilities that only result in inconsequential losses for Exoscale ",
+    "No Rate Limiting on Form issues unless the researcher can demonstrate a strong security impact ",
+    "Failure to invalidate Session issues",
+    "Vulnerabilities that only result in inconsequential losses for Exoscale ",
+  ]);
+  const [inScope, setInScope] = React.useState([
+    "No Rate Limiting on Form issues unless the researcher can demonstrate a strong ",
+    "Vulnerabilities that only result in inconsequential losses for Exoscale ",
+    "Vulnerabilities that only result in inconsequential losses for Exoscale ",
+  ]);
+  const [outScope, setOutScope] = React.useState([
+    "Failure to invalidate Session issues",
+    "Vulnerabilities that only result in inconsequential losses for Exoscale ",
+    "Failure to invalidate Session issues",
+  ]);
   const { data } = useGetCompanyProgram();
   console.log(data);
   useEffect(() => {
@@ -604,6 +623,59 @@ export default function ProgramCreatePage() {
             onChange={(e) => setPolicy(e.target.value)}
           />
         </div>
+
+        <div className="rounded-2xl overflow-hidden mt-8">
+          <div className="bg-[#001D34] h-[70px] flex items-center px-8 justify-between">
+            <div className="flex items-center gap-4">
+              <img src="/assets/stricty.svg" alt="" />
+              <p className="">Stricty Prohibet</p>
+            </div>
+          </div>
+          <div className="bg-[#0A273D] p-8 grid lg:grid-cols-2 gap-12 grid-cols-1">
+            {stricty.map((element, index) => (
+              <div className="flex gap-4">
+                <div className="min-w-[40px]">
+                  <div className=" !h-[30px] !w-[30px] flex items-center justify-center hexagon6 !bg-[#2451F5] ">
+                    <div className="flex items-center justify-center hexagon6 !h-[27px] !w-[27px] !bg-[#0A273D]">
+                      {index + 1}
+                    </div>
+                  </div>
+                </div>
+                <p>{element}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl overflow-hidden mt-8">
+          <div className="bg-[#001D34] h-[70px] flex items-center px-8 justify-between">
+            <div className="flex items-center gap-4">
+              <img src="/assets/stroke.svg" alt="" />
+              <p className="">Scope</p>
+            </div>
+          </div>
+          <div className="bg-[#0A273D] p-8  gap-12 flex  flex-col lg:flex-row">
+            <div>
+              <h3 className="mb-6">Out of Scope</h3>
+              {outScope.map((element, index) => (
+                <div className="flex gap-4 mt-2">
+                  <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
+                  <p>{element}</p>
+                </div>
+              ))}
+            </div>
+            <div>
+              <h3 className="mb-6">In of Scope</h3>
+              {inScope.map((element, index) => (
+                <div className="flex gap-4 mt-2">
+                  <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
+                  <p>{element}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <Button
           className="hover:scale-105 transition-all mt-4 duration-300 rounded-xl  py-[9px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[120px] ml-auto"
           onClick={createProgram}
