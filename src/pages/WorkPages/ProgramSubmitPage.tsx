@@ -107,6 +107,12 @@ export default function ProgramSubmitPage() {
       if (!proofConceptDescription) {
         return toast.error("Proof of concept description is required");
       }
+      if (collabrates.length === 0) {
+        return toast.error("Collaboration is required");
+      }
+      if (percent !== 100) {
+        return toast.error("Collaboration percentage should be 100%");
+      }
 
       const response = await mutation.mutateAsync({
         asset: searchParams.get("line")!,
@@ -131,9 +137,9 @@ export default function ProgramSubmitPage() {
       }
 
       toast.success("Report submitted successfully");
-      // setTimeout(() => {
-      //   window.location.href = "/work/dashboard";
-      // }, 1000);
+      setTimeout(() => {
+        window.location.href = "/work/dashboard";
+      }, 1000);
     } catch (err) {
       console.log(err);
       toast.error("Report submission failed");
