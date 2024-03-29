@@ -9,13 +9,14 @@ import {
   PopoverTrigger,
 } from "../../components/ui/popover";
 import { cn } from "../../lib/utils";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { Calendar } from "../../components/ui/calendar";
 import { Textarea } from "../../components/ui/textarea";
 import { useCurrentCompany } from "../../context/CurrentCompany";
 import toast from "react-hot-toast";
 import Modal from "../../components/component/Modal";
 import { useGetCompanyProgram } from "../../queryies/useGetCompanyProgram";
+import { Input } from "../../components/ui/input";
 
 export default function ProgramCreatePage() {
   const { currentCompany } = useCurrentCompany();
@@ -41,6 +42,7 @@ export default function ProgramCreatePage() {
     { assetType: string; price: string }[]
   >([]);
 
+  const [strictyTest, setStrictyTest] = React.useState("");
   const [stricty, setStricty] = React.useState([
     "Failure to invalidate Session issues",
     "No Rate Limiting on Form issues unless the researcher can demonstrate a strong security impact ",
@@ -49,6 +51,8 @@ export default function ProgramCreatePage() {
     "Failure to invalidate Session issues",
     "Vulnerabilities that only result in inconsequential losses for Exoscale ",
   ]);
+  const [scopeText, setScopeText] = React.useState("");
+  const [scopeType, setScopeType] = React.useState("out");
   const [inScope, setInScope] = React.useState([
     "No Rate Limiting on Form issues unless the researcher can demonstrate a strong ",
     "Vulnerabilities that only result in inconsequential losses for Exoscale ",
@@ -59,6 +63,7 @@ export default function ProgramCreatePage() {
     "Vulnerabilities that only result in inconsequential losses for Exoscale ",
     "Failure to invalidate Session issues",
   ]);
+
   const { data } = useGetCompanyProgram();
   console.log(data);
   useEffect(() => {
@@ -644,6 +649,22 @@ export default function ProgramCreatePage() {
                 <p>{element}</p>
               </div>
             ))}
+            <div className="m-auto lg:col-span-2 flex flex-col items-center ">
+              <Textarea
+                className="bg-transparent focus-visible:outline-none focus-visible:ring-offset-0"
+                value={strictyTest}
+                onChange={(e) => setStrictyTest(e.target.value)}
+              />
+              <Button
+                className="mt-2"
+                onClick={() => {
+                  setStricty([...stricty, strictyTest]);
+                  setStrictyTest("");
+                }}
+              >
+                Add
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -654,24 +675,64 @@ export default function ProgramCreatePage() {
               <p className="">Scope</p>
             </div>
           </div>
-          <div className="bg-[#0A273D] p-8  gap-12 flex  flex-col lg:flex-row">
-            <div>
-              <h3 className="mb-6">Out of Scope</h3>
-              {outScope.map((element, index) => (
-                <div className="flex gap-4 mt-2">
-                  <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
-                  <p>{element}</p>
-                </div>
-              ))}
+          <div className="bg-[#0A273D] p-8  ">
+            <div className="gap-12 flex  flex-col lg:flex-row">
+              <div>
+                <h3 className="mb-6">Out of Scope</h3>
+                {outScope.map((element, index) => (
+                  <div className="flex gap-4 mt-2">
+                    <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
+                    <p>{element}</p>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <h3 className="mb-6">In of Scope</h3>
+                {inScope.map((element, index) => (
+                  <div className="flex gap-4 mt-2">
+                    <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
+                    <p>{element}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div>
-              <h3 className="mb-6">In of Scope</h3>
-              {inScope.map((element, index) => (
-                <div className="flex gap-4 mt-2">
-                  <div className="bg-yellow-500 min-w-[8px] h-[8px] rounded-full mt-2"></div>
-                  <p>{element}</p>
-                </div>
-              ))}
+            <div className="flex flex-col items-center gap-4 mt-12">
+              <Textarea
+                className="bg-transparent focus-visible:outline-none focus-visible:ring-offset-0 w-[250px]"
+                value={scopeText}
+                onChange={(e) => setScopeText(e.target.value)}
+              />
+              <select
+                value={scopeType}
+                onChange={(e) => setScopeType(e.target.value)}
+                className="
+                border
+                text-black
+                focus-visible:outline-none focus-visible:ring-offset-0"
+              >
+                <option
+                  value="out"
+                  className="
+                bg-transparent
+                "
+                >
+                  Out of Scope
+                </option>
+                <option value="in">In of Scope</option>
+              </select>
+              <Button
+                onClick={() => {
+                  if (scopeType === "out") {
+                    setOutScope([...outScope, scopeText]);
+                  }
+                  if (scopeType === "in") {
+                    setInScope([...inScope, scopeText]);
+                  }
+                  setScopeText("");
+                }}
+              >
+                Add
+              </Button>
             </div>
           </div>
         </div>
