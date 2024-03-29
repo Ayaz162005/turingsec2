@@ -5,4 +5,5 @@ export interface Report {
   methodName: string;
   proofOfConcept: string;
   discoveryDetails: string;
+  collaborators: [];
 }

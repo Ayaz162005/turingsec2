@@ -8,7 +8,7 @@ import {
 
 export default function Report() {
   return (
-    <div className="text-white flex-1 flex flex-col overflow-hidden relative">
+    <div className="text-white flex-1 flex flex-col overflow-hidden relative min-h-screen">
       <section className="   font-[800] bg-[#1F44CC] h-[124px] flex items-center justify-center overflow-hidden ">
         <img
           src="/assets/iconnav11.svg"

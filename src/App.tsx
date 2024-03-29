@@ -38,6 +38,7 @@ import ProgramSubmitPage from "./pages/WorkPages/ProgramSubmitPage";
 import ProgramCreatePage from "./pages/CompanyPages/ProgramCreatePage";
 import SignupCompanyPage from "./pages/SignupCompany";
 import RegisterCompanyPage from "./pages/RegisterCompany";
+import CompanySettings from "./pages/CompanyPages/Settings";
 
 function App() {
   function ScrollToTop() {
@@ -93,6 +94,7 @@ function App() {
           <Route path="dashboard" element={<DashboardCompany />} />
           {/* <Route path="programs" element={<ProgramCompany />} /> */}
           <Route path="programs" element={<ProgramCreatePage />} />
+          <Route path="settings" element={<CompanySettings />} />
           <Route path="report" element={<ReportCompany />} />
           <Route path="profile" element={<CompanyProfile />} />
         </Route>

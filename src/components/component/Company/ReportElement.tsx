@@ -1,10 +1,20 @@
 import { Button } from "../../ui/button";
 
-export default function ReportElement({ name }: { name: string }) {
+export default function ReportElement({
+  name,
+  img,
+}: {
+  name: string;
+  img: string;
+}) {
   return (
     <div className="bg-[#023059] flex flex-col text-center items-center py-8 rounded-3xl   ">
       <div className="hexagon4 m-auto md:m-0">
-        <img src="/assets/images/profileimage.jpeg" alt="" className="" />
+        <img
+          src={`${img ? img : "/assets/images/profileimage.jpeg "}`}
+          alt=""
+          className=""
+        />
       </div>
       <h3 className="sm:text-[20px] text-[18px] font-[600] mt-6 mb-2">
         {name}

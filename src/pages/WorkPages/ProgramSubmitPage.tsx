@@ -13,6 +13,10 @@ import { useSendReport } from "../../queryies/useSendReport";
 import toast from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
 import WeaknessLine from "../../components/component/WeaknessLine";
+import CollabrateBox from "../../components/shared/WorkerShared/CollabrateBox";
+import { useGetAllUsers } from "../../queryies/useGetAllUsers";
+import AddCollabrateModal from "../../components/shared/WorkerShared/AddCollabrateModal";
+import { useCurrentUser } from "../../context/CurrentUser";
 
 export default function ProgramSubmitPage() {
   const { programId } = useParams();
@@ -22,12 +26,22 @@ export default function ProgramSubmitPage() {
     useState<string>("");
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [globalPercent, setGlobalPercent] = useState<number>(100);
+  const [percent, setPercent] = useState<number>(0);
+  const { data: allUsers } = useGetAllUsers();
+  console.log(allUsers);
   const {
     data: programData,
     isPending: programPending,
     isError: programError,
   } = useGetProgramById(programId);
   console.log(programData);
+  const [openModal, setOpenModal] = useState(false);
+  const { currentUser } = useCurrentUser();
+  const [collabrates, setCollabrates] = useState([]);
+  useEffect(() => {
+    setCollabrates((prev) => [currentUser]);
+  }, [currentUser]);
   const { data, isPending, isError } = useGetCompanyById(
     programData?.companyId
   );
@@ -68,6 +82,15 @@ export default function ProgramSubmitPage() {
 
   const mutation = useSendReport(programId);
   async function submitReport() {
+    console.log(
+      collabrates.map((item) => {
+        return {
+          hackerUsername: item.username,
+          collaborationPercentage: item.value,
+        };
+      })
+    );
+    console.log(collabrates, "dfdfdfopdfodp");
     try {
       if (!searchParams.get("line")) {
         return toast.error("Asset is required");
@@ -92,6 +115,12 @@ export default function ProgramSubmitPage() {
         methodName: methodName,
         proofOfConcept: proofConceptTitle,
         discoveryDetails: proofConceptDescription,
+        collaborators: collabrates.map((item) => {
+          return {
+            hackerUsername: item.username,
+            collaborationPercentage: item.value,
+          };
+        }),
       });
       console.log(response);
       console.log("responsedplfffffffffff");
@@ -102,16 +131,24 @@ export default function ProgramSubmitPage() {
       }
 
       toast.success("Report submitted successfully");
-      setTimeout(() => {
-        window.location.href = "/work/dashboard";
-      }, 1000);
+      // setTimeout(() => {
+      //   window.location.href = "/work/dashboard";
+      // }, 1000);
     } catch (err) {
       console.log(err);
       toast.error("Report submission failed");
     }
   }
+
   return (
     <div className="text-white flex-1 flex flex-col overflow-hidden relative">
+      <AddCollabrateModal
+        isOpen={openModal}
+        setOpen={setOpenModal}
+        allUsers={allUsers}
+        collabrates={collabrates}
+        setCollabrates={setCollabrates}
+      />
       <div className="bg-[url('/assets/images/programimage.jpeg')] h-[100px]  bg-center bg-cover  relative w-full">
         <div className="h-full w-full bg-black opacity-60"></div>
       </div>
@@ -709,31 +746,49 @@ export default function ProgramSubmitPage() {
                   />
                 </div>
               </div>
-              <div className="my-4">
-                <h2 className="sm:text-[18px] text-[16px] font-[600]">
-                  Description
-                </h2>
-                <p className="sm:text-[18px] text-[16px] font-[400]">
-                  InformationInformationInforma tio nI nformati onIn formati
-                  onInform a tion Information Information Informa tionInformat
-                  ionInformationI nfor mationInform ationInfor matio nInfor
-                  mationIn format ionIn forma tionInformation Informa tion
-                  nformationI nforma tionI nfo rma tion Informa tionI nformation
-                  Information
-                </p>
-              </div>
               <div>
-                <h2 className="sm:text-[18px] text-[16px] font-[600]">
+                <h2 className="sm:text-[18px] text-[16px] font-[600] mt-4">
                   Impact
                 </h2>
-                <Textarea
-                  className="bg-transparent outline-none focus-visible:outline-none focus-visible:ring-offset-0 border-2 mt-4 rounded-xl 
-                 focus-visible:ring-0
-                  placeholder:text-white sm:h-[150px] h-[100px]"
-                  placeholder="Write an Overview"
-                  value={proofConceptDescription}
-                  onChange={(e) => setProofConceptDescription(e.target.value)}
-                />
+                <div className="w-full mt-4">
+                  <Input
+                    type="text"
+                    placeholder="Vulnerability URL"
+                    className="bg-transparent text-white rounded-2xl focus:outline-none focus-visible:ring-0 border-2 focus-visible:ring-offset-0 placeholder:text-white py-6"
+                    value={proofConceptDescription}
+                    onChange={(e) => setProofConceptDescription(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-4 flex-col lg:flex-row">
+                <div className="lg:w-[50%] w-full">
+                  <h3 className="font-700 sm:text-[18px]  text-[16px] mb-4">
+                    Attachments
+                  </h3>
+                  <p className="font-[400] sm:text-[16px] text-[14px] lg:w-[50%] w-full">
+                    Attach proof-of-concept script,screenshots,screen recordings
+                  </p>
+                </div>
+                <div className="flex-1 mt-4 lg:mt-0">
+                  <label
+                    htmlFor="attachFile"
+                    className="hover:scale-105 transition-all duration-300 rounded-xl  py-[7px]  bg-[#2451F5] text-white  border-2 border-[#2451F5] font-[600] hover:bg-[#2451F5] flex gap-2 px-4 h-[50px] w-[170px] items-center cursor-pointer"
+                  >
+                    <img
+                      src="/assets/attach.svg"
+                      alt=""
+                      className="w-[15px] m-0"
+                    />
+                    <p className="text-[14px]">Add attachments</p>
+                    <input type="file" className="hidden" id="attachFile" />
+                  </label>
+
+                  <p className="mt-4">
+                    You can attach up to 20 files. Please keep individual upload
+                    size under 400MB.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -759,6 +814,34 @@ export default function ProgramSubmitPage() {
             </div>
           </div>
         </div>
+        <div className="flex  flex-col    lg:flex-row lg:gap-16 gap-4  mt-4 ">
+          <div className="flex flex-col gap-4">
+            <h3>Add Collabrate</h3>
+            <Button
+              className="hover:scale-105 transition-all duration-300 rounded-xl  py-[7px]  bg-[#2451F5] text-white  border-2 border-[#2451F5] font-[600] hover:bg-[#2451F5] flex gap-4 px-4 w-[160px] "
+              onClick={() => setOpenModal(true)}
+            >
+              Add Collaborate
+            </Button>
+          </div>
+          <div className="flex-1 space-y-4">
+            {collabrates.map((item, i) => {
+              return (
+                <CollabrateBox
+                  percent={percent}
+                  globalPercentage={globalPercent}
+                  setPercent={setPercent}
+                  username={item.username}
+                  city={item.hacker.city || "city"}
+                  index={i}
+                  setCollabrates={setCollabrates}
+                  id={item.id}
+                />
+              );
+            })}
+          </div>
+        </div>
+
         <div className="mt-4 flex gap-4  justify-end flex-col-reverse md:flex-row items-end">
           <Button className="hover:scale-105 transition-all duration-300 rounded-3xl  py-[7px]  bg-transparent text-white  border-2 border-[#2451F5] font-[600] hover:bg-transparent flex gap-4 px-4 w-[160px] ">
             Create Draft

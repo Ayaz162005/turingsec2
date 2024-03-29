@@ -17,7 +17,7 @@ import {
 import { Input } from "../../../components/ui/input";
 
 import { formSchemaProfileUpdate } from "../../../lib/schemas";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Button } from "../../ui/button";
 import InputCompany from "../../component/Company/InputCompany";
@@ -28,13 +28,12 @@ import { set } from "date-fns";
 const breakpoints = [1040, 1224];
 
 const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
-export default function TabContentProfile() {
+export default function TabContentProfileCompany() {
   const { currentUser } = useCurrentUser();
   const [imageSrc, setImageSrc] = useState("");
   const [imageSrcUser, setImageSrcUser] = useState("");
   const [imageRealSrc, setImageRealSrc] = useState("");
   const [imageRealSrcUser, setImageRealSrcUser] = useState("");
-
   const form = useForm<z.infer<typeof formSchemaProfileUpdate>>({
     resolver: zodResolver(formSchemaProfileUpdate),
     defaultValues: {
@@ -55,30 +54,7 @@ export default function TabContentProfile() {
       },
     },
   });
-  const options = useMemo(() => countryList().getData(), []);
 
-  useEffect(() => {
-    if (currentUser) {
-      const country = options.filter(
-        (a) => a.value === currentUser.hacker?.country
-      );
-
-      form.setValue("firstname", currentUser.first_name);
-      form.setValue("lastname", currentUser.last_name);
-      form.setValue("username", currentUser.username);
-      form.setValue("website", currentUser.hacker?.website);
-      form.setValue("bio", currentUser.hacker?.bio);
-
-      form.setValue("city", currentUser.hacker?.city);
-      form.setValue("linkedin", currentUser.hacker?.linkedin);
-      form.setValue("twitter", currentUser.hacker?.twitter);
-      form.setValue("github", currentUser.hacker?.github);
-      form.setValue("country", {
-        value: country[0].value,
-        label: country[0].label,
-      });
-    }
-  }, [currentUser]);
   const handleFileChange = (e) => {
     console.log(e);
     const file = e.target.files[0];
@@ -103,7 +79,7 @@ export default function TabContentProfile() {
       reader.readAsDataURL(file);
     }
   };
-
+  const options = useMemo(() => countryList().getData(), []);
   async function onSubmit(data: z.infer<typeof formSchemaProfileUpdate>) {
     if (!imageSrc || !imageSrcUser) {
       toast.error("Please upload images");
@@ -188,7 +164,7 @@ export default function TabContentProfile() {
   return (
     <div className="mt-4">
       <h2 className="sm:text-[23px] text-[16px] font-[600] mb-8 ">
-        Personal information
+        Company Profile
       </h2>
       <div className="main">
         <Form {...form}>

@@ -56,16 +56,7 @@ const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
             const updatedUser = await res.json();
             console.log(updatedUser);
 
-            const { email, id, activated, username } = updatedUser;
-            const { city, bio } = updatedUser.hacker;
-            setCurrentUser({
-              email,
-              id,
-              activated,
-              username: username,
-              city,
-              bio,
-            });
+            setCurrentUser(updatedUser);
           } else {
             // Handle error if the fetch fails
             setCurrentUser(undefined);

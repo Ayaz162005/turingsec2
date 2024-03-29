@@ -100,9 +100,36 @@ export default function TabContentAll() {
   const [todate, setToDate] = React.useState<Date>();
   const [page, setPage] = React.useState(1);
   const { data, isLoading } = useGetUserReports();
-  console.log(data);
+  const [reports, setReports] = React.useState([]);
+  React.useEffect(() => {
+    if (!data) return;
+    const dat = data.map((item) => {
+      return {
+        lastActivity: item.lastActivity,
+        ID: "0000",
+        ReportTitle: item.reportTitle,
+        Program: item.companyName,
+        Reward: item?.reward ? item?.reward : "-",
+        Status: item?.status ? item?.status : "pending",
+      };
+    });
+    setReports([
+      {
+        lastActivity: "Name",
+        ID: "0000",
+        ReportTitle: "title name",
+        Program: "name",
+        Reward: "name",
+        Status: "name",
+      },
+
+      ...dat,
+    ]);
+    console.log(dat);
+  }, [data]);
+  console.log();
   return (
-    <div className="w-full mt-8">
+    <div className="w-full mt-8  ">
       <div className="flex gap-3 lg:items-center  w-full flex-col lg:flex-row xl:w-[80%]">
         <Label className="flex  bg-[#2451F5] rounded-2xl px-4 flex-1">
           <img src="/assets/search.svg" alt="" />
@@ -179,7 +206,7 @@ export default function TabContentAll() {
       </div>
       <div className="mt-10 rounded-2xl overflow-hidden">
         <div>
-          {fakeData.map((data, i) => (
+          {reports.map((data, i) => (
             <ReportLine data={data} index={i} page={page} setPage={setPage} />
           ))}
         </div>

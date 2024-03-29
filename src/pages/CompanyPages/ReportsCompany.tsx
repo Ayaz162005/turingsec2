@@ -33,6 +33,7 @@ export default function ReportCompany() {
               <ReportElement
                 key={report.id}
                 name={report.user.username}
+                img={report.userImgUrl}
                 // onClick={() => navigate(`/work/report/${report.id}`)}
               />
             ))}
